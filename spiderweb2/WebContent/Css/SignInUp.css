@@ -1,0 +1,254 @@
+/*登录样式*/
+html,body{
+	width: 100%;
+	height: 100%;
+	background: #0099CC;
+}
+#signin-Warp{
+	width: 380px;
+	height: 460px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -230px;
+	margin-left: -190px;
+}
+#signin-Warp .context{
+	width: 95%;
+	height: 95%;
+	background: #fff;
+	margin: 0px 10px 10px 10px;
+	border-radius: 0px 0px 10px 10px;
+}
+#signin-Warp:before{/*伪元素,在加上content的时候被激活*/
+	display: block;
+	content: "";
+	width: 95%;
+	height: 10px;
+	margin: 0 auto;
+	border-radius: 10px 10px 0px 0px;
+	background: linear-gradient(left,#EE7621 0%,#EE7621 20%,#EE30A7 20%,#EE30A7 40%,#EE2C2C 40%,#EE2C2C 60%,#C67171 60%,#C67171 80%,#B23AEE 80%,#B23AEE 100%); /* 标准的语法 */
+	background: -webkit-linear-gradient(left,#EE7621 0%,#EE7621 20%,#EE30A7 20%,#EE30A7 40%,#EE2C2C 40%,#EE2C2C 60%,#C67171 60%,#C67171 80%,#B23AEE 80%,#B23AEE 100%); /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(left,#EE7621 0%,#EE7621 20%,#EE30A7 20%,#EE30A7 40%,#EE2C2C 40%,#EE2C2C 60%,#C67171 60%,#C67171 80%,#B23AEE 80%,#B23AEE 100%); /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(left,#EE7621 0%,#EE7621 20%,#EE30A7 20%,#EE30A7 40%,#EE2C2C 40%,#EE2C2C 60%,#C67171 60%,#C67171 80%,#B23AEE 80%,#B23AEE 100%); /* Firefox 3.6 - 15 */
+}
+#signin-Warp .context img{
+	position: relative;
+	top: 10px;
+	left: 50%;
+	margin-left: -30px;
+}
+#signin-Warp .context div{
+	width: 80%;
+	height: auto;
+	margin: 0 auto;
+	margin-top: 30px;
+	border: 0px;
+}
+#signin-Warp .context div input{
+	width: 100%;
+	height: 50px;
+	max-width: 285px;
+	margin-top: 10px;
+	border-radius: 5px;
+	border: 0.5px solid #E9E9E9;
+	position: relative;
+	left: 50%;
+	margin-left: -142.5px;
+	text-indent: 10px;
+}
+#signin-Warp .context div input:focus{
+	border: 0.5px solid #0099CC;
+}
+#signin-Warp .context div input[name="send"]{
+	width: 285px;
+	height: 50px;
+	color: #fff;
+	position: relative;
+	left: 50%;
+	margin-left: -142.5px;
+	border-radius: 5px;
+	background: #0099CC;
+	border: 0px;
+	text-align: center;
+}
+#signin-Warp .context div p{
+	color: #666;
+	width: auto;
+	height: auto;
+}
+#signin-Warp .context div a{
+	text-decoration: none;
+	color: #178BFF;
+}
+#signin-Warp .context div p span{
+	float: right;
+}
+#signin-Warp .errorTipInWarp{
+	width: 200px;
+	height: 40px;
+	position: fixed;
+	right: 10px;
+	top: 10px;
+}
+#signin-Warp .errorTipInWarp section{
+	width: inherit;
+	height: inherit;
+	background: #FFC1C1;
+	border: 0.5px solid red;
+	display: none;
+}
+#signin-Warp .errorTipInWarp section *{
+	display: inline-block;
+	vertical-align: middle;
+}
+#signin-Warp .errorTipInWarp section span{
+	font-size: 15px;
+	color: #515151;
+	text-align: center;
+	line-height: 40px;
+}
+#signin-Warp .errorTipInWarp section span img{
+	width: 20px;
+	height: 20px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+/*  注册样式   */
+#signup-Warp{
+	width: 380px;
+	height: 460px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -230px;
+	margin-left: -190px;
+}
+#signup-Warp .signup-Content{
+	width: 95%;
+	height: 95%;
+	margin: 0 auto;
+	background: #fff;
+	border-radius: 0 0 10px 10px;
+}
+#signup-Warp:before{
+	display: block;
+	content: "";
+	width: 95%;
+	height: 10px;
+	margin: 0 auto;
+	border-radius: 10px 10px 0px 0px;
+	background: linear-gradient(left,#EE7621 0%,#EE7621 20%,#EE30A7 20%,#EE30A7 40%,#EE2C2C 40%,#EE2C2C 60%,#C67171 60%,#C67171 80%,#B23AEE 80%,#B23AEE 100%); /* 标准的语法 */
+	background: -webkit-linear-gradient(left,#EE7621 0%,#EE7621 20%,#EE30A7 20%,#EE30A7 40%,#EE2C2C 40%,#EE2C2C 60%,#C67171 60%,#C67171 80%,#B23AEE 80%,#B23AEE 100%); /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(left,#EE7621 0%,#EE7621 20%,#EE30A7 20%,#EE30A7 40%,#EE2C2C 40%,#EE2C2C 60%,#C67171 60%,#C67171 80%,#B23AEE 80%,#B23AEE 100%); /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(left,#EE7621 0%,#EE7621 20%,#EE30A7 20%,#EE30A7 40%,#EE2C2C 40%,#EE2C2C 60%,#C67171 60%,#C67171 80%,#B23AEE 80%,#B23AEE 100%); /* Firefox 3.6 - 15 */
+}
+#signup-Warp .signup-Content h3{
+	margin: 0;
+	padding-top: 15px;
+	padding-left: 10px;
+	color: #666;
+}
+#signup-Warp .signup-Content .input-Content{
+	width: 95%;
+	height: auto;
+	margin: 0 auto;
+	margin-top: 10px;
+}
+#signup-Warp .signup-Content .input-Content input{
+	width: 100%;
+	height: 40px;
+	margin-top: 5px;
+	max-width: 286px;
+	position: relative;
+	left: 50%;
+	margin-left: -143px;
+	text-indent: 5px;
+	border-radius: 5px;
+	border: 0.5px solid #E9E9E9;
+}
+#signup-Warp .signup-Content .input-Content input:focus{
+	border: 0.5px solid #0099CC;
+}
+#signup-Warp .signup-Content .input-Content input[name="sendUp"]{
+	width: 100%;
+	height: 40px;
+	margin-top: 10px;
+	max-width: 286px;
+	position: relative;
+	left: 50%;
+	margin-left: -143px;
+	text-indent: 5px;
+	background: #007FFF;
+	border: 0px;
+	color: #fff;
+	border-radius: 5px;
+	text-indent: 0;
+}
+.errorTipWarp{
+	width: 200px;
+	height: 50px;
+	position: fixed;
+	right: 10px;
+	top: 10px;
+}
+.errorTipWarp p{
+	padding: 10px 20px 10px 20px;
+	background: #FFEBCD;
+	border: 0.5px solid #d81e06;
+	margin: 0;
+}
+.errorTipWarp section *{
+	display: inline-block;
+	vertical-align: middle;
+}
+.errorTipWarp section{
+	width: 198px;
+	height: 41px;
+	background: #FFC1C1;
+	text-align: center;
+	border: 0.5px solid red;
+	line-height: 40px;
+}
+.errorTipWarp section span{
+	font-size: 15px;
+	color: #515151;
+}
+.errorTipWarp section img{
+	width: 18px;
+	height: 18px;
+	margin-right: 10px;
+}
+.errorTipWarp section{
+	display: none;
+}
+.trueTip{
+	width: 250px;
+	height: 80px;
+	position: fixed;
+	right: 10px;
+	top: 60px;
+}
+.trueTip section *{
+	display: inline-block;
+	vertical-align: middle;
+}
+.trueTip section {
+	border: 0.5px solid red;
+	background: #FFC1C1;
+	width: inherit;
+	height: inherit;
+	text-align: center;
+	display: none;
+}
+.trueTip section img{
+	width: 20px;
+	height: 20px;
+	margin-right: 10px;
+}
+.trueTip section span{
+	font-size: 15px;
+	color: #515151;
+	max-width: 180px;
+	margin-top: 10px;
+}

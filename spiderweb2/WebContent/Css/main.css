@@ -1,0 +1,323 @@
+html,body{
+	width: 100%;
+	height: 100%;
+	background: #F5F6F7;
+}
+header{
+	width: 100%;
+	height: 580px;
+}
+header nav{
+	width: inherit;
+	height: 60px;
+	background: #3B3B3B;
+}
+header nav ul{
+	margin: 0;
+	padding: 0;
+	float: right;
+}
+header nav ul li{
+	display: inline-block;/* 导航栏标签横向排列 */
+	float: right;
+	color: #fff;
+	line-height: 60px;
+}
+header nav ul li a[target]{
+	text-decoration: none;
+	color: #fff;
+	line-height: 60px;
+	margin-right: 10px;
+	padding: 10px 15px;
+	border: 1px solid #fff;
+	font-size: 13px;
+}
+header nav ul li a img{
+	padding-top: 15px;
+	padding-bottom: 10px;
+	margin-right: 15px;
+}
+header nav div{
+	padding-left: 20px;
+	float: left;
+	height: inherit;
+}
+header nav div a{
+	text-decoration: none;
+	color: #fff;
+}
+header nav div a img{
+	padding-top: 15px;
+	padding-bottom: 10px;
+}
+header .headerWrap{
+	width: 100%;
+	height: 550px;
+	background: #3399CC;
+}
+header .headerWrap section{
+	max-width: 80%;
+	height: 50%;
+	margin: 0 auto;
+	position: relative;
+	top: 25%;
+}
+header .headerWrap .sreach-warp input{
+	width: 580px;
+	height: 30.5px;
+	text-indent: 5px;
+}
+header .headerWrap .sreach-all{
+	width: 646px;
+	height: 36.5px;
+	margin: 0 auto;
+	position: relative;
+	top: 25%;
+}
+header .headerWrap .sreach-warp{
+	float: left;
+}
+header .headerWrap .button-warp{
+	float: right;
+	width: auto;
+	height: 36px;
+	max-height: 36px;
+}
+header .headerWrap .button-warp a{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 15px;
+	padding-right: 15px;
+	background: #336699;
+	text-decoration: none;
+	color: #fff;
+	line-height: 36px;
+}
+#context{
+	width: 100%;
+	height: 700px;
+	padding-bottom: 70px;
+}
+#context .contextWarp{
+	width: 90%;
+	height: 100%;
+	background: #FFF;
+	margin: 0 auto;
+	text-align: center;
+	border: 0.3px solid #C1C1C1;
+	box-shadow: 0px 4px #F4F5F5;
+	border-radius: 10px;
+}
+#context .contextWarp h1{
+	font-size: 20px;
+	padding-top: 20px;
+}
+#context .contextWarp ul li{
+	list-style: none;
+	padding: 14px 45px 15px 25px;
+	display: inline-block;
+}
+#context .contextWarp ul li div{
+	width: 100px;
+	height: 130px;
+	background: #000000;
+}
+footer{
+	width: 100%;
+	height: 60px;
+	background: #272822;
+}
+footer .footerWarp{
+	width: 300px;
+	height: inherit;
+	margin: 0 auto;
+	text-align: center;
+}
+footer .footerWarp h2{
+	margin: 0;
+	font-size: 15px;
+	color: #666;
+	margin-top: 10px;
+}
+footer .footerWarp p{
+	margin: 0;
+	font-size: 15px;
+	color: #666;
+	padding-top: 10px;
+}
+footer .footerWarp p a{
+	text-decoration: none;
+	color: #666;
+}
+
+
+/*  navHidden页   */
+
+
+#header{
+	width: 100%;
+	height: 70px;
+	max-width: 2000px;
+}
+.nav{
+	width: inherit;
+	height: inherit;
+	background: #fff;
+	border-bottom: 0.5px solid #EDEDED;
+	opacity: 0.8;
+}
+#header .nav div{
+	width: 50%;
+	height: auto;
+	margin: 0 auto;
+	padding-top: 17px;
+	padding-bottom: 20px;
+	float: left;
+}
+#header .nav div img[name='logo']{
+	float: left;
+}
+#header .nav div section{
+	width: 480px;
+	height: 35px;
+	border: 0.5px solid #EDEDED;
+	float: right;	
+}
+#header .nav div section input{
+	width: 420px;
+	height: 25px;
+	margin: 5px 4px 5px 2px;
+	border: 0;
+	float: left;
+}
+#header .nav div section a{
+	padding: 8px 10px;
+	border: 0;
+	float: right;
+	background: #0099CC;
+}
+#header .nav a{
+	padding-top: 17px;
+	padding-bottom: 20px;
+	padding-right: 20px;
+	float: right;
+}
+/*  搜索页样式   */
+#ResultAll{
+	width: 100%;
+	height: 1000px;
+	background: #fff;
+	max-width: 1250px;
+	position: relative;
+	margin: 0 auto;
+	top: 70px;	
+}
+#ResultAll .ResultWarp{
+	width: 860px;
+	height: 95%;
+	float: left;
+	margin-top: 20px;
+	margin-left: 20px;
+}
+#ResultAll p{
+	color:#A8A8A8;
+	font-size: 13px;
+	margin: 0;
+}
+#ResultAll b{
+	color: red;
+}
+#ResultAll .ResultWarp .ResultContent{
+	width: 100%;
+	height: 98%;
+	margin-top: 5px;
+}
+#ResultAll .ResultWarp .ResultContent div{
+	width: 100%;
+	height: 40px;
+}
+#ResultAll .ResultWarp .ResultContent div ul{
+	padding: 0;
+}
+#ResultAll .ResultWarp .ResultContent div ul li{
+	list-style-type: none;	
+	display: inline-block;
+	line-height: 40px;
+	background: #7B68EE;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-right: 5px;
+	border-radius: 8px;
+	border: 0px;
+}
+#ResultAll .ResultWarp .ResultContent div ul li a{
+	text-decoration: none;
+	color: #fff;
+	font-size: 13px;
+}
+#ResultAll .ResultWarp .ResultContent .ResultEveryOne{
+	width: 100%;
+	height: 90%;
+	margin-top: 20px;
+}
+#ResultAll .ResultWarp .ResultContent .ResultEveryOne div{
+	width: 100%;
+	height: 55px;
+	border-bottom: 0.5px solid #EEE9E9;
+}
+#ResultAll .ResultWarp .ResultContent .ResultEveryOne a{
+	/*text-decoration: none;*/
+}
+#ResultAll .ResultWarp .ResultContent .ResultEveryOne div section{
+	width: auto;
+	height: inherit;
+	float: left;
+}
+#ResultAll .ResultWarp .ResultContent .ResultEveryOne div img{
+	width: 32px;
+	height: 32px;
+	padding-top: 13px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	float: left;
+}
+#ResultAll .ResultWarp .ResultContent .ResultEveryOne div span{
+	line-height: 60px;
+	float: right;
+	margin-left: 10px;
+}
+#ResultAll .ResultWarp .ResultContent .ResultEveryOne .sections{
+	float: right;
+	width: auto;
+	height: inherit;
+}
+.ResultContent .sections{
+	width: auto;
+	height: auto;
+	line-height: 60px;
+	margin-right: 10px;
+}
+#ResultAll .sideWarp{
+	width: 330px;
+	height: 1080px;
+	float: right;
+	margin-top: 20px;
+	margin-right: 20px;
+}
+#ResultAll .sideWarp .advanegsWarp{
+	width: inherit;
+	height: 300px;
+	background: red;
+}
+#ResultAll .sideWarp .advanegsWarp1{
+	width: inherit;
+	height: 300px;
+	background: red;
+	margin-top: 10px;
+}
+#ResultAll .sideWarp .hotSreachWarp{
+	width: inherit;
+	height: 300px;
+	background: red;
+	margin-top: 10px;
+}

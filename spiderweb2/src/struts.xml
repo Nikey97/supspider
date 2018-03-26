@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+	<struts>
+		
+		<package name="ad" namespace="/" extends="struts-default">
+			<action name="ad_*" class="cn.supspider.action.ad" method="{1}">
+				<!-- 登录成功转送管理主页 -->
+				<result name="success">/admin/backstage.jsp</result>
+				<!-- 回到登录页 -->
+				<result name="failed">/admin/index.jsp</result>
+				<!-- 注销操作 -->
+				<result name="exit">/admin/exit.jsp</result>
+			</action>
+		</package>
+		
+	</struts>

@@ -4,7 +4,7 @@
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 	<struts>
 		
-		<package name="ad" namespace="/" extends="struts-default">
+		<package name="ad" extends="struts-default">
 			<action name="ad_*" class="cn.supspider.action.ad" method="{1}">
 				<!-- 登录成功转送管理主页 -->
 				<result name="success">/admin/backstage.jsp</result>

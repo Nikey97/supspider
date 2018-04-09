@@ -30,21 +30,11 @@
 			<h1>NetSpider后台管理 v1.0</h1>
 		</section>
 		<div>
-			<div class="function">
-				<ul>
-					<li><img src="../Img/admessge.png" /><!--信息:用户进入管理系统,项服务器数据库发送查询最新的反馈--></li>
-					<li><img src="../Img/adexit.png"/><!--退出管理系统--></li>
-				</ul>
-				<div>
-					<div class="hidemessge">
-						<!--隐藏的信息div-->
-						
-					</div>
-					<div class="hideexit">
-						<!--退出的div-->
-						<span><a href="ad_exit.action">退出</a></span>
-					</div>
-				</div>
+			<div class="leftTip">
+				<span class="icoTip"><span class="tipData">(35)</span></span>
+			</div>
+			<div class="rightExit">
+				<span class="icoExit"></span>
 			</div>
 		</div>
     </div>
@@ -59,7 +49,6 @@
 					<a href="#"><li>广告信息管理<i class="icon"></i></li></a>
 					<a href="#"><li>用户反馈管理<i class="icon"></i></li></a>
 					<a href="#"><li>邮件收发管理<i class="icon"></i></li></a>
-					<a href="#"><li><span>欢迎${username}登录!</span><i class="icon"></i></li></a>
 				</ul>    		
     		</div>
     	</div>
@@ -67,5 +56,12 @@
     	<!--右边呈现栏:用于挨个呈现管理页面-->
     	</iframe>
     </div>
+    <%
+//     	if(session.getAttribute("username")==null){
+//     		//当访问该页面不存在用户信息,就自动转向登录页面
+//     		out.print("<script>alert('您未曾登录,系统正在转跳!');</script>");
+// 	 		response.setHeader("refresh", "1;index.jsp");
+//     	}
+    %>
  	</body>
 </html>

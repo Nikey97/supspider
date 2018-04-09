@@ -28,6 +28,7 @@
 		 </div>
 		 <%
 		 	if(session.getAttribute("username")!=null){
+		 		//当用户检测到存在用户值,提示注销后在返回此页面
 		 		out.print("<script>alert('已存在用户,请注销后登录!');</script>");
 		 		response.setHeader("refresh", "1;backstage.jsp");
 		 	}

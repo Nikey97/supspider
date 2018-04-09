@@ -47,7 +47,7 @@ html,body{
 }
 #allWarp .inputWarp img{
 	position: relative;
-	top: 20%;
+	top: 20px;
 	left: 50%;
 	margin-left: -32px;
 }
@@ -79,54 +79,45 @@ html,body{
 	margin-top: 90px;
 }
 #head div{
-	width: 370px;
-	height: inherit;
-	float: right;
-}
-#head div .function{
 	width: 200px;
 	height: inherit;
-	position: relative;
-	bottom: 0;
-}
-#head div .function ul{
-	padding: 0;
-	margin: 0;
-}
-#head div .function ul li{
-	list-style: none;
-	display: inline-block;
-	margin-top: 95px;
-	padding-left: 15px;
-	padding-right: 15px;
-}
-#head div .function .hidemessge{
-	width: 190px;
-	height: 90px;
-	position: relative;
-	background: #F0F0F0;
-	top: 0px;
-	right: -40px;
-	float: left;
-	border-left: 0.5px solid #E7E7E7;
-	border-bottom: 0.5px solid #E7E7E7;
-	border-right: 0.5px solid #E7E7E7;
-	display: none;
-}
-#head div .function .hideexit{
-	width: 134px;
-	height: 50px;
-	background: #F0F0F0;
-	position: relative;
-	display: none;
-	top: 0px;
-	right: 0px;
 	float: right;
-	border-left: 0.5px solid #E7E7E7;
-	border-bottom: 0.5px solid #E7E7E7;
-	border-right: 0.5px solid #E7E7E7;
 }
-
+#head div .leftTip{
+	width: 50%;
+	height: 50px;
+	float: left;
+	border-bottom: 1px solid #F8F8F8;
+	border-left: 1px solid #F8F8F8;
+	border-top: 1px solid #F8F8F8;
+}
+#head div .rightExit{
+	width: 48%;
+	height: 50px;
+	float: right;
+	border: 1px solid #F8F8F8;
+}
+#head div .leftTip .icoTip{
+	display: block;
+	width: 32px;
+	height: 32px;
+	background-image: url(../Img/admessge.png);
+	background-repeat: no-repeat;
+	margin-top: 10px;
+	padding-top: 4px;
+}
+#head div .leftTip .icoTip .tipData{
+	padding-left: 32px;
+	color: #EE5C42;
+}
+#head div .rightExit .icoExit{
+	display: block;
+	width: 32px;
+	height: 32px;
+	background-image: url(../Img/adexit.png);
+	background-repeat: no-repeat;
+	margin-top: 10px;
+}
 
 
 /*  身体warp*/
@@ -183,4 +174,64 @@ html,body{
 	width: 79.9%;
 	height: 100%;
 	border: 0;
+}
+
+/*  管理导航分页  one     */
+.heightfull{
+	height: 100%;
+}
+/*
+.fontdiy{
+	font-family: 'comic sans ms', sans-serif; 该英文字体很不错
+	color: #ff0000;
+}
+*/
+.fontdis{
+	font-size: 25px;
+	font-family: 楷体;
+	display: inline;
+}
+.ad_paing{
+	padding: 15px;
+}
+.rowmagin{
+	margin-top: 40px;
+}
+.rowmagins{
+	margin-top: 20px;
+}
+.ad_right{
+	float: right;
+}
+
+/* 用户管理导航分页  */
+
+.ad_sreachinput{
+	height: 38px;
+	border: 0.5px solid #CCCCCC;
+	border-radius: 5px;
+	padding-top: 1.5px;
+}
+.ad_input{
+	width: inherit;
+	height: inherit;
+	border: 0px solid;
+}
+.ad_jsspan{
+	float: right;
+	padding-top: 8px;
+	padding-right: 18px;
+	display: block;
+}
+.ad_divtable{
+	margin-top: 70px;
+}
+.ad_spanico{
+	padding-left: 5px;
+}
+.ad_sleftwrap{
+	width: 89%;
+	height: 35px;
+	float: left;
+	border-right: 0.5px solid #CCCCCC;
 }

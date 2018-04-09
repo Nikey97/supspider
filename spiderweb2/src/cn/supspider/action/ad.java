@@ -1,11 +1,22 @@
 package cn.supspider.action;
 
-import java.sql.ResultSet;
-import com.opensymphony.xwork2.ActionContext;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts2.ServletActionContext;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
-import cn.supspider.DbUtil.DBUtil;
+import cn.supspider.Utils.HibernateUtil;
 import cn.supspider.bean.userbean;
 
 public class ad extends ActionSupport implements ModelDriven<userbean>{
@@ -21,7 +32,6 @@ public class ad extends ActionSupport implements ModelDriven<userbean>{
 	 * 
 	 * */
 	private userbean bean=new userbean();
-			DBUtil db=new DBUtil();
 			
 	public userbean getBean() {
 		return bean;
@@ -31,21 +41,39 @@ public class ad extends ActionSupport implements ModelDriven<userbean>{
 		this.bean = bean;
 	}
 	
+	SessionFactory sessionFactory=HibernateUtil.getSessionFactory();
+	Session session=sessionFactory.openSession();
+	Transaction t=session.beginTransaction();
+
 	public String execute() throws Exception {
-		ActionContext context=ActionContext.getContext();
-		String sql="select * from manageinfo where name='"+bean.getName()+"' and password='"+bean.getPassword()+"';";//管理员登录校验
-		ResultSet set=db.DBQuery(sql);
-		if(set.next()) {
-			context.getSession().put("username", bean.getName());
-			return "success";
-			//当用户名和密码都正确执行此处
-		}else {
-			return "failed";
-			//登录失败执行此处
+		
+		//登录校验业务逻辑
+		HttpServletRequest request=ServletActionContext.getRequest();
+		HttpSession pagesession=request.getSession();
+		try {
+			Query query=session.createQuery("from userbean where name=? and password=?");
+			query.setParameter(0, bean.getName());
+			query.setParameter(1, bean.getPassword());
+			List<userbean> list=query.list();
+			if(list.size()>0) {
+				pagesession.setAttribute("username", bean.getName());//向页面session域对象中存储用户信息
+				return "success";
+			}
+			t.commit();//提交事务
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			t.rollback();//事务回滚
+		}finally {
+			session.close();
+			sessionFactory.close();
 		}
+		return "failed";
 	}
 	
 	public String exit() {
+		//注销登录操作
+		System.out.println("exit执行......");
 		return "exit";
 	}
 	

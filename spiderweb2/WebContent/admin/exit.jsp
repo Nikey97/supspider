@@ -42,7 +42,7 @@
 			本页面用于注销账户登录信息
 		
 		*/
-		if(session.getAttribute("username").equals("")){
+		if(session.getAttribute("username")==null){
 			response.setHeader("refresh", "0;backstage.jsp");
 		}else{
 			session.removeAttribute("username");

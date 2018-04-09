@@ -3,64 +3,86 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
-		<link rel="stylesheet" href="../../Css/normalize.css" />
-		<style type="text/css">
-			html,body{
-				width: 100%;
-				height: 100%;
-			}
-			#all{
-				width: 95%;
-				height: 90%;
-				margin: 0 auto;
-				margin-top: 20px;
-				border: 0.5px solid #E7E7E7;
-				border-radius: 10px;			
-			}
-			#all:before{
-				display: block;
-				content: "";
-				width: 100%;
-				height: 50px;
-				background: #F8F8F8;
-				border-radius: 10px 10px 0px 0px;
-				border-top: 0.5px solid #E7E7E7;
-			}	
-			#all h2{
-				text-align: center;
-				font-family: 楷体;
-			}	
-			#all .input{
-				width: 95%;
-				height: auto;
-				margin: 0 auto;
-				padding-top: 10px;
-			}
-			#all .input input{
-				
-			}	
-			#all .input input[name="mate"]{
-				
-			}
-			#all .input input span{
-				
-			}
-		</style>
+		<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+		<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="../../Css/ManageStyle.css" />
 	</head>
 	<body>
-		<div id="all">
-			<!--
-            	管理项:网站名称(title),网站词条(mate),
-            -->
-			<h2>网站信息管理</h2>
-			<div class="input">
-				<!--
-                	异部请求
-                -->
-				<span>网站名称:</span><br><input type="text" name="title" /><br>
-				<span>网站描述:</span><br><input type="text" name="mate" /><br>
-				<input type="submit" value="提交"/>
+		<!--网站信息管理:
+						1.需求分析
+								-可修改(导航栏网站名,网站标题,网站meta)信息
+								-搜索面向游客开放与否
+								-搜索单页呈现多少条数
+			-->
+		<div class="container-fluid heightfull">
+			<div class="row">
+				<div class="col-lg-2 ad_paing">
+					<h2 class="fontdis alert-info">基本信息设置</h2>
+				</div>
 			</div>
+			<div class="row">
+				<div class="col-md-6 col-xs-offset-3">
+					<div class="form-group">
+						<label class="col-sm-3 control-label">网站名称</label>
+						<div class="col-sm-11">
+							<input type="text" class="form-control" placeholder="请输入网站名称" >
+						</div>
+					</div>
+				</div>	
+			</div>
+			<div class="row">
+				<div class="col-md-6 col-xs-offset-3">
+					<div class="form-group">
+						<label class="col-sm-3 control-label">网站介绍</label>
+						<div class="col-sm-11">
+							<textarea class="form-control" rows="3" placeholder="请输入网站的基本介绍"></textarea>
+						</div>
+					</div>
+				</div>	
+			</div>
+			<div class="row rowmagin">
+				<div class="col-md-6 col-xs-offset-3">
+					<div class="form-group">
+						<label class="col-sm-5 control-label">是否面向游客开放</label>
+						<div class="col-sm-11">
+							<label class="radio-inline">
+								<input type="radio" name="open" value="yes" />是
+							</label>
+							<label class="radio-inline">
+								<input type="radio" name="open" value="no" checked />否
+							</label>
+						</div>
+					</div>
+				</div>	
+			</div>
+			<div class="row rowmagins">
+				<div class="col-md-6 col-xs-offset-3">
+					<div class="form-group">
+						<label class="col-sm-5 control-label">搜索页呈现条数</label>
+						<div class="col-sm-11">
+							<select class="form-control">
+							  <option>5</option>
+							  <option>6</option>
+							  <option>7</option>
+							  <option>8</option>
+							  <option>9</option>
+							</select>
+						</div>
+					</div>
+				</div>	
+			</div>
+			
+			<div class="row rowmagins">
+				<div class="col-md-6 col-xs-offset-3">
+					<div class="form-group">
+						<div class="col-sm-11">
+							<button type="button" class="btn btn-primary btn-lg ad_right">修改</button>
+						</div>
+					</div>
+				</div>	
+			</div>
+			
 		</div>
 	</body>
 </html>

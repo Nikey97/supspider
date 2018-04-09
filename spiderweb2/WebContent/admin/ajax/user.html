@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<link type="text/css" href="../../Css/ManageStyle.css" rel="stylesheet" >
+	<script type="text/javascript" src="../../Js/jquery-3.2.1.min.js"></script>
+</head>	
+	<body>
+		<!--
+			页面需求分析（用户信息管理）：
+			
+									1.查
+										-用户查询为主题
+											1.查询用户所有信息：
+															（1）注册时间
+															（2）登陆时间
+															（3）搜索关键词字段
+															（4）评论字段及时间
+									2.删
+										-删除(分别处)在每个用户的后面
+											1.删除所有用户：
+														(1)清除数据库中的注册信息(拒绝登录)
+								
+									3.封禁		
+										-对用户评论违规的操作
+											1.限时封禁(限制登录)
+											2.永久封禁(禁止一切操作)
+											3.限制评论(允许登录)
+		-->
+		<div class="container-fluid heightfull">
+			<div class="row">
+				<div class="col-lg-2 ad_paing">
+					<h2 class="fontdis alert-info">用户信息设置</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-7 col-xs-offset-3">
+					<div class="form-group ad_sreachinput">
+						<div class="ad_sleftwrap">
+							<span class="glyphicon glyphicon-user ad_spanico"></span>
+							<input type="text" placeholder="请输入用户ID|用户名|邮箱" class="ad_input"  />
+						</div>
+						<a href="#" class="ad_jsspan">检索</a>
+					</div>
+				</div>
+			</div>
+			<!-- 表格 -->
+			<div class="table-responsive ad_divtable">
+				<table class="table table-striped table-bordered table-hover">
+					<caption style="text-align: center;"><h4 style="margin: 0;padding: 0;">用户信息</h4></caption>
+					<tbody>
+						<tr>
+							<th>ID</th>
+							<th>UserName</th>
+							<th>Email</th>
+							<th>SignInTime</th>
+							<th>SignUpTime</th>
+							<th>Danned</th>
+							<th>Delete</th>
+						</tr>
+						<tr>
+							<td>003</td>
+							<td>namell</td>
+							<td>130@163.com</td>
+							<td>2018.01.09</td>
+							<td>2017.11.10</td>
+							<td>X</td>
+							<td>X</td>
+						</tr>
+						<tr>
+							<td>003</td>
+							<td>namell</td>
+							<td>130@163.com</td>
+							<td>2018.01.09</td>
+							<td>2017.11.10</td>
+							<td>X</td>
+							<td>X</td>
+						</tr>
+						<tr>
+							<td>003</td>
+							<td>namell</td>
+							<td>130@163.com</td>
+							<td>2018.01.09</td>
+							<td>2017.11.10</td>
+							<td>X</td>
+							<td>X</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</body>
+</html>

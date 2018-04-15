@@ -1,35 +1,5 @@
 $(function(){
-	
-	$("header nav ul li a[target]").mouseenter(function(){
-		$(this).css("background","#663366");
-	});
-	$("header nav ul li a[target]").mouseleave(function(){
-		$(this).css("background","");
-	});
-	//鼠标移入移出登录注册效果
-	$("footer .footerWarp p a").mouseenter(function(){
-		$(this).css("color","#fff");		
-	});
-	$("footer .footerWarp p a").mouseleave(function(){
-		$(this).css("color","#666");		
-	});
-	//当用户选中navHidden下的搜索框时,变成选中状态.
-	$("#header .nav div section input").focusin(function(){
-//		选中状态
-		$("#header .nav div section").css("border","0.5px solid #0099CC");
-	});
-	$("#header .nav div section input").focusout(function(){
-//		未选中状态
-		$("#header .nav div section").css("border","0.5px solid #EDEDED");
-	});
-	//搜索结果页的每个结果鼠标移入移出
-	$("#ResultAll .ResultWarp .ResultContent .ResultEveryOne div").mouseenter(function(){
-		$(this).css("background","#EAEAEA");
-	});
-	$("#ResultAll .ResultWarp .ResultContent .ResultEveryOne div").mouseleave(function(){
-		$(this).css("background","");
-	});
-	
+	"use strict";
 	//管理页面的登录异步加载
 //	$("#allWarp .inputContent input[name='send']").click(function(){
 //		var name=$("#allWarp .inputContent input[name='name']").val();
@@ -65,5 +35,35 @@ $(function(){
 //		alert("存在账户,请注销后才可登录.");
 //		window.location.href="backstage.jsp";
 //	}
+	
+	/*  搜索框选中和不选中效果 */
+	$(".div_searchInput").focusin(function(){
+		$(".div_search").css('box-shadow','0px 0px 6px rgba(0,0,0,0.6)');
+		$(".div_search").css('-webkit-box-shadow','0 0 6px rgba(0,0,0,.6)');
+	});
+	$(".div_searchInput").focusout(function(){
+		$(".div_search").css('box-shadow','');
+		$(".div_search").css('-webkit-box-shadow','');
+	});
+	
+	/*  当鼠标滑动离开搜索div显示回到底部的按钮 */
+	var height=$(window).height();
+	$(window).bind('scroll', function(){
+		var top = $(this).scrollTop(); 
+		if(top>height){
+			$(".Float_Top").css('visibility','visible');
+		}else{
+			$(".Float_Top").css('visibility','hidden');
+		}
+	});
+	
+	/* 页面数据渲染 */
+	var vm=new Vue({
+		el: '#app',
+		data: {
+			message : 'hot ts'
+		}
+	});
+	
 	
 });

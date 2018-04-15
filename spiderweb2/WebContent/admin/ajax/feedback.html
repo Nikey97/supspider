@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<link type="text/css" href="../../Css/ManageStyle.css" rel="stylesheet" >
+	<script type="text/javascript" src="../../Js/dropdown.js"></script>
+	<script type="text/javascript" src="../../Js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript">
+			$(function(){
+				$("#user_dropdown").click(function(){
+						$(".dropdown-toggle").dropdown('toggle');
+				});
+				
+			});
+	</script>
+</head>
+
+<body>
+	<!--
+		用户反馈信息需求分析:
+						1.该页面用来显示用户反馈信息.
+										
+			
+						2.使用bootstrap的拟态框来实现.
+										可以
+											(1)查看
+											(2)删除
+	-->
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-2 ad_paing">
+				<h2 class="fontdis alert-info">用户反馈管理</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-offset-3 col-sm-6">
+				<div class="col-sm-12">
+					<div class="btn-group">
+						<button type="button" class="btn btn-default">时间段</button>
+						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="user_dropdown">
+							<span class="caret"></span>
+							<span class="sr-only"></span>
+						</button>
+						
+						<ul class="dropdown-menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">Separated link</a></li>
+  						</ul>
+						
+					</div>
+				</div>
+				<div class="col-sm-12">
+					<ul class="ad_ullinomail">
+						<li><a href="#"><div class="col-md-12 ad_listdiv ad_test">
+								<span class="ad_spanTitleleft">这是个一个反馈标题.......</span>
+								<span class="ad_spanNameright">这是作者的name</span>
+							</div></a></li>
+						<li><a href="#"><div class="col-md-12 ad_listdiv ad_test">
+								<span class="ad_spanTitleleft">这是个一个反馈标题.......</span>
+								<span class="ad_spanNameright">这是作者的name</span>
+							</div></a></li>
+						<li><a href="#"><div class="col-md-12 ad_listdiv ad_test">
+								<span class="ad_spanTitleleft">这是个一个反馈标题.......</span>
+								<span class="ad_spanNameright">这是作者的name</span>
+							</div></a></li>
+						<li><a href="#"><div class="col-md-12 ad_listdiv ad_test">
+								<span class="ad_spanTitleleft">这是个一个反馈标题.......</span>
+								<span class="ad_spanNameright">这是作者的name</span>
+							</div></a></li>
+						<li><a href="#"><div class="col-md-12 ad_listdiv ad_test">
+								<span class="ad_spanTitleleft">这是个一个反馈标题.......</span>
+								<span class="ad_spanNameright">这是作者的name</span>
+							</div></a></li>
+					</ul>
+				</div>
+				<div class="row ad_navright">
+					<nav aria-label="Page navigation">
+					  <ul class="pagination">
+						<li>
+						  <a href="#" aria-label="Previous">
+							<span aria-hidden="true">&laquo;</span>
+						  </a>
+						</li>
+						<li><a href="#">1</a></li>
+						<li><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#">4</a></li>
+						<li><a href="#">5</a></li>
+						<li>
+						  <a href="#" aria-label="Next">
+							<span aria-hidden="true">&raquo;</span>
+						  </a>
+						</li>
+					  </ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -27,14 +27,14 @@
     <div id="head">
     <!--描述：头部-->
 		<section>
-			<h1>NetSpider后台管理 v1.0</h1>
+			<h1>SupSpider后台管理 v1.0</h1>
 		</section>
 		<div>
 			<div class="leftTip">
-				<span class="icoTip"><span class="tipData">(35)</span></span>
+				<a href="#" class="a_normailze" title="反馈"><span class="icoTip" id="tipdate"><span class="tipData">(35)</span></span></a>
 			</div>
 			<div class="rightExit">
-				<span class="icoExit"></span>
+				<a href="#" title="注销"><span class="icoExit" id="Exit"></span></a>
 			</div>
 		</div>
     </div>
@@ -46,7 +46,7 @@
 				<ul>
 					<a href="#"><li>网站信息管理<i class="icon"></i></li></a>
 					<a href="#"><li>用户信息管理<i class="icon"></i></li></a>
-					<a href="#"><li>广告信息管理<i class="icon"></i></li></a>
+					<a href="#"><li>创收信息管理<i class="icon"></i></li></a>
 					<a href="#"><li>用户反馈管理<i class="icon"></i></li></a>
 					<a href="#"><li>邮件收发管理<i class="icon"></i></li></a>
 				</ul>    		

@@ -1,323 +1,250 @@
-html,body{
+body,html{
 	width: 100%;
 	height: 100%;
-	background: #F5F6F7;
 }
-header{
-	width: 100%;
-	height: 580px;
+/* 首页的样式 */
+.index_test{
+	border: 1px solid #ff0000; 
 }
-header nav{
-	width: inherit;
+.searchDiv{
+	background: #6495ED;
+	height: 100%;
+}
+.searchNav{
 	height: 60px;
-	background: #3B3B3B;
 }
-header nav ul{
-	margin: 0;
+.spanName{
+	font-size: 20px;
+	color: #fff;
+	font-family: 'comic sans ms', sans-serif;
+}
+.spanNameDiv{
+	float: left;
+	margin-top: 8px;
+	margin-bottom: 10px;
+}
+.rightInput{
+	float: right;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+.buttonLogin{
+	padding: 8px;
+	color: #fff;
+}
+.div_center{
+	float: none;  
+    display: block;  
+    margin-left: auto;  
+    margin-right: auto;
+	margin-top: 60px;
+	height: 50px;
+}
+.div_search{
+	width: 100%;
+	height: 45px;
+	background: #fff;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border-radius: 4px;
+	border: 1px solid #E7E7E7;	
+}
+.div_searchInput{
+	width: 100%;
+	height: 35px;
+	border: 0px;
+	text-align: center;
+	outline: none;
+}
+.div_searchInput:focus{
+	outline: none;
+}
+.ul_normalize{
 	padding: 0;
-	float: right;
+	list-style: none;
 }
-header nav ul li{
-	display: inline-block;/* 导航栏标签横向排列 */
-	float: right;
-	color: #fff;
-	line-height: 60px;
+.ul_normalize li{
+	display: inline-block;
+	padding-left: 10px;
 }
-header nav ul li a[target]{
+.div_HotSearch{
+	margin-top: 20px;
+}
+.icon_hot{
+	display: block;
+	width: auto;
+	height: 32px;
+	background-image: url(../Img/hot.png);
+	background-repeat: no-repeat;
+	padding-left: 32px;
+	padding-top: 5px;
+}
+.fleshDiv{
+	height: auto;
+	background: #F2F2F2;
+	padding-bottom: 130px;
+}
+.HideFloatWarp{
+	width: 45px;
+	height: 150px;
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
+}
+.HideFloatWarp a{
 	text-decoration: none;
-	color: #fff;
-	line-height: 60px;
-	margin-right: 10px;
-	padding: 10px 15px;
-	border: 1px solid #fff;
+}
+.Float_Top{
+	width: inherit;
+	height: 45px;
+	background: #fff;
+	text-align: center;
+	padding-top: 15px;
+	border: 1px solid #E7E7E7;
+	border-radius: 4px 4px 0 0;
+	visibility: hidden;
+}
+.topicon{
+	width: 16px;
+	height: auto;
+	background-image: url(../Img/arrows.png);
+	background-repeat: no-repeat;
+	padding-top: 12px;
+	color: #8a8a8a;
 	font-size: 13px;
 }
-header nav ul li a img{
-	padding-top: 15px;
+.Float_QeCode{
+	width: inherit;
+	height: 45px;
+	background: #fff;
+	border: 1px solid #E7E7E7;	
+	padding-top: 5px;
 	padding-bottom: 10px;
-	margin-right: 15px;
+	padding-left: 5px;
 }
-header nav div{
-	padding-left: 20px;
-	float: left;
-	height: inherit;
-}
-header nav div a{
-	text-decoration: none;
-	color: #fff;
-}
-header nav div a img{
-	padding-top: 15px;
+.Float_feedback{
+	width: inherit;
+	height: 45px;
+	background: #fff;
+	border: 1px solid #E7E7E7;	
+	padding-top: 8px;
 	padding-bottom: 10px;
+	padding-left: 5px;
+	border-radius: 0 0 4px 4px;
 }
-header .headerWrap{
-	width: 100%;
-	height: 550px;
-	background: #3399CC;
-}
-header .headerWrap section{
-	max-width: 80%;
-	height: 50%;
-	margin: 0 auto;
-	position: relative;
-	top: 25%;
-}
-header .headerWrap .sreach-warp input{
-	width: 580px;
-	height: 30.5px;
-	text-indent: 5px;
-}
-header .headerWrap .sreach-all{
-	width: 646px;
-	height: 36.5px;
-	margin: 0 auto;
-	position: relative;
-	top: 25%;
-}
-header .headerWrap .sreach-warp{
-	float: left;
-}
-header .headerWrap .button-warp{
-	float: right;
-	width: auto;
-	height: 36px;
-	max-height: 36px;
-}
-header .headerWrap .button-warp a{
+.share_Music{
+	height: 500px;
+	margin-top: 10px;
 	padding-top: 10px;
 	padding-bottom: 10px;
-	padding-left: 15px;
-	padding-right: 15px;
-	background: #336699;
-	text-decoration: none;
-	color: #fff;
-	line-height: 36px;
 }
-#context{
-	width: 100%;
-	height: 700px;
-	padding-bottom: 70px;
-}
-#context .contextWarp{
-	width: 90%;
-	height: 100%;
-	background: #FFF;
+.Music_context{
+	width: 99%;
+	height: 99%;
 	margin: 0 auto;
-	text-align: center;
-	border: 0.3px solid #C1C1C1;
-	box-shadow: 0px 4px #F4F5F5;
-	border-radius: 10px;
+	border-top: 2px solid #F6716F;
 }
-#context .contextWarp h1{
-	font-size: 20px;
-	padding-top: 20px;
-}
-#context .contextWarp ul li{
-	list-style: none;
-	padding: 14px 45px 15px 25px;
-	display: inline-block;
-}
-#context .contextWarp ul li div{
-	width: 100px;
-	height: 130px;
-	background: #000000;
-}
-footer{
-	width: 100%;
-	height: 60px;
-	background: #272822;
-}
-footer .footerWarp{
-	width: 300px;
-	height: inherit;
-	margin: 0 auto;
-	text-align: center;
-}
-footer .footerWarp h2{
-	margin: 0;
-	font-size: 15px;
-	color: #666;
+.share_Movie{
+	height: 500px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 	margin-top: 10px;
 }
-footer .footerWarp p{
-	margin: 0;
-	font-size: 15px;
-	color: #666;
+.Movie_context{
+	width: 99%;
+	height: 99%;
+	margin: 0 auto;
+	border-top: 2px solid #7383BF;
+}
+.share_Other{
+	height: 500px;
 	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-top: 10px;
 }
-footer .footerWarp p a{
-	text-decoration: none;
-	color: #666;
+.Other_context{
+	width: 99%;
+	height: 99%;
+	margin: 0 auto;
+	border-top: 2px solid #F7D11E;
 }
-
-
-/*  navHidden页   */
-
-
-#header{
+#flashDiv h2{
+	text-align: center;
+	font-family: "楷体";
+}
+.Bottom_warp{
+	height: 9%;
+	background: #111111;
+	padding-top: 15px;
+}
+.Bottom_warp span{
+	color: #555;
+	text-align: center;
+	display: block;
+}
+.Bottom_warp_a{
+	color: #555;
+}
+.Slogen_wrap{
 	width: 100%;
-	height: 70px;
-	max-width: 2000px;
-}
-.nav{
-	width: inherit;
-	height: inherit;
-	background: #fff;
-	border-bottom: 0.5px solid #EDEDED;
-	opacity: 0.8;
-}
-#header .nav div{
-	width: 50%;
 	height: auto;
-	margin: 0 auto;
-	padding-top: 17px;
 	padding-bottom: 20px;
-	float: left;
 }
-#header .nav div img[name='logo']{
-	float: left;
-}
-#header .nav div section{
-	width: 480px;
-	height: 35px;
-	border: 0.5px solid #EDEDED;
-	float: right;	
-}
-#header .nav div section input{
-	width: 420px;
-	height: 25px;
-	margin: 5px 4px 5px 2px;
-	border: 0;
-	float: left;
-}
-#header .nav div section a{
-	padding: 8px 10px;
-	border: 0;
-	float: right;
-	background: #0099CC;
-}
-#header .nav a{
-	padding-top: 17px;
-	padding-bottom: 20px;
-	padding-right: 20px;
-	float: right;
-}
-/*  搜索页样式   */
-#ResultAll{
-	width: 100%;
-	height: 1000px;
-	background: #fff;
-	max-width: 1250px;
-	position: relative;
-	margin: 0 auto;
-	top: 70px;	
-}
-#ResultAll .ResultWarp{
-	width: 860px;
-	height: 95%;
-	float: left;
-	margin-top: 20px;
-	margin-left: 20px;
-}
-#ResultAll p{
-	color:#A8A8A8;
-	font-size: 13px;
-	margin: 0;
-}
-#ResultAll b{
-	color: red;
-}
-#ResultAll .ResultWarp .ResultContent{
-	width: 100%;
-	height: 98%;
-	margin-top: 5px;
-}
-#ResultAll .ResultWarp .ResultContent div{
-	width: 100%;
-	height: 40px;
-}
-#ResultAll .ResultWarp .ResultContent div ul{
-	padding: 0;
-}
-#ResultAll .ResultWarp .ResultContent div ul li{
-	list-style-type: none;	
-	display: inline-block;
-	line-height: 40px;
-	background: #7B68EE;
-	padding-left: 10px;
-	padding-right: 10px;
-	margin-right: 5px;
-	border-radius: 8px;
-	border: 0px;
-}
-#ResultAll .ResultWarp .ResultContent div ul li a{
-	text-decoration: none;
+.Slogen_wrap h1{
+	display: block;
+	text-align: center;
+	font-size: 45px;
 	color: #fff;
+	font-weight: 700;
+	margin: 0;
+	text-shadow: -5px 5px 0px rgba(0,0,0,0.1);
+}
+.Slogen_wrap span{
+	display: block;
+	text-align: center;
+	color: #fff;
+	font-size: 20px;
+	font-weight: 300;
+	margin-top: 10px;
+}
+.Slogen_wrap span[name="data"]{
+	display: block;
+	text-align: center;
+	color: #fff;
+	margin-top: 10px;
 	font-size: 13px;
 }
-#ResultAll .ResultWarp .ResultContent .ResultEveryOne{
-	width: 100%;
-	height: 90%;
-	margin-top: 20px;
-}
-#ResultAll .ResultWarp .ResultContent .ResultEveryOne div{
-	width: 100%;
-	height: 55px;
-	border-bottom: 0.5px solid #EEE9E9;
-}
-#ResultAll .ResultWarp .ResultContent .ResultEveryOne a{
-	/*text-decoration: none;*/
-}
-#ResultAll .ResultWarp .ResultContent .ResultEveryOne div section{
-	width: auto;
-	height: inherit;
-	float: left;
-}
-#ResultAll .ResultWarp .ResultContent .ResultEveryOne div img{
+.sr-only{
 	width: 32px;
 	height: 32px;
-	padding-top: 13px;
-	padding-bottom: 10px;
-	padding-left: 10px;
-	float: left;
-}
-#ResultAll .ResultWarp .ResultContent .ResultEveryOne div span{
-	line-height: 60px;
-	float: right;
-	margin-left: 10px;
-}
-#ResultAll .ResultWarp .ResultContent .ResultEveryOne .sections{
-	float: right;
-	width: auto;
-	height: inherit;
-}
-.ResultContent .sections{
-	width: auto;
-	height: auto;
-	line-height: 60px;
-	margin-right: 10px;
-}
-#ResultAll .sideWarp{
-	width: 330px;
-	height: 1080px;
-	float: right;
-	margin-top: 20px;
-	margin-right: 20px;
-}
-#ResultAll .sideWarp .advanegsWarp{
-	width: inherit;
-	height: 300px;
-	background: red;
-}
-#ResultAll .sideWarp .advanegsWarp1{
-	width: inherit;
-	height: 300px;
-	background: red;
+	background-image: url(../Img/mune.png);
+	background-repeat: no-repeat;
 	margin-top: 10px;
 }
-#ResultAll .sideWarp .hotSreachWarp{
-	width: inherit;
-	height: 300px;
-	background: red;
-	margin-top: 10px;
+.MobileMune_ul{
+	float: right;
+}
+.MobileMune_ul li{
+	text-align: center;
+}
+.Music_icon{
+	display: block;
+	width: 48px;
+	height: 48px;
+	background-image: url(../Img/Music.png);
+	background-repeat: no-repeat;
+}
+.Movie_icon{
+	display: block;
+	width: 48px;
+	height: 48px;
+	background-image: url(../Img/Video.png);
+	background-repeat: no-repeat;
+}
+.Other_icon{
+	display: block;
+	width: 48px;
+	height: 48px;
+	background-image: url(../Img/OtherIcon.png);
+	background-repeat: no-repeat;
 }

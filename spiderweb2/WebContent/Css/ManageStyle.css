@@ -235,3 +235,30 @@ html,body{
 	float: left;
 	border-right: 0.5px solid #CCCCCC;
 }
+/*创收信息管理导航分页*/
+.ad_test{
+	border: 1px solid #F1F1F1;
+}
+
+.ad_ullinomail{
+	list-style: none;
+	padding: 0;
+	margin-top: 10px;
+}
+.ad_listdiv{
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+.ad_spanTitleleft{
+	float: left;
+}
+.ad_spanNameright{
+	float: right;
+}
+.a_normailze{
+	text-decoration: none;
+}
+.ad_navright{
+	float: right;
+	margin-right: 16px;
+}

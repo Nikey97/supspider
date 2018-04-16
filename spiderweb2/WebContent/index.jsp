@@ -33,7 +33,7 @@
 				</div>
 				<div class="collapse navbar-collapse MobileMune" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav MobileMune_ul">
-						<li><a href="#" class="buttonLogin">登录</a></li>
+						<li><a href="login.jsp" class="buttonLogin">登录</a></li>
 						<li><a href="#" class="buttonLogin">关于</a></li>
 					</ul>
 				</div>
@@ -50,7 +50,7 @@
 				</div>
 				<div class="div_search">
 					<form action="#" method="post">
-						<input type="text" class="div_searchInput" placeholder="请输入电影名|音乐名|资源关键字" name="SearchName" >
+						<input type="text" class="div_searchInput" placeholder="请输入电影名|音乐名|资源关键字" name="SearchName">
 					</form>
 				</div>
 				<div class="div_HotSearch">
@@ -70,7 +70,7 @@
 		<h2>最新资源</h2>
 		<div class="share_Music col-md-4 col-sm-4">
 			<div class="Music_context">
-				<table class="table" id="app">
+				<table class="table" id="music">
 					<caption style="text-align: center;"><span class="Music_icon"></span></caption>
 					<thead>
 						<tr>
@@ -80,54 +80,10 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td><a href="#">头牌玩家</a></td>
-							<td>1天前</td>
-							<td>百度云</td>
-						</tr>
-						<tr>
-							<td><a href="#">头牌玩家</a></td>
-							<td>{{ message }}</td>
-							<td>百度云</td>
-						</tr>
-						<tr>
-							<td><a href="#">头牌玩家</a></td>
-							<td>一周前</td>
-							<td>百度云</td>
-						<tr>
-							<td><a href="#">头牌玩家</a></td>
-							<td>一月前</td>
-							<td>百度云</td>
-						</tr>
-						<tr>
-							<td><a href="#">头牌玩家</a></td>
-							<td>一月前</td>
-							<td>百度云</td>
-						</tr>
-						<tr>
-							<td><a href="#">头牌玩家</a></td>
-							<td>一月前</td>
-							<td>百度云</td>
-						</tr>
-						<tr>
-							<td><a href="#">头牌玩家</a></td>
-							<td>一月前</td>
-							<td>百度云</td>
-						</tr>
-						<tr>
-							<td><a href="#">头牌玩家</a></td>
-							<td>一月前</td>
-							<td>百度云</td>
-						</tr>
-						<tr>
-							<td><a href="#">头牌玩家</a></td>
-							<td>一月前</td>
-							<td>百度云</td>
-						</tr>
-						<tr>
-							<td><a href="#">头牌玩家</a></td>
-							<td>一月前</td>
-							<td>百度云</td>
+						<tr v-for="t in til">
+							<td><a href="#">{{ t.docname }}</a></td>
+							<td>{{ t.time }}</td>
+							<td>{{ t.form }}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -215,16 +171,62 @@
 				<span class="topicon">top</span>
 			</div>
 		</a>
-		<a href="#" title="关注官微">
+		<a href="#" title="关注官微"  data-toggle="modal" data-target="#myCQCode">
 			<div class="Float_QeCode">
 				<img src="Img/CGCode.png" />
 			</div>
 		</a>
-		<a href="#" title="用户反馈">
+		<a href="#" title="用户反馈" data-toggle="modal" data-target="#myfeedback">
 			<div class="Float_feedback">
 				<img src="Img/email.png" />
 			</div>
 		</a>
 	</div>
+	
+	<!--  关注官微的模态框弹出内容  -->
+	<div class="modal fade" id="myCQCode" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title" id="myModalLabel">关注官微</h4>
+		  </div>
+		  <div class="modal-body">
+			打开手机微博扫一扫,最新资源更新第一时间通知.
+		  </div>
+		  <div class="modal-footer">
+		  </div>
+		</div>
+	  </div>
+	</div>
+	
+	<!-- 用户反馈的模态框弹出内容 -->
+	<form action="#" method="post" id="feedback_send">
+		<div class="modal fade" id="myfeedback" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">用户反馈</h4>
+			  </div>
+			  <div class="modal-body">
+				<div class="form-group">
+					<label for="exampleInputfeedbackt">反馈问题标题</label>
+					 <input type="text" class="form-control" id="exampleInputfeedbackt" placeholder="请输入反馈标题">
+				</div>
+				<div class="form-group">
+					<label for="exampleInputfeedbackm">描述反馈问题</label>
+					<textarea class="form-control" rows="4" placeholder="请描述反馈问题"></textarea>
+				</div>
+			  </div>
+			  <div class="modal-footer">
+				<input type="reset" class="btn btn-default" id="feedback_send" value="清空">
+				<input type="submit" class="btn btn-primary" id="feedback_send" value="提交">
+			  </div>
+			</div>
+		  </div>
+		</div>	
+	</form>
+	
 </body>
 </html>

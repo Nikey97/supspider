@@ -57,13 +57,21 @@ $(function(){
 		}
 	});
 	
-	/* 页面数据渲染 */
-	var vm=new Vue({
-		el: '#app',
-		data: {
-			message : 'hot ts'
-		}
+	/* 注册密码框选中时出现提示 */
+	
+	$("#psw").focusin(function(){
+		$(".div_pswTip").show();
 	});
 	
+	var jsondata=[{"docname":"羞羞的铁拳","time":"一天前","form":"新浪云"},{"docname":"闪灵","time":"一天前","form":"百度云"},{"docname":"风火玉林","time":"三天前","form":"磁力"},{"docname":"风玉林","time":"二天前","form":"百度云"}];
+	
+	
+	/* 页面数据渲染 */
+	var vm=new Vue({
+		el: '#music',
+		data: {
+			til : jsondata
+		}
+	});
 	
 });

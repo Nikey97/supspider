@@ -1,6 +1,7 @@
 body,html{
 	width: 100%;
 	height: 100%;
+	background: #F5F5F5;
 }
 /* 首页的样式 */
 .index_test{
@@ -143,6 +144,8 @@ body,html{
 	height: 99%;
 	margin: 0 auto;
 	border-top: 2px solid #F6716F;
+	background: #fff;
+	border-radius: 5px;
 }
 .share_Movie{
 	height: 500px;
@@ -155,6 +158,8 @@ body,html{
 	height: 99%;
 	margin: 0 auto;
 	border-top: 2px solid #7383BF;
+	background: #fff;
+	border-radius: 5px;
 }
 .share_Other{
 	height: 500px;
@@ -167,6 +172,8 @@ body,html{
 	height: 99%;
 	margin: 0 auto;
 	border-top: 2px solid #F7D11E;
+	background: #fff;
+	border-radius: 5px;
 }
 #flashDiv h2{
 	text-align: center;
@@ -247,4 +254,86 @@ body,html{
 	height: 48px;
 	background-image: url(../Img/OtherIcon.png);
 	background-repeat: no-repeat;
+}
+
+/*  登录页面样式  */
+.login_warp{
+	height: 100%;
+	background: #F5F5F5;
+}
+.login_context{
+	height: 100%;
+	float: none;  
+    display: block;  
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 50px;
+}
+.span_name{
+	font-size: 15px;
+	font-weight: 400;
+	display: block;
+	color: #8B8B83;
+	font-family: 'comic sans ms', sans-serif;
+}
+.h3_loginname{
+	font-size: 25px;
+	font-weight: 100;
+	display: block;
+	font-family: "adobe-clean","Geneva","Tahoma","Helvetica","Arial",sans-serif,"Malgun Gothic","Microsoft YaHei",sans-serif;
+	padding: 0;
+	margin: 0;
+	margin-top: 20px;
+}
+.input_style{
+	margin-top: 10px;
+}
+.forget_psw{
+	float: right;
+}
+.checkbox_left{
+	float: left;
+}
+.btn-radius{
+	border-radius: 30px;
+}
+.div_magintop{
+	margin-top: 30px;
+}
+.div_magintops{
+	margin-top: 15px;
+}
+.div_position{
+	display: block;
+	width: auto;
+	height: auto;
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+}
+
+/*   注册页面样式  */
+
+.register_warp{
+	height: 100%;
+	background: #F5F5F5;
+}
+.reg_context{
+	height: auto;
+	float: none;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+	padding-bottom: 50px;
+}
+.div_pswTip{
+	height: auto;
+	display: none;
+}
+.ul_rule,li{
+	margin-top: 10px;
+}
+.span_TipLogin{
+	margin-top: 10px;
 }

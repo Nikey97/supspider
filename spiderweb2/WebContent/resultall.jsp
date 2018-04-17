@@ -95,7 +95,38 @@
 						<span class="doc-form">来源平台：百度云</span>
 					</div>
 				</li>
+				<li>
+					<div class="list-diy">
+						<span class="doc-title"><a href="#">头牌玩家</a></span>
+						<span class="doc-form">来源平台：百度云</span>
+					</div>
+				</li>
+				<li>
+					<div class="list-diy">
+						<span class="doc-title"><a href="#">头牌玩家</a></span>
+						<span class="doc-form">来源平台：百度云</span>
+					</div>
+				</li>
 			</ul>
+			<nav aria-label="Page navigation nav-right">
+			  <ul class="pagination">
+				<li>
+				  <a href="#" aria-label="Previous">
+					<span aria-hidden="true">&laquo;</span>
+				  </a>
+				</li>
+				<li><a href="#">1</a></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#">4</a></li>
+				<li><a href="#">5</a></li>
+				<li>
+				  <a href="#" aria-label="Next">
+					<span aria-hidden="true">&raquo;</span>
+				  </a>
+				</li>
+			  </ul>
+			</nav>
 		</div>
 		<div class="col-lg-4 col-md-4 col-sm-4 ad-warp">
 			<!-- 创收广告-->
@@ -107,9 +138,45 @@
 			</div>
 		</div>
 	</div>
-	<div class="container-fluid">
+	<div class="container-fluid div-bottom">
 		<!-- 底部栏-->
-		
+		<div class="col-lg-4 col-md-4 col-sm-4 friend-warp">
+			<!-- 友链 -->
+			<h4 class="friend-h4">友情链接</h4>
+			<div class="col-lg-12 col-md-12 col-sm-12 friend-context">
+				<ul class="bottom-ul-normalize">
+					<li><a href="#" class="bottom-ul-li-a">百度</a></li>
+					<li><a href="#" class="bottom-ul-li-a">百度</a></li>
+					<li><a href="#" class="bottom-ul-li-a">百度</a></li>
+					<li><a href="#" class="bottom-ul-li-a">百度</a></li>
+					<li><a href="#" class="bottom-ul-li-a">百度</a></li>
+					<li><a href="#" class="bottom-ul-li-a">百度</a></li>
+					<li><a href="#" class="bottom-ul-li-a">百度</a></li>
+					<li><a href="#" class="bottom-ul-li-a">百度</a></li>
+					<li><a href="#" class="bottom-ul-li-a">百度</a></li>
+					<li><a href="#" class="bottom-ul-li-a">百度</a></li>
+					<li><a href="#" class="bottom-ul-li-a">百度</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-lg-4 col-md-4 col-sm-4 skill-warp">
+			<!-- 技术-->
+			<h4 class="friend-h4">用到的技术</h4>
+			<div class="col-lg-12 col-md-12 col-sm-12 skill-context">
+				<ul class="bottom-ul-normalize">
+					<li><a href="http://webmagic.io/" class="bottom-ul-li-a">WebMagic</a></li>
+					<li><a href="index.jsp" class="bottom-ul-li-a">SSH</a></li>
+					<li><a href="http://www.bootcss.com/" class="bottom-ul-li-a">Bootstrap</a></li>
+					<li><a href="https://jquery.com/" class="bottom-ul-li-a">Jquery</a></li>
+					<li><a href="https://cn.vuejs.org/" class="bottom-ul-li-a">Vue.js</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid Copey-div">
+		<span class="Copey-span">
+			Copyright © <a href="index.jsp" class="Bottom_warp_a">SupSpider资源搜索</a>
+		</span>
 	</div>
 </body>
 </html>

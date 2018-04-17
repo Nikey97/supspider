@@ -378,8 +378,7 @@ body,html{
 .result-warp{
 	background: #fff;
 	border-radius: 5px;
-}
-.ad-warp{
+	padding-top: 20px;
 }
 .list-diy{
 	width: 100%;
@@ -388,7 +387,7 @@ body,html{
 .doc-list-normalize{
 	list-style: none;
 	padding: 0;
-	height: 550px;
+	height: auto;
 	margin-top: 20px;
 }
 .doc-list-normalize li{
@@ -419,4 +418,54 @@ body,html{
 	height: 350px;
 	border: 1px solid #00ff00;
 	margin-top: 20px;
+}
+.div-bottom{
+	height: auto;
+	background: #202020;
+	padding-bottom: 70px;
+}
+.resut-fluid{
+	height: auto;
+	padding-bottom: 20px;
+}
+.friend-warp{
+	padding-top: 35px;
+	height: 80%;
+}
+.friend-h4{
+	color: #fff;
+}
+.friend-context{
+	border-top: 1px solid #303030;
+}
+.skill-warp{
+	padding-top: 35px;
+	height: 80%;
+}
+.bottom-ul-normalize{
+	list-style: none;
+	padding: 0;
+}
+.bottom-ul-normalize li{
+	list-style: none;
+	display: inline-block;
+}
+.bottom-ul-li-a{
+	color: #959595;
+	padding: 4px 7px;
+	border: 1px solid #303030;
+	margin: 0 7px 7px 0;
+	text-decoration: none;
+}
+.skill-context{
+	border-top: 1px solid #303030;
+}
+.Copey-div{
+	background: #111111;
+	height: 60px;
+}
+.Copey-span{
+	display: block;
+	text-align: center;
+	line-height: 60px;
 }

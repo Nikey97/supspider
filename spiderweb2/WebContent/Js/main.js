@@ -63,7 +63,27 @@ $(function(){
 		$(".div_pswTip").show();
 	});
 
-	var jsondata=[{"docname":"羞羞的铁拳","time":"一天前","form":"新浪云"},{"docname":"闪灵","time":"一天前","form":"百度云"},{"docname":"风火玉林","time":"三天前","form":"磁力"},{"docname":"风玉林","time":"二天前","form":"百度云"}];
+	
+	/*结果返回页的鼠标移入的效果*/
+	$(".bottom-ul-li-a").mouseenter(function(){
+		$(this).css('background',"#337AB7");
+		$(this).css('color','#fff');
+	});
+	$(".bottom-ul-li-a").mouseleave(function(){
+		$(this).css('background',"");
+		$(this).css('color','#959595');
+	});
+	/* 首页的悬浮框的鼠标移入效果 */
+	$(".Float_Top,.Float_QeCode,.Float_feedback").mouseenter(function(){
+		$(this).css('background','#F5F5F5');
+	});
+	$(".Float_Top,.Float_QeCode,.Float_feedback").mouseleave(function(){
+		$(this).css('background','#fff');
+	});
+	
+	
+	
+	var jsondata=[{"docname":"羞羞的铁拳","time":"一天前","form":"新浪云"},{"docname":"闪灵","time":"一天前","form":"百度云"},{"docname":"风火玉林","time":"三天前","form":"磁力"},{"docname":"风玉林","time":"二天前","form":"百度云"},{"docname":"风玉林","time":"二天前","form":"百度云"},{"docname":"风玉林","time":"二天前","form":"百度云"},{"docname":"风玉林","time":"二天前","form":"百度云"},{"docname":"风玉林","time":"二天前","form":"百度云"},{"docname":"风玉林","time":"二天前","form":"百度云"}];
 	
 	
 	/* 页面数据渲染 */

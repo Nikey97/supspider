@@ -230,9 +230,11 @@ body,html{
 }
 .MobileMune_ul{
 	float: right;
+	
 }
 .MobileMune_ul li{
 	text-align: center;
+	display: inline-block;
 }
 .Music_icon{
 	display: block;
@@ -336,4 +338,85 @@ body,html{
 }
 .span_TipLogin{
 	margin-top: 10px;
+}
+
+
+/* 结果返回页构建样式 */
+
+.nav-myself{
+	height: 60px;
+}
+.sr-onlyBlue{
+	width: 32px;
+	height: 32px;
+	background-image: url(../Img/muneBlue.png);
+	background-repeat: no-repeat;
+	margin-top: 10px;
+}
+.nav-mydiy{
+	background: #FCFCFC;
+	border-bottom: 1px solid #E7E7E7;
+}
+.search-mydiv{
+	margin-top: 10px;
+}
+.search-context{
+	display: block;
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+}
+.search-input{
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.search-input-diy{
+	height: 50px;
+	border-radius: 5px;
+	text-align: center;
+}
+.result-warp{
+	background: #fff;
+	border-radius: 5px;
+}
+.ad-warp{
+}
+.list-diy{
+	width: 100%;
+	height: auto;
+}
+.doc-list-normalize{
+	list-style: none;
+	padding: 0;
+	height: 550px;
+	margin-top: 20px;
+}
+.doc-list-normalize li{
+	display: block;
+	border-bottom: 1px solid #E7E7E7;
+	padding-top: 15px;
+	padding-bottom: 10px;
+}
+.doc-title{
+	background-image: url(../Img/docment.png);
+	background-repeat: no-repeat;
+	background-size: 25px 25px;
+	padding-left: 30px;
+	padding-top: 6px;
+	padding-bottom: 20px;
+}
+.doc-form{
+	float: right;
+}
+.ad-warp{
+	height: auto;	
+}
+.ad-frist{
+	height: 350px;
+	border: 1px solid #00ff00;
+}
+.ad-second{
+	height: 350px;
+	border: 1px solid #00ff00;
+	margin-top: 20px;
 }

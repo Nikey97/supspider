@@ -32,7 +32,7 @@
 				  </div>
 				</div>
 				<div class="collapse navbar-collapse MobileMune" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav MobileMune_ul">
+					<ul class="nav MobileMune_ul">
 						<li><a href="login.jsp" class="buttonLogin">登录</a></li>
 						<li><a href="#" class="buttonLogin">关于</a></li>
 					</ul>
@@ -70,17 +70,19 @@
 		<h2>最新资源</h2>
 		<div class="share_Music col-md-4 col-sm-4">
 			<div class="Music_context">
-				<table class="table" id="music">
+				<table class="table table-hover" id="music">
 					<caption style="text-align: center;"><span class="Music_icon"></span></caption>
 					<thead>
 						<tr>
+							<td><b>#</b></td>
 							<td><b>文件名</b></td>
 							<td><b>入库时间</b></td>
 							<td><b>来源</b></td>
 						</tr>
 					</thead>
 					<tbody>
-						<tr v-for="t in til">
+						<tr v-for="(t,index) in til">
+							<td>{{ index }}</td>
 							<td><a href="#">{{ t.docname }}</a></td>
 							<td>{{ t.time }}</td>
 							<td>{{ t.form }}</td>
@@ -91,7 +93,7 @@
 		</div>
 		<div class="share_Movie col-md-4 col-sm-4">
 			<div class="Movie_context">
-				<table class="table">
+				<table class="table table-hover">
 					<caption style="text-align: center;"><span class="Movie_icon"></span></caption>
 					<thead>
 						<tr>
@@ -126,7 +128,7 @@
 		</div>
 		<div class="share_Other col-md-4 col-sm-4">
 			<div class="Other_context">
-				<table class="table">
+				<table class="table table-hover">
 					<caption style="text-align: center;"><span class="Other_icon"></span></caption>
 					<thead>
 						<tr>

@@ -437,6 +437,8 @@ body,html{
 }
 .friend-context{
 	border-top: 1px solid #303030;
+	padding-left: 0;
+	padding-right: 0;
 }
 .skill-warp{
 	padding-top: 35px;
@@ -459,6 +461,8 @@ body,html{
 }
 .skill-context{
 	border-top: 1px solid #303030;
+	padding-left: 0;
+	padding-right: 0;
 }
 .Copey-div{
 	background: #111111;
@@ -468,4 +472,146 @@ body,html{
 	display: block;
 	text-align: center;
 	line-height: 60px;
+}
+
+/*  单资源呈现页面  */
+.One-Context-warp{
+	height: auto;
+}
+.One-context{
+	background: #fff;
+	margin-top: 10px;
+	height: 90%;
+	border-radius: 5px;
+	border: 1px solid #E7E7E7;
+}
+.Context-allinfo{
+	height: auto;
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+.Context-ul-normalize{
+	list-style: none;
+	padding: 0;
+}
+.Context-ul-normalize li{
+	font-weight: 700;
+}
+.Context-info{
+	height: auto;
+}
+.Context-ad{
+	height: auto;
+}
+.info-a{
+	text-decoration: none;
+	color: #fff;
+}
+.info-a:hover{
+	text-decoration: none;
+	color: #fff;
+}
+.info-span{
+	color: #6B6B6B;
+	font-style: oblique;
+	font-weight: 300;
+}
+.One-ad-1{
+	height: auto;
+	border: 1px solid #ff0000;
+}
+.One-ad-2{
+	height: auto;
+	border: 1px solid #00ff00;
+}
+
+.Comment-wrap{
+	height: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.Comment-context{
+	height: 100%;
+	border: 1px solid #E7E7E7;
+	background: #fff;
+	border-radius: 5px; 
+	padding-bottom: 30px;
+}
+.context-h3{
+	text-indent: 30px;
+}
+.textarea-style{
+	display: block;
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+}
+.btn-downlode{
+	background: #8B008B;
+}
+.Comment-list{
+	display: block;
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+	height: auto;
+	margin-top: 20px;
+}
+.one-comment{
+	height: auto;
+	border: 1px solid #E7E7E7;
+	padding-left: 0;
+	padding-right: 0;
+}
+.dateNone{
+	width: 100%;
+	height: auto;
+	display: none;
+}
+.dateNone span{
+	display: block;
+	text-align: center;
+	background: #FFA07A;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+.userinfo-wrap{
+	height: 100%;
+	background: #F2F2F2;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.context-wrap{
+	height: 100%;
+	padding-top: 10px;
+	padding-bottom: 30px;
+}
+.user-icon{
+	display: block;
+	width: 38px;
+	height: 38px;
+	background-image: url(../Img/boy-icon.png);
+	background-repeat: no-repeat;
+	background-size: 38px 38px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.span-name{
+	display: block;
+	width: auto;
+	height: auto;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+.comment-context{
+	
+}
+.date-warp{
+	position: absolute;
+	bottom: 0;
+	right: 10px;
+	font-size: 12px;
+	font-style: oblique;
+	color: #969696;
 }

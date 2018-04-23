@@ -218,7 +218,7 @@
 				</div>
 				<div class="form-group">
 					<label for="exampleInputfeedbackm">描述反馈问题</label>
-					<textarea class="form-control" rows="4" placeholder="请描述反馈问题"></textarea>
+					<textarea class="form-control" rows="4" placeholder="请描述反馈问题"  style="resize:none"></textarea>
 				</div>
 			  </div>
 			  <div class="modal-footer">

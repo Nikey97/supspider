@@ -22,7 +22,7 @@
 				 			<input type="checkbox" name="remember" /><span>记住密码(7天免登录)</span><p>
 				 			<input type="submit" name="send" value="登录"/><p>
 			 			</form>
-		 				<a href="/index.html">返回首页</a>
+		 				<a href="../index.jsp">返回首页</a>
 		 		</div>
 		 	</div>
 		 </div>

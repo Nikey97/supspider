@@ -1,5 +1,5 @@
-<%@page contentType="text/html"%>
-<%@page pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -44,6 +44,7 @@
     	<!--左边导航栏-->
     		<div>
 				<ul>
+					<a href="#"><li>首页<i class="icon"></i></li></a>
 					<a href="#"><li>网站信息管理<i class="icon"></i></li></a>
 					<a href="#"><li>用户信息管理<i class="icon"></i></li></a>
 					<a href="#"><li>创收信息管理<i class="icon"></i></li></a>
@@ -57,11 +58,11 @@
     	</iframe>
     </div>
     <%
-//     	if(session.getAttribute("username")==null){
-//     		//当访问该页面不存在用户信息,就自动转向登录页面
-//     		out.print("<script>alert('您未曾登录,系统正在转跳!');</script>");
-// 	 		response.setHeader("refresh", "1;index.jsp");
-//     	}
+    	if(session.getAttribute("username")==null){
+    		//当访问该页面不存在用户信息,就自动转向登录页面
+    		out.print("<script>alert('您未曾登录,系统正在转跳!');</script>");
+	 		response.setHeader("refresh", "1;index.jsp");
+    	}
     %>
  	</body>
 </html>

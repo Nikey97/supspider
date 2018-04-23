@@ -1,24 +1,23 @@
 package cn.supspider.action;
 
-import java.util.List;
-import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.util.List;
+
+import javax.servlet.ServletConfig;
 import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.ServletConfigAware;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
-import cn.supspider.Utils.HibernateUtil;
 import cn.supspider.bean.userbean;
 
+@Transactional	
 public class ad extends ActionSupport implements ModelDriven<userbean>{
 	/**
 	 * 
@@ -27,59 +26,41 @@ public class ad extends ActionSupport implements ModelDriven<userbean>{
 	/**
 	 * 该action用于管理员登录:
 	 * 
-	 * 		
-	 * 
 	 * 
 	 * */
 	private userbean bean=new userbean();
-			
 	public userbean getBean() {
 		return bean;
 	}
-
 	public void setBean(userbean bean) {
 		this.bean = bean;
 	}
 	
-	SessionFactory sessionFactory=HibernateUtil.getSessionFactory();
-	Session session=sessionFactory.openSession();
-	Transaction t=session.beginTransaction();
-
+	private HibernateTemplate hibernateTemplate;
+	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
+		this.hibernateTemplate = hibernateTemplate;
+	}
+	ActionContext context=ActionContext.getContext();
+	
 	public String execute() throws Exception {
-		
-		//登录校验业务逻辑
-		HttpServletRequest request=ServletActionContext.getRequest();
-		HttpSession pagesession=request.getSession();
-		try {
-			Query query=session.createQuery("from userbean where name=? and password=?");
-			query.setParameter(0, bean.getName());
-			query.setParameter(1, bean.getPassword());
-			List<userbean> list=query.list();
-			if(list.size()>0) {
-				pagesession.setAttribute("username", bean.getName());//向页面session域对象中存储用户信息
-				return "success";
-			}
-			t.commit();//提交事务
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			t.rollback();//事务回滚
-		}finally {
-			session.close();
-			sessionFactory.close();
+		//管理员登录验证
+		@SuppressWarnings("unchecked")
+		List<userbean> list=(List<userbean>) hibernateTemplate.find("FROM userbean WHERE name=? AND password=?", bean.getName(),bean.getPassword());
+		if(list.isEmpty()) {
+			return "failed";
+		}else {
+			//将用户名存入session,用于做判断是否登录.
+			context.getSession().put("username", bean.getName());
+			return SUCCESS;
 		}
-		return "failed";
 	}
 	
+	//注销登录操作
 	public String exit() {
-		//注销登录操作
-		System.out.println("exit执行......");
 		return "exit";
 	}
 	
-	@Override
 	public userbean getModel() {
-		// TODO Auto-generated method stub
 		return bean;
 	}
 }

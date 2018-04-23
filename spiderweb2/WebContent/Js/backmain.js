@@ -1,8 +1,9 @@
 $(function(){
+	"use strict";
 	/*
 	 默认点中第一项
 	 * */
-	$("#body .rightwarp").attr("src","ajax/allmanage.html");
+	$("#body .rightwarp").attr("src","ajax/welcome.html");
 	$("#body .leftwarp div ul li:eq(0)").css("background","#fff");
 	/*
 	 管理页导航的
@@ -16,20 +17,26 @@ $(function(){
 	
 	//第一项管理的点击
 	$("#body .leftwarp div ul li:eq(0)").click(function(){
-		$("#body .rightwarp").attr("src","ajax/allmanage.html");
+		$("#body .rightwarp").attr("src","ajax/welcome.html");
 	});
 	//第二项管理的点击
 	$("#body .leftwarp div ul li:eq(1)").click(function(){
-		$("#body .rightwarp").attr("src","ajax/user.html");
+		$("#body .rightwarp").attr("src","ajax/allmanage.html");
 	});
 	//第三项管理的点击
 	$("#body .leftwarp div ul li:eq(2)").click(function(){
-		$("#body .rightwarp").attr("src","ajax/ads.html");
+		$("#body .rightwarp").attr("src","ajax/user.html");
 	});
 	//第四项管理的点击
 	$("#body .leftwarp div ul li:eq(3)").click(function(){
+		$("#body .rightwarp").attr("src","ajax/ads.html");
+	});
+	//第五项管理的点击
+	$("#body .leftwarp div ul li:eq(4)").click(function(){
 		$("#body .rightwarp").attr("src","ajax/feedback.html");
 	});
+	
+	
 	/*
 		提示信息与退出按钮实现
 	*/
@@ -40,10 +47,9 @@ $(function(){
 		//用户注销操作
 		var alertStr = "您确定注销用户?";
 		if(confirm(alertStr)===true){
-			alert(1);
-			//确定退出
+			window.location.replace("ad_exit.action");
+			//确定退出,转入注销
 		}else{
-			alert(2);
 			//不确定退出
 		}
 	});

@@ -32,5 +32,8 @@
 		
 				<mapping resource="cn/supspider/bean/userbean.hbm.xml"/>
 				
+				<mapping resource="cn/supspider/bean/ad_allWebinfo.hbm.xml"/>
+				
+				<mapping resource="cn/supspider/bean/userinfo.hbm.xml"/>
 		</session-factory>
 	</hibernate-configuration>

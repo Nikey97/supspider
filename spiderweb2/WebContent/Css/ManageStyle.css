@@ -262,3 +262,6 @@ html,body{
 	float: right;
 	margin-right: 16px;
 }
+.show_tbodyinfo{
+	display: none;
+}

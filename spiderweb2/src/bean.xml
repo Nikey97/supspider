@@ -39,8 +39,16 @@
  		<!-- bean实例化 -->
 		<bean id="ad" class="cn.supspider.action.ad" scope="prototype">
 			<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+			<property name="bean" ref="userbean"></property>
+			<property name="ToJson" ref="ToJson"></property>
+			<property name="ad_allWebinfo" ref="ad_allWebinfo"></property>
 		</bean>
 		<bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
 			<property name="sessionFactory" ref="sessionFactory"></property>
-		</bean> 		
+		</bean>
+		<bean id="userbean" class="cn.supspider.bean.userbean"></bean>
+		<bean id="ToJson" class="cn.supspider.Utils.ToJsonType"></bean> 
+		<bean id="ad_allWebinfo" class="cn.supspider.bean.ad_allWebinfo"></bean>
+		
+				
 </beans> 

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    <hibernate-mapping>
+    	<class name="cn.supspider.bean.userinfo" table="userinfo">
+    		<id name="id" column="u_id" type="int"><!-- id为主键 -->
+    			<generator class="native"></generator>
+    		</id>
+    		<property name="UserName" column="u_name" type="string"></property>
+    		<property name="PassWord" column="u_psw" type="string"></property>
+    		<property name="Email" column="u_email" type="string"></property>
+    		<property name="SignInTime" column="u_signint" type="string"></property>
+    		<property name="SignUpTime" column="u_signupt" type="string"></property>
+    	</class>
+    	
+    </hibernate-mapping>

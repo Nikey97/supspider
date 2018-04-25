@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    <hibernate-mapping>
+    	<class name="cn.supspider.bean.ad_allWebinfo" table="web_info">
+    		<id name="number" column="t_number" type="int"><!-- id为主键 -->
+    			<generator class="native"></generator>
+    		</id>
+    		<property name="web_Name" column="web_Name" type="string"></property>
+    		<property name="web_Keyword" column="web_Keyword" type="string"></property>
+    		<property name="web_Introduce" column="web_Introduce" type="string"></property>
+    		<property name="web_Open" column="web_Open" type="int"></property>
+    	</class>
+    </hibernate-mapping>

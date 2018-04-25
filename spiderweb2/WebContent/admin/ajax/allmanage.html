@@ -3,10 +3,11 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
-		<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-		<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+		<link type="text/css" rel="stylesheet" href="../../Css/bootstrap.min.css">
+		<link type="text/css" rel="stylesheet" href="../../Css/bootstrap-theme.min.css">
 		<link rel="stylesheet" href="../../Css/ManageStyle.css" />
 		<script type="text/javascript" src="../../Js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="../../Js/vue.js"></script>
 		<script type="text/javascript" src="../../Js/ajax.js"></script>
 	</head>
 	<body>
@@ -16,83 +17,86 @@
 								-搜索面向游客开放与否
 								-搜索单页呈现多少条数
 			-->
-		<div class="container-fluid heightfull">
+		<div class="container-fluid heightfull" id="showinfo">
 			<div class="row">
 				<div class="col-lg-2 ad_paing">
 					<h2 class="fontdis alert-info">基本信息设置</h2>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-md-6 col-xs-offset-3">
-					<div class="form-group">
-						<label class="col-sm-3 control-label">网站名称</label>
-						<div class="col-sm-11">
-							<input type="text" name="web_Name" class="form-control" placeholder="请输入网站名称" >
+			<form id="sends">
+			<!--<template v-for="r in rows">-->
+				<div class="row">
+					<div class="col-md-6 col-xs-offset-3">
+						<div class="form-group">
+							<label class="col-sm-3 control-label">网站名称</label>
+							<div class="col-sm-11">
+								<input type="text" id="web_Name" name="web_Name" class="form-control" placeholder="" >
+							</div>
 						</div>
-					</div>
-				</div>	
-			</div>
-			<div class="row">
-				<div class="col-md-6 col-xs-offset-3">
-					<div class="form-group">
-						<label class="col-sm-3 control-label">网站关键字</label>
-						<div class="col-sm-11">
-							<input type="text" name="web_Keyword" class="form-control" placeholder="请输入网站关键字" >
+					</div>	
+				</div>
+				<div class="row">
+					<div class="col-md-6 col-xs-offset-3">
+						<div class="form-group">
+							<label class="col-sm-3 control-label">网站关键字</label>
+							<div class="col-sm-11">
+								<input type="text" id="web_Keyword" name="web_Keyword" class="form-control" >
+							</div>
 						</div>
-					</div>
-				</div>	
-			</div>
-			<div class="row">
-				<div class="col-md-6 col-xs-offset-3">
-					<div class="form-group">
-						<label class="col-sm-3 control-label">网站介绍</label>
-						<div class="col-sm-11">
-							<textarea class="form-control" name="web_introduce" style="resize:none" rows="3" placeholder="请输入网站的基本介绍"></textarea>
+					</div>	
+				</div>
+				<div class="row">
+					<div class="col-md-6 col-xs-offset-3">
+						<div class="form-group">
+							<label class="col-sm-3 control-label">网站介绍</label>
+							<div class="col-sm-11">
+								<textarea class="form-control" id="web_Introduce" name="web_Introduce" style="resize:none" rows="3" placeholder=""></textarea>
+							</div>
 						</div>
-					</div>
-				</div>	
-			</div>
-			<div class="row rowmagin">
-				<div class="col-md-6 col-xs-offset-3">
-					<div class="form-group">
-						<label class="col-sm-5 control-label">是否面向游客开放</label>
-						<div class="col-sm-11">
-							<label class="radio-inline">
-								<input type="radio" name="open" value="1" />是
-							</label>
-							<label class="radio-inline">
-								<input type="radio" name="open" value="0" checked />否
-							</label>
+					</div>	
+				</div>
+				<div class="row rowmagin">
+					<div class="col-md-6 col-xs-offset-3">
+						<div class="form-group">
+							<label class="col-sm-5 control-label">是否面向游客开放</label>
+							<div class="col-sm-11">
+								<label class="radio-inline">
+									<input type="radio" name="web_Open" value="1" />是
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="web_Open" value="0" checked />否
+								</label>
+							</div>
 						</div>
-					</div>
-				</div>	
-			</div>
-			<div class="row rowmagins">
-				<div class="col-md-6 col-xs-offset-3">
-					<div class="form-group">
-						<label class="col-sm-5 control-label">搜索页呈现条数</label>
-						<div class="col-sm-11">
-							<select class="form-control">
-							  <option>5</option>
-							  <option>6</option>
-							  <option>7</option>
-							  <option>8</option>
-							  <option>9</option>
-							</select>
+					</div>	
+				</div>
+				<div class="row rowmagins">
+					<div class="col-md-6 col-xs-offset-3">
+						<div class="form-group">
+							<label class="col-sm-5 control-label">搜索页呈现条数</label>
+							<div class="col-sm-11">
+								<select class="form-control">
+								  <option>5</option>
+								  <option>6</option>
+								  <option>7</option>
+								  <option>8</option>
+								  <option>9</option>
+								</select>
+							</div>
 						</div>
-					</div>
-				</div>	
-			</div>
-			<div class="row rowmagins">
-				<div class="col-md-6 col-xs-offset-3">
-					<div class="form-group">
-						<div class="col-sm-11">
-							<button type="button" id="send_info" class="btn btn-primary btn-lg ad_right">修改</button>
+					</div>	
+				</div>
+				<div class="row rowmagins">
+					<div class="col-md-6 col-xs-offset-3">
+						<div class="form-group">
+							<div class="col-sm-11">
+								<button type="button" id="send_info" class="btn btn-primary btn-lg ad_right">修改</button>
+							</div>
 						</div>
-					</div>
-				</div>	
-			</div>
-			
+					</div>	
+				</div>
+			<!--</template>-->
+			</form>
 		</div>
 	</body>
 </html>

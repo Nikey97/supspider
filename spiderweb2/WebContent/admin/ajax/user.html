@@ -3,10 +3,39 @@
 <head>
 <meta charset="utf-8">
 <title>无标题文档</title>
-	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<link type="text/css" rel="stylesheet" href="../../Css/bootstrap.min.css">
+	<link type="text/css" rel="stylesheet" href="../../Css/bootstrap-theme.min.css">
 	<link type="text/css" href="../../Css/ManageStyle.css" rel="stylesheet" >
 	<script type="text/javascript" src="../../Js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="../../Js/vue.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('#send_search').click(function(){
+				$.ajax({
+					type:"get",
+					url:"ad_QueryUserinfo.action",
+					async:true,
+					data: $('#send_searchName').serialize(),
+					success: function(msgs){
+						if(msgs != 0){
+							var Dmsgs=JSON.parse(msgs);
+							$('.show_tbodyinfo').show();
+							var app=new Vue({
+								el: '#show_userlist',
+								data: {
+									rows: Dmsgs
+								}
+							})
+						}else{
+							$('.show_tbodyinfo').hide();
+							alert("抱歉,系统查无此人");
+						}
+					}
+				});				
+				
+			});
+		});
+	</script>
 </head>	
 	<body>
 		<!--
@@ -37,58 +66,45 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-7 col-xs-offset-3">
-					<div class="form-group ad_sreachinput">
-						<div class="ad_sleftwrap">
-							<span class="glyphicon glyphicon-user ad_spanico"></span>
-							<input type="text" placeholder="请输入用户ID|用户名|邮箱" class="ad_input"  />
+				<form id="send_searchName">
+					<div class="col-md-7 col-xs-offset-3">
+						<div class="form-group ad_sreachinput">
+							<div class="ad_sleftwrap">
+								<span class="glyphicon glyphicon-user ad_spanico"></span>
+								<input type="text" placeholder="请输入用户ID|用户名|邮箱" name="search_input" class="ad_input"  />
+							</div>
+							<a href="#" class="ad_jsspan" id="send_search">检索</a>
 						</div>
-						<a href="#" class="ad_jsspan">检索</a>
 					</div>
-				</div>
+				</form>
 			</div>
 			<!-- 表格 -->
 			<div class="table-responsive ad_divtable">
 				<table class="table table-striped table-bordered table-hover">
 					<caption style="text-align: center;"><h4 style="margin: 0;padding: 0;">用户信息</h4></caption>
 					<tbody>
-						<tr>
-							<th>ID</th>
-							<th>UserName</th>
-							<th>Email</th>
-							<th>SignInTime</th>
-							<th>SignUpTime</th>
-							<th>Danned</th>
-							<th>Delete</th>
-						</tr>
-						<tr>
-							<td>003</td>
-							<td>namell</td>
-							<td>130@163.com</td>
-							<td>2018.01.09</td>
-							<td>2017.11.10</td>
-							<td>X</td>
-							<td>X</td>
-						</tr>
-						<tr>
-							<td>003</td>
-							<td>namell</td>
-							<td>130@163.com</td>
-							<td>2018.01.09</td>
-							<td>2017.11.10</td>
-							<td>X</td>
-							<td>X</td>
-						</tr>
-						<tr>
-							<td>003</td>
-							<td>namell</td>
-							<td>130@163.com</td>
-							<td>2018.01.09</td>
-							<td>2017.11.10</td>
-							<td>X</td>
-							<td>X</td>
-						</tr>
-					</tbody>
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>UserName</th>
+								<th>Email</th>
+								<th>SignInTime</th>
+								<th>SignUpTime</th>
+								<th>Danned</th>
+								<th>Delete</th>
+							</tr>
+						</thead>
+						<tbody class="show_tbodyinfo" id="show_userlist">
+							<tr v-for="r in rows">
+								<td>{{ r.id }}</td>
+								<td>{{ r.userName }}</td>
+								<td>{{ r.email }}</td>
+								<td>{{ r.signInTime }}</td>
+								<td>{{ r.signUpTime }}</td>
+								<td>X</td>
+								<td>X</td>
+							</tr>
+						</tbody>
 				</table>
 			</div>
 		</div>

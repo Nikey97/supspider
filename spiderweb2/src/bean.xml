@@ -42,6 +42,9 @@
 			<property name="bean" ref="userbean"></property>
 			<property name="ToJson" ref="ToJson"></property>
 			<property name="ad_allWebinfo" ref="ad_allWebinfo"></property>
+			<property name="advs" ref="advs"></property>
+			<property name="utilMethods" ref="utilMethods"></property>
+			<property name="userinfo" ref="userinfo"></property>
 		</bean>
 		<bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
 			<property name="sessionFactory" ref="sessionFactory"></property>
@@ -49,6 +52,7 @@
 		<bean id="userbean" class="cn.supspider.bean.userbean"></bean>
 		<bean id="ToJson" class="cn.supspider.Utils.ToJsonType"></bean> 
 		<bean id="ad_allWebinfo" class="cn.supspider.bean.ad_allWebinfo"></bean>
-		
-				
+		<bean id="advs" class="cn.supspider.bean.advs"></bean>
+		<bean id="utilMethods" class="cn.supspider.Utils.UtilMethods"></bean>
+		<bean id="userinfo" class="cn.supspider.bean.userinfo"></bean>
 </beans> 

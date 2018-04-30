@@ -28,14 +28,6 @@
 	}
 </style>
 </head>
-<body>
-	<div class="img">
-		<img src="../Img/byebye.gif" />
-	</div>
-	<div class="text">
-		<h2><i>要 &nbsp;记 &nbsp;得 &nbsp;回 &nbsp;来 &nbsp;哟!</i></h2><br>
-		<mark>页面两秒后转跳...</mark>
-	</div>
 	<%
 		/*
 		
@@ -45,7 +37,18 @@
 		if(session.getAttribute("username")!=null){
 			session.removeAttribute("username");
 			response.setHeader("refresh", "1;index.jsp");
+		}else{
+			out.print("<script>alert('异常访问!')</script>");
+			response.setHeader("refresh", "0;index.jsp");
 		}
 	%>
+<body>
+	<div class="img">
+		<img src="../Img/byebye.gif" />
+	</div>
+	<div class="text">
+		<h2><i>要 &nbsp;记 &nbsp;得 &nbsp;回 &nbsp;来 &nbsp;哟!</i></h2><br>
+		<mark>页面两秒后转跳...</mark>
+	</div>
 </body>
 </html>

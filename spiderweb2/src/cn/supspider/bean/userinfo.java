@@ -7,6 +7,7 @@ public class userinfo {
 		private String Email;
 		private String SignInTime;
 		private String SignUpTime;
+		private int Danned;
 		
 		public int getId() {
 			return id;
@@ -44,11 +45,10 @@ public class userinfo {
 		public void setSignUpTime(String signUpTime) {
 			SignUpTime = signUpTime;
 		}
-		
-		
-		@Override
-		public String toString() {
-			return "userinfo [id=" + id + ", UserName=" + UserName + ", PassWord=" + PassWord + ", Email=" + Email
-					+ ", SignInTime=" + SignInTime + ", SignUpTime=" + SignUpTime + "]";
+		public int getDanned() {
+			return Danned;
+		}
+		public void setDanned(int danned) {
+			Danned = danned;
 		}
 }

@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.persistence.Id;
 import javax.servlet.ServletConfig;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -20,7 +22,9 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
 import cn.supspider.Utils.ToJsonType;
+import cn.supspider.Utils.UtilMethods;
 import cn.supspider.bean.ad_allWebinfo;
+import cn.supspider.bean.advs;
 import cn.supspider.bean.userbean;
 import cn.supspider.bean.userinfo;
 import net.sf.json.JSONArray;
@@ -60,8 +64,24 @@ public class ad extends ActionSupport implements ModelDriven<userbean>{
 	}
 	//获取response对象
 	HttpServletResponse response = ServletActionContext.getResponse();
+	HttpServletRequest request=ServletActionContext.getRequest();
 	
-	
+	//注入广告bean
+	private advs advs;
+	public void setAdvs(advs advs) {
+		this.advs = advs;
+	}
+	//注入获取当前系统时间的方法
+	private UtilMethods utilMethods;
+	public void setUtilMethods(UtilMethods utilMethods) {
+		this.utilMethods = utilMethods;
+	}
+	//注入userinfo做用户操作
+	private userinfo userinfo;
+	public void setUserinfo(userinfo userinfo) {
+		this.userinfo = userinfo;
+	}
+
 	public String execute() throws Exception {
 		//管理员登录验证
 		@SuppressWarnings("unchecked")
@@ -103,6 +123,7 @@ public class ad extends ActionSupport implements ModelDriven<userbean>{
 	private String web_Name;
 	private String web_Keyword;
 	private String web_Introduce;
+	private int userid;
 	public String getWeb_Name() {
 		return web_Name;
 	}
@@ -120,6 +141,12 @@ public class ad extends ActionSupport implements ModelDriven<userbean>{
 	}
 	public void setWeb_Introduce(String web_Introduce) {
 		this.web_Introduce = web_Introduce;
+	}
+	public int getUserid() {
+		return userid;
+	}
+	public void setUserid(int userid) {
+		this.userid = userid;
 	}
 	//请求响应
 	public String SaveWebInfo() throws IOException {
@@ -175,8 +202,82 @@ public class ad extends ActionSupport implements ModelDriven<userbean>{
 		}
 		return NONE;
 	}
+	//查询所有用户(用原jsp方法代替)
+	
+	//查询广告代码
+	private String adv;
+	public String getAdv() {
+		return adv;
+	}
+	public void setAdv(String adv) {
+		this.adv = adv;
+	}
+	public String QueryAdvsInfo() throws IOException {
+		response.setCharacterEncoding("UTF-8");
+		PrintWriter out=response.getWriter();
+		@SuppressWarnings("unchecked")
+		List<advs> adv_code=(List<cn.supspider.bean.advs>) hibernateTemplate.find("FROM advs WHERE advs_name=?", getAdv());
+		if(!adv_code.isEmpty()) {
+			out.println(ToJson.List2Json(adv_code));//返回查询值
+			System.out.println(ToJson.List2Json(adv_code));
+		}else {
+			out.println(0);//查询未果
+		}
+		return NONE;
+	}
 	
 	
-	
+	//修改广告代码
+	private String Advs_code;
+	private String Advs_name;
+	private int Advs_id;
+	public String getAdvs_code() {
+		return Advs_code;
+	}
+	public void setAdvs_code(String advs_code) {
+		Advs_code = advs_code;
+	}
+	public String getAdvs_name() {
+		return Advs_name;
+	}
+	public void setAdvs_name(String advs_name) {
+		Advs_name = advs_name;
+	}
+	public int getAdvs_id() {
+		return Advs_id;
+	}
+	public void setAdvs_id(int advs_id) {
+		Advs_id = advs_id;
+	}
+
+	public String UpdateAdvsCode() throws IOException {
+		response.setCharacterEncoding("UTF-8");
+		PrintWriter out=response.getWriter();
+		advs.setId(getAdvs_id());
+		advs.setAdvs_name(getAdvs_name());
+		advs.setAdvs_context(getAdvs_code());
+		advs.setAdvs_altertime(utilMethods.getNowSystemTime());
+		hibernateTemplate.saveOrUpdate(advs);
+		out.println(1);
+		return NONE;
+	}
+	//删除指定的广告
+	public String DeleteAdvsCode() throws IOException {
+		response.setCharacterEncoding("UTF-8");
+		PrintWriter out=response.getWriter();
+		advs.setId(getAdvs_id());
+		advs.setAdvs_name(getAdvs_name());
+		advs.setAdvs_context(null);
+		advs.setAdvs_altertime(utilMethods.getNowSystemTime());
+		hibernateTemplate.update(advs);
+		out.println(1);
+		return NONE;
+	}
+	//用户管理系统删除用户
+	public String DeleteUserInfo() throws IOException {
+		userinfo.setId(getUserid());
+		hibernateTemplate.delete(userinfo);
+		return "deletesu";
+	}
 	
 }

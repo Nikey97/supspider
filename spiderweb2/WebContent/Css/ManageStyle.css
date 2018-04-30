@@ -262,6 +262,27 @@ html,body{
 	float: right;
 	margin-right: 16px;
 }
-.show_tbodyinfo{
-	display: none;
+
+.jurisdiction_icon{
+	display: block;
+	width: 25px;
+	height: 25px;
+	background-image: url(../Img/jurisdiction.png);
+	background-size: 25px 25px;
+	background-repeat: no-repeat;
+}
+.delete_icon{
+	display: block;
+	width: 25px;
+	height: 25px;
+	background-image: url(../Img/delete.png);
+	background-size: 25px 25px;
+	background-repeat: no-repeat;
+}
+.ad_paingStyle{
+	width: 150px;
+	height: 50px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
 }

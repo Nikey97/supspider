@@ -25,7 +25,7 @@ $(function(){
 	});
 	//第三项管理的点击
 	$("#body .leftwarp div ul li:eq(2)").click(function(){
-		$("#body .rightwarp").attr("src","ajax/user.html");
+		$("#body .rightwarp").attr("src","ajax/user.jsp");
 	});
 	//第四项管理的点击
 	$("#body .leftwarp div ul li:eq(3)").click(function(){
@@ -53,4 +53,29 @@ $(function(){
 			//不确定退出
 		}
 	});
+	
+	/*
+	 *  点击删除用户:先提示 
+	 * */
+	$('.delete_icon_a').click(function(){
+		var alertStr = "您确定删除该用户?";
+		if(confirm(alertStr)===true){
+			return true;
+			//确定删除,get方式id请求删除
+		}else{
+			//不确定删除 
+			return false;
+		}
+	});
+	/*
+	 *  点击查询 
+	 * */
+	$('#send_search').click(function(){
+		var search_name=$('.ad_input').val();
+		window.location.href("user.jsp?search_input="+search_name);
+	});
+	
+	/*
+	 * 
+	 * */
 });

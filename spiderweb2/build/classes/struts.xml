@@ -10,7 +10,9 @@
 				<!-- 回到登录页 -->
 				<result name="failed">/admin/index.jsp</result>
 				<!-- 注销操作 -->
-				<result name="exit">/admin/exit.jsp</result>
+				<result name="exit" type="redirect">/admin/exit.jsp</result>
+				<!-- 删除后返回原页面视图  -->
+				<result name="deletesu" type="redirect">/admin/ajax/user.jsp</result>
 			</action>
 		</package>
 	</struts>

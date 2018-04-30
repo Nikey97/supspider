@@ -44,12 +44,12 @@
     	<!--左边导航栏-->
     		<div>
 				<ul>
-					<a href="#"><li>首页<i class="icon"></i></li></a>
-					<a href="#"><li>网站信息管理<i class="icon"></i></li></a>
-					<a href="#"><li>用户信息管理<i class="icon"></i></li></a>
-					<a href="#"><li>创收信息管理<i class="icon"></i></li></a>
-					<a href="#"><li>用户反馈管理<i class="icon"></i></li></a>
-					<a href="#"><li>邮件收发管理<i class="icon"></i></li></a>
+					<a href="javascript:void(0);"><li>首页<i class="icon"></i></li></a>
+					<a href="javascript:void(0);"><li>网站信息管理<i class="icon"></i></li></a>
+					<a href="javascript:void(0);"><li>用户信息管理<i class="icon"></i></li></a>
+					<a href="javascript:void(0);"><li>创收信息管理<i class="icon"></i></li></a>
+					<a href="javascript:void(0);"><li>用户反馈管理<i class="icon"></i></li></a>
+					<a href="javascript:void(0);"><li>邮件收发管理<i class="icon"></i></li></a>
 				</ul>    		
     		</div>
     	</div>

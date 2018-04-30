@@ -12,6 +12,7 @@
     		<property name="Email" column="u_email" type="string"></property>
     		<property name="SignInTime" column="u_signint" type="string"></property>
     		<property name="SignUpTime" column="u_signupt" type="string"></property>
+    		<property name="Danned" column="u_danned" type="int"></property>
     	</class>
     	
     </hibernate-mapping>

@@ -7,6 +7,7 @@ $(function(){
 		type:"get",
 		url:"ad_QueryWebInfo.action",
 		async:true,
+		cache:true,
 		success: function(msgs){
 			var Dmsgs=JSON.parse(msgs);
 //			alert(Dmsgs[0].web_Name);

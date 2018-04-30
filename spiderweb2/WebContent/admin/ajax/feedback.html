@@ -8,12 +8,16 @@
 	<link type="text/css" href="../../Css/ManageStyle.css" rel="stylesheet" >
 	<script type="text/javascript" src="../../Js/dropdown.js"></script>
 	<script type="text/javascript" src="../../Js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="../../Js/vue.js"></script>
 	<script type="text/javascript">
 			$(function(){
-				$("#user_dropdown").click(function(){
-						$(".dropdown-toggle").dropdown('toggle');
+				var jsons=[{'title':'这是个json解析后的标题','name':'nikey','id':1},{'title':'这是第二个json解析后的标题','name':'admin','id':2}];
+				var app=new Vue({
+					el:'#show_feedbacklist',
+					data: {
+						rows: jsons						
+					}
 				});
-				
 			});
 	</script>
 </head>
@@ -55,30 +59,18 @@
 						
 					</div>
 				</div>
-				<div class="col-sm-12">
-					<ul class="ad_ullinomail">
-						<li><a href="#"><div class="col-md-12 ad_listdiv ad_test">
-								<span class="ad_spanTitleleft">这是个一个反馈标题.......</span>
-								<span class="ad_spanNameright">这是作者的name</span>
-							</div></a></li>
-						<li><a href="#"><div class="col-md-12 ad_listdiv ad_test">
-								<span class="ad_spanTitleleft">这是个一个反馈标题.......</span>
-								<span class="ad_spanNameright">这是作者的name</span>
-							</div></a></li>
-						<li><a href="#"><div class="col-md-12 ad_listdiv ad_test">
-								<span class="ad_spanTitleleft">这是个一个反馈标题.......</span>
-								<span class="ad_spanNameright">这是作者的name</span>
-							</div></a></li>
-						<li><a href="#"><div class="col-md-12 ad_listdiv ad_test">
-								<span class="ad_spanTitleleft">这是个一个反馈标题.......</span>
-								<span class="ad_spanNameright">这是作者的name</span>
-							</div></a></li>
-						<li><a href="#"><div class="col-md-12 ad_listdiv ad_test">
-								<span class="ad_spanTitleleft">这是个一个反馈标题.......</span>
-								<span class="ad_spanNameright">这是作者的name</span>
-							</div></a></li>
-					</ul>
-				</div>
+				<!--<template>
+					<router-view>-->
+						<div class="col-sm-12">
+							<ul class="ad_ullinomail" id="show_feedbacklist">
+								<li v-for="r in rows"><div class="col-md-12 ad_listdiv ad_test">
+										<span class="ad_spanTitleleft">{{ r.title }}</span>
+										<span class="ad_spanNameright">{{ r.name }}</span>
+								</div></li>
+							</ul>
+						</div>
+					<!--</router-view>
+				</template><a v-bind:href="show_feedback.html"> </a>-->
 				<div class="row ad_navright">
 					<nav aria-label="Page navigation">
 					  <ul class="pagination">

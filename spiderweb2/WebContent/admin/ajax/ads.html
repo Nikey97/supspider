@@ -27,7 +27,8 @@
 			<div class="col-sm-6 col-xs-offset-3">
 				<div class="form-group">
 					<label class="control-label col-lg-5">选择目标广告框</label>
-					<select class="form-control">
+					<select class="form-control" id="advs_list" name="advs_list">
+						<option value="0">----请选择----</option>
 						<option value="s1">[搜索结果列表页框1]</option>
 						<option value="s2">[搜索结果列表页框2]</option>
 						<option value="r1">[资源结果页框1]</option>
@@ -36,12 +37,90 @@
 				</div>
 				<div class="form-group">
 					<label class="control-label col-lg-5">广告代码</label>
-					<textarea class="form-control" rows="5" placeholder="请输入代码"></textarea>
+					<textarea class="form-control" rows="10" id="show_advCode" placeholder="请输入广告代码"></textarea>
 				</div>
-				<button type="button" class="btn btn-primary">删除</button>
-				<button type="button" class="btn btn-primary">修改</button>
+				<button type="button" class="btn btn-danger" id="delete_advCode">删除</button>
+				<button type="button" class="btn btn-primary" id="updata_advCode">修改</button>
 			</div>
 		</div>
+		<script type="text/javascript">
+			$(function(){
+				//查询创收代码
+				window.codeName=undefined;
+				window.codeId=undefined;
+				window.codeContext=undefined;
+				window.codePotion=undefined;
+				$("#advs_list").change(function(){
+						var advs=$(this).val();
+						if(advs != 0){
+							$.ajax({
+								type:"post",
+								url:"ad_QueryAdvsInfo.action",
+								async:true,
+								data: {'adv':advs},
+								success: function(msgs){
+									var Dmsgs=JSON.parse(msgs);
+									codeName=Dmsgs[0].advs_name;
+									codeId=Dmsgs[0].id;
+									codeContext=Dmsgs[0].advs_context;
+									codePotion=advs;
+									if(msgs != 0){
+										$('#show_advCode').attr('placeholder',Dmsgs[0].advs_context);
+									}else{
+										alert('很抱歉,系统查询无果');
+									}
+								},
+								error: function(msfe){
+									alert("服务器异常:500");
+								}
+							});
+						}
+				});
+				
+				//修改创收代码
+				$('#updata_advCode').click(function(){
+					var Code = $('#show_advCode').val();	
+					if(Code!=""){
+						$.ajax({
+							type:"post",
+							url:"ad_UpdateAdvsCode.action",
+							async:true,
+							data: {'Advs_code':Code,'Advs_name':codeName,'Advs_id':codeId},
+							success: function(msgs){
+								if(msgs==1){
+									alert('修改成功!');
+								}
+							},
+							error: function(msgs){
+								alert('修改服务器异常:500');
+							}
+						});
+					}else{
+						alert('广告代码未输入,无法修改');
+					}
+				});
+				
+				
+				//删除广告代码
+				$('#delete_advCode').click(function(){
+					$.ajax({
+							type:"post",
+							url:"ad_DeleteAdvsCode.action",
+							async:true,
+							data: {'Advs_code':codeContext,'Advs_id':codeId,'Advs_name':codePotion},
+							success: function(msgs){
+								if(msgs==1){
+									alert('修改成功!');
+								}
+							},
+							error: function(msgs){
+								alert('修改服务器异常:500');
+							}
+					});					
+				});
+				
+			});
+		</script>
 	</div>
 </body>
 </html>

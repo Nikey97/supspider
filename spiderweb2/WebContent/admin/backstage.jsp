@@ -61,7 +61,7 @@
     	if(session.getAttribute("username")==null){
     		//当访问该页面不存在用户信息,就自动转向登录页面
     		out.print("<script>alert('您未曾登录,系统正在转跳!');</script>");
-	 		response.setHeader("refresh", "1;index.jsp");
+	 		response.setHeader("refresh", "1;default.jsp");
     	}
     %>
  	</body>

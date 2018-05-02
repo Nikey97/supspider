@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="Keywords" content="数据库取信息(网站关键字)">
-<meta name="Description" content="数据库取信息(网站描述)">
+<meta name="Keywords" content="<s:property value="web_Keyword"/>"><!-- 3. -->
+<meta name="Description" content="<s:property value="web_Introduce"/>">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>数据库取信息(网站名称)</title>
+<title><s:property value="web_Name"/></title>
 	<link rel="stylesheet" href="Css/bootstrap.min.css">
 	<link rel="stylesheet" href="Css/bootstrap-theme.min.css">
 	<link rel="stylesheet" href="Css/main.css">
@@ -39,7 +40,6 @@
 				</div>
 			</div>
 		</nav>
-		
 		
 		<div class="col-md-12">
 			<div class="col-md-6 div_center">
@@ -173,12 +173,12 @@
 				<span class="topicon">top</span>
 			</div>
 		</a>
-		<a href="#" title="关注官微"  data-toggle="modal" data-target="#myCQCode">
+		<a href="javascript:void(0);" title="关注官微"  data-toggle="modal" data-target="#myCQCode">
 			<div class="Float_QeCode">
 				<img src="Img/CGCode.png" />
 			</div>
 		</a>
-		<a href="#" title="用户反馈" data-toggle="modal" data-target="#myfeedback">
+		<a href="javascript:void(0);" title="用户反馈" data-toggle="modal" data-target="#myfeedback">
 			<div class="Float_feedback">
 				<img src="Img/email.png" />
 			</div>
@@ -218,7 +218,7 @@
 				</div>
 				<div class="form-group">
 					<label for="exampleInputfeedbackm">描述反馈问题</label>
-					<textarea class="form-control" rows="4" placeholder="请描述反馈问题"  style="resize:none"></textarea>
+					<textarea class="form-control" rows="4" placeholder="请输入遇到的问题或建议"  style="resize:none"></textarea>
 				</div>
 			  </div>
 			  <div class="modal-footer">
@@ -229,6 +229,5 @@
 		  </div>
 		</div>	
 	</form>
-	
 </body>
 </html>

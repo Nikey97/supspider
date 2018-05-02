@@ -4,25 +4,6 @@
 	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 	<hibernate-configuration>
 		<session-factory>
-<!-- 				<property name="hibernate.dialect"> -->
-<!-- 					org.hibernate.dialect.MySQLDialect -->
-<!-- 				</property> -->
-				
-<!-- 				<property name="hibernate.connection.driver_class"> -->
-<!-- 					com.mysql.jdbc.Driver -->
-<!-- 				</property> -->
-				
-<!-- 				<property name="hibernate.connection.url"> -->
-<!-- 					jdbc:mysql:///netspider -->
-<!-- 				</property> -->
-				
-<!-- 				<property name="hibernate.connection.username"> -->
-<!-- 					root -->
-<!-- 				</property> -->
-				
-<!-- 				<property name="hibernate.connection.password"> -->
-<!-- 					1069 -->
-<!-- 				</property> -->
 				
 				<property name="hibernate.show_sql">true</property>
 				
@@ -37,5 +18,13 @@
 				<mapping resource="cn/supspider/bean/userinfo.hbm.xml"/>
 				
 				<mapping resource="cn/supspider/bean/advs.hbm.xml"/>
+				
+				<mapping resource="cn/supspider/bean/userFeedback.hbm.xml"/>
+				
+				<mapping resource="cn/supspider/bean/Music.hbm.xml"/>
+				
+				<mapping resource="cn/supspider/bean/Movie.hbm.xml"/>
+				
+				<mapping resource="cn/supspider/bean/Other.hbm.xml"/>
 		</session-factory>
 	</hibernate-configuration>

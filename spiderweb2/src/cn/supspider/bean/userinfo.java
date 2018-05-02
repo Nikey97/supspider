@@ -1,5 +1,8 @@
 package cn.supspider.bean;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class userinfo {
 		private int id;
 		private String UserName;
@@ -8,6 +11,17 @@ public class userinfo {
 		private String SignInTime;
 		private String SignUpTime;
 		private int Danned;
+		private int active;
+		
+		//维持外键关系
+		@SuppressWarnings("unused")
+		private Set<userinfo> setfeedback=new HashSet<userinfo>();
+		public Set<userinfo> getSetfeedback() {
+			return setfeedback;
+		}
+		public void setSetfeedback(Set<userinfo> setfeedback) {
+			this.setfeedback = setfeedback;
+		}
 		
 		public int getId() {
 			return id;
@@ -51,4 +65,12 @@ public class userinfo {
 		public void setDanned(int danned) {
 			Danned = danned;
 		}
+		public int getActive() {
+			return active;
+		}
+		public void setActive(int active) {
+			this.active = active;
+		}
+		
+		
 }

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:aop="http://www.springframework.org/schema/aop" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+			
+		<!-- 用户操作属性配置 -->
+		<bean id="user" class="cn.supspider.action.user" scope="prototype">
+			<property name="userinfo" ref="userinfo"></property>
+			<property name="utilMethods" ref="utilMethods"></property>
+			<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+		</bean>
+		
+		<!-- 访问首页数据回显的配置 -->
+		<bean id="index" class="cn.supspider.action.index" scope="prototype">
+			<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+			<property name="ad_allWebinfo" ref="ad_allWebinfo"></property>
+		</bean>
+		
+		<!-- 工具配置  -->
+<!-- 		<bean id="UtilMethods" class="cn.supspider.Utils.UtilMethods"> -->
+<!-- 			<property name="props" ref="props"></property> -->
+<!-- 		</bean> -->
+<!-- 		<bean id="props" class="java.util.Properties"></bean>	 -->
+</beans> 

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    <hibernate-mapping>
+    	<class name="cn.supspider.bean.userFeedback" table="user_Feedback">
+    		<id name="id" column="f_id" type="int"><!-- id为主键 -->
+    			<generator class="native"></generator>
+    		</id>
+    		<property name="userName" column="u_name" type="string"></property>
+    		<property name="title" column="f_title" type="string"></property>
+    		<property name="context" column="f_context" type="string"></property>
+    		<property name="submitTime" column="f_Time" type="date"></property>
+    		<property name="look" column="f_look" type="int"></property>
+			<many-to-one name="userinfo" class="cn.supspider.bean.userinfo" column="fid"></many-to-one>			    	
+    	</class>
+    </hibernate-mapping>

@@ -279,5 +279,11 @@ public class ad extends ActionSupport implements ModelDriven<userbean>{
 		hibernateTemplate.delete(userinfo);
 		return "deletesu";
 	}
+	//接收用户反馈持久化到数据库
+	public String UserFeedbackInfo() {
+		
+		
+		return NONE;
+	}
 	
 }

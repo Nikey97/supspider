@@ -17,15 +17,14 @@
 </head>
 <body>
 	<div class="container-fluid login_warp">
-		<form method="post" action="#">
 			<div class="col-lg-4 col-sm-4 col-md-4 login_context">
 				<span class="span_name">SupSpider</span>
 				<h3 class="h3_loginname">登录</h3>
-				<div class="form-group input_style">
-					<input type="email" name="useremail" class="form-control" placeholder="电子邮件地址">
+				<div class="form-group input_style" id="div_email">
+					<input type="email" name="Email" id="input_email" class="form-control" placeholder="电子邮件地址">
 				</div>
-				<div class="form-group">
-					<input type="password" name="password" class="form-control" placeholder="密码">
+				<div class="form-group" id="div_psw">
+					<input type="password" id="input_psw" name="PassWord" class="form-control" placeholder="密码">
 				</div>
 				<div class="checkbox">
 					<label>
@@ -34,17 +33,16 @@
 					<a href="#" style="float: right;">忘记了密码?</a>
 				</div>
 				<div class="form-group div_magintop">
-					<input type="submit" value="登录" class="btn btn-radius btn-primary">
+					<input type="submit" value="登录" id="login_send" class="btn btn-radius btn-primary">
 				</div>
 				
 				<div class="div_SignUp div_magintops">
 					还没有账号?&nbsp;&nbsp;<a href="register.jsp">创建账号</a>
 				</div>
 			</div>
-		</form>
 	</div>
 	<!--返回首页 -->
-	<a href="index.jsp">
+	<a href="index">
 		<img src="Img/index.png" class="div_position img-responsive">
 	</a>
 </body>

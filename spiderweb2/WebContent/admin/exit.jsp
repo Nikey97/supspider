@@ -36,10 +36,10 @@
 		*/
 		if(session.getAttribute("username")!=null){
 			session.removeAttribute("username");
-			response.setHeader("refresh", "1;index.jsp");
+			response.setHeader("refresh", "1;default.jsp");
 		}else{
 			out.print("<script>alert('异常访问!')</script>");
-			response.setHeader("refresh", "0;index.jsp");
+			response.setHeader("refresh", "0;default.jsp");
 		}
 	%>
 <body>

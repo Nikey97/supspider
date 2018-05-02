@@ -1,41 +1,5 @@
 $(function(){
 	"use strict";
-	//管理页面的登录异步加载
-//	$("#allWarp .inputContent input[name='send']").click(function(){
-//		var name=$("#allWarp .inputContent input[name='name']").val();
-//		var psw=$("#allWarp .inputContent input[name='psw']").val();
-//		if(name==''||psw==''){
-//			
-//			alert("用户名或密码不能为空!");
-//			
-//		}else{
-//			$.ajax({
-//				type:"post",
-//				url:"http://localhost:8080/spiderweb/login",
-//				async:true,
-//				dataType:"json",
-//				data:{
-//					name:$("#allWarp .inputContent input[name='name']").val(),
-//					psw:$("#allWarp .inputContent input[name='psw']").val()
-//				},
-//				success: function(response){
-//					if(response>0){
-//						$.cookie("adminname","#allWarp .inputContent input[name='name']");
-//						window.location.href="backstage.jsp";
-//					}else{
-//						alert("用户名或密码错误!");
-//					}
-//				}
-//			});
-//		}
-//	});
-//	if($.cookie("adminname")==="null"){
-//		
-//	}else{
-//		alert("存在账户,请注销后才可登录.");
-//		window.location.href="backstage.jsp";
-//	}
-	
 	/*  搜索框选中和不选中效果 */
 	$(".div_searchInput").focusin(function(){
 		$(".div_search").css('box-shadow','0px 0px 6px rgba(0,0,0,0.6)');
@@ -62,7 +26,40 @@ $(function(){
 	$("#psw").focusin(function(){
 		$(".div_pswTip").show();
 	});
-
+	
+	/* 登录页面的登录信息提交   */
+	$("#login_send").click(function(){
+		var email=$('#input_email').val();
+		var psw=$("#input_psw").val();
+		if(email==""||psw==""){
+			$('#div_email').attr("class","form-group has-error input_style");
+			$("#div_psw").attr('class','form-group has-error');
+			return false;
+		}else{
+			$.ajax({
+				type:"POST",
+				url:"user_SignIn.action",
+				async:true,
+				dataType: 'json',
+				data: {'Email':email,'PassWord':psw},
+				success: function(msgs){
+					if(msgs==1){
+						//注册成功!
+						$('#div_email').attr("class","form-group input_style");
+						$("#div_psw").attr('class','form-group');
+						window.location.href="index.jsp";
+					}else if(msgs==0){
+						$('#div_email').attr("class","form-group has-error input_style");
+						$("#div_psw").attr('class','form-group has-error');
+					}
+				},
+				error: function(msgs){
+					alert("服务器响应异常:"+msgs);
+				}
+			});
+		}
+	});
+	
 	
 	/*结果返回页的鼠标移入的效果*/
 	$(".bottom-ul-li-a").mouseenter(function(){
@@ -79,19 +76,6 @@ $(function(){
 	});
 	$(".Float_Top,.Float_QeCode,.Float_feedback").mouseleave(function(){
 		$(this).css('background','#fff');
-	});
-	
-	
-	
-	var jsondata=[{"docname":"羞羞的铁拳","time":"一天前","form":"新浪云"},{"docname":"闪灵","time":"一天前","form":"百度云"},{"docname":"风火玉林","time":"三天前","form":"磁力"},{"docname":"风玉林","time":"二天前","form":"百度云"},{"docname":"风玉林","time":"二天前","form":"百度云"},{"docname":"风玉林","time":"二天前","form":"百度云"},{"docname":"风玉林","time":"二天前","form":"百度云"},{"docname":"风玉林","time":"二天前","form":"百度云"},{"docname":"风玉林","time":"二天前","form":"百度云"}];
-	
-	
-	/* 页面数据渲染 */
-	var vm=new Vue({
-		el: '#music',
-		data: {
-			til : jsondata
-		}
 	});
 	
 	

@@ -13,7 +13,8 @@
     		<property name="SignInTime" column="u_signint" type="string"></property>
     		<property name="SignUpTime" column="u_signupt" type="string"></property>
     		<property name="Danned" column="u_danned" type="int"></property>
-    		<property name="active" column="u_active"></property>
+    		<property name="active" column="u_active" type="int"></property>
+    		<property name="code" column="u_code" type="int"></property>
     		<!-- 配置外键 -->
     		<set name="setfeedback" cascade="save-update,delete" inverse="true">
     			<key column="fid"></key>

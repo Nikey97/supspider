@@ -1,7 +1,12 @@
 package cn.supspider.bean;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 public class userinfo {
 		private int id;
@@ -12,6 +17,7 @@ public class userinfo {
 		private String SignUpTime;
 		private int Danned;
 		private int active;
+		private int code;
 		
 		//维持外键关系
 		@SuppressWarnings("unused")
@@ -71,6 +77,11 @@ public class userinfo {
 		public void setActive(int active) {
 			this.active = active;
 		}
-		
+		public int getCode() {
+			return code;
+		}
+		public void setCode(int code) {
+			this.code = code;
+		}
 		
 }

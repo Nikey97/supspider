@@ -21,9 +21,5 @@
 			<property name="ad_allWebinfo" ref="ad_allWebinfo"></property>
 		</bean>
 		
-		<!-- 工具配置  -->
-<!-- 		<bean id="UtilMethods" class="cn.supspider.Utils.UtilMethods"> -->
-<!-- 			<property name="props" ref="props"></property> -->
-<!-- 		</bean> -->
-<!-- 		<bean id="props" class="java.util.Properties"></bean>	 -->
+		
 </beans> 

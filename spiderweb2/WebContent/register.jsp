@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,6 +29,7 @@
 			<div class="reg_context col-lg-4 col-sm-4 col-md-4">
 				<span class="span_name">SupSpider</span>
 				<h3 class="h3_loginname">注册</h3>
+				<span style="color:red;"><s:actionerror/></span>
 				<div class="form-group input_style">
 					<label for="email">电子邮件地址</label>
 					<input type="email" class="form-control" id="email" name="Email" placeholder="例如:netspider@yeah.net">

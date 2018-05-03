@@ -3,6 +3,8 @@ package cn.supspider.action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.persistence.Id;
@@ -249,26 +251,28 @@ public class ad extends ActionSupport implements ModelDriven<userbean>{
 	public void setAdvs_id(int advs_id) {
 		Advs_id = advs_id;
 	}
+	
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-	public String UpdateAdvsCode() throws IOException {
+	public String UpdateAdvsCode() throws IOException, ParseException {
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter out=response.getWriter();
 		advs.setId(getAdvs_id());
 		advs.setAdvs_name(getAdvs_name());
 		advs.setAdvs_context(getAdvs_code());
-		advs.setAdvs_altertime(utilMethods.getNowSystemTime());
+		advs.setAdvs_altertime(sdf.format(utilMethods.getNowSystemTime()));
 		hibernateTemplate.saveOrUpdate(advs);
 		out.println(1);
 		return NONE;
 	}
 	//删除指定的广告
-	public String DeleteAdvsCode() throws IOException {
+	public String DeleteAdvsCode() throws IOException, ParseException {
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter out=response.getWriter();
 		advs.setId(getAdvs_id());
 		advs.setAdvs_name(getAdvs_name());
 		advs.setAdvs_context(null);
-		advs.setAdvs_altertime(utilMethods.getNowSystemTime());
+		advs.setAdvs_altertime(sdf.format(utilMethods.getNowSystemTime()));
 		hibernateTemplate.update(advs);
 		out.println(1);
 		return NONE;

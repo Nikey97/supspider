@@ -17,7 +17,8 @@
 			</action>
 			<!--用户操作请求响应 -->
 			<action name="user_*" class="user" method="{1}">
-				<result name="success" type="redirect">/login.jsp</result>
+				<result name="success">/RegSuccess.jsp</result>
+				<result name="input">/register.jsp</result>
 			</action>
 			<action name="index" class="index">
 				<result name="success">/index.jsp</result>

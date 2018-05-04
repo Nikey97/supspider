@@ -13,6 +13,9 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.util.ValueStack;
 
+import cn.supspider.bean.Movie;
+import cn.supspider.bean.Music;
+import cn.supspider.bean.Other;
 import cn.supspider.bean.ad_allWebinfo;
 
 @SuppressWarnings("serial")
@@ -44,6 +47,16 @@ public class index extends ActionSupport implements ModelDriven<ad_allWebinfo>{
 		//获取值栈
 		ValueStack stack = context.getValueStack();
 		
+		//实例化注入Movie
+		private Movie movie;
+		public void setMovie(Movie movie) {
+			this.movie = movie;
+		}
+		public Movie getMovie() {
+			return movie;
+		}
+		
+		
 		public String execute() throws Exception {
 			@SuppressWarnings({ "unchecked", "unused" })
 			//网站信息查询
@@ -57,7 +70,15 @@ public class index extends ActionSupport implements ModelDriven<ad_allWebinfo>{
 			//热搜
 			
 			//最新资源
-			
+			hibernateTemplate.setMaxResults(8);
+			ValueStack stack = ActionContext.getContext().getValueStack();
+			@SuppressWarnings({ "unchecked", "unused" })
+			List<Movie> list2= (List<Movie>) hibernateTemplate.find("from Movie");
+			stack.set("MovieList", list2);
+			List<Music> list3 = (List<Music>) hibernateTemplate.find("from Music");
+			stack.set("MusicList", list3);
+			List<Other> list4 = (List<Other>) hibernateTemplate.find("from Other");
+			stack.set("OtherList", list4);
 			return SUCCESS;
 		}
 

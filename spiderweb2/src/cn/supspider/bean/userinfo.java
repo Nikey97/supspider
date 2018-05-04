@@ -83,5 +83,4 @@ public class userinfo {
 		public void setCode(int code) {
 			this.code = code;
 		}
-		
 }

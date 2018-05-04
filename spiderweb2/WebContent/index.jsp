@@ -55,11 +55,7 @@
 				</div>
 				<div class="div_HotSearch">
 					<ul class="ul_normalize">
-						<a href="#"><li><span class="icon_hot">头牌玩家</span></li></a>
-						<a href="#"><li><span class="icon_hot">头牌玩家</span></li></a>
-						<a href="#"><li><span class="icon_hot">头牌玩家</span></li></a>
-						<a href="#"><li><span class="icon_hot">头牌玩家</span></li></a>
-						<a href="#"><li><span class="icon_hot">头牌玩家</span></li></a>
+						<li><a href="#"><span class="icon_hot">头牌玩家</span></a></li>
 					</ul>
 				</div>
 			</div>
@@ -74,19 +70,19 @@
 					<caption style="text-align: center;"><span class="Music_icon"></span></caption>
 					<thead>
 						<tr>
-							<td><b>#</b></td>
 							<td><b>文件名</b></td>
 							<td><b>入库时间</b></td>
 							<td><b>来源</b></td>
 						</tr>
 					</thead>
 					<tbody>
-						<tr v-for="(t,index) in til">
-							<td>{{ index }}</td>
-							<td><a href="#">{{ t.docname }}</a></td>
-							<td>{{ t.time }}</td>
-							<td>{{ t.form }}</td>
-						</tr>
+						<s:iterator value="MusicList">
+							<tr>
+								<td><a href="oneresult.jsp?id=<s:property value="number"/>" style="text-overflow: ellipsis; font-size: 12px; overflow:hidden; white-space: nowrap; width: 90px; display: block;" title="<s:property value="M_name"/>"><s:property value="M_name"/></a></td>
+								<td><span style="text-overflow: ellipsis; font-size: 12px; overflow:hidden; white-space: nowrap; width: 60px; display: block;" title="<s:property value="M_intotime"/>"><s:property value="M_intotime"/></span></td>
+								<td><s:property value="M_from"/></td>
+							</tr>
+						</s:iterator>	
 					</tbody>
 				</table>
 			</div>
@@ -103,25 +99,13 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td><a href="#">头牌玩家</a></td>
-							<td>1天前</td>
-							<td>百度云</td>
-						</tr>
-						<tr>
-							<td><a href="#">头牌玩家</a></td>
-							<td>3天前</td>
-							<td>百度云</td>
-						</tr>
-						<tr>
-							<td><a href="#">头牌玩家</a></td>
-							<td>一周前</td>
-							<td>百度云</td>
-						<tr>
-							<td><a href="#">头牌玩家</a></td>
-							<td>一月前</td>
-							<td>百度云</td>
-						</tr>
+						<s:iterator value="MovieList">
+							<tr>
+								<td><a href="oneresult.jsp?id=<s:property value="number"/>" style="text-overflow: ellipsis; font-size: 12px; overflow:hidden; white-space: nowrap; width: 90px; display: block;" title="<s:property value="M_name"/>"><s:property value="M_name"/></a></td>
+								<td><span style="text-overflow: ellipsis; font-size: 12px; overflow:hidden; white-space: nowrap; width: 60px; display: block;" title="<s:property value="M_intotime"/>"><s:property value="M_intotime"/></span></td>
+								<td><s:property value="M_from"/></td>
+							</tr>
+						</s:iterator>
 					</tbody>
 				</table>
 			</div>
@@ -138,25 +122,13 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td><a href="#">头牌玩家</a></td>
-							<td>1天前</td>
-							<td>百度云</td>
-						</tr>
-						<tr>
-							<td><a href="#">头牌玩家</a></td>
-							<td>3天前</td>
-							<td>百度云</td>
-						</tr>
-						<tr>
-							<td><a href="#">头牌玩家</a></td>
-							<td>一周前</td>
-							<td>百度云</td>
-						<tr>
-							<td><a href="#">头牌玩家</a></td>
-							<td>一月前</td>
-							<td>百度云</td>
-						</tr>
+						<s:iterator value="OtherList">
+							<tr>
+								<td><a href="oneresult.jsp?id=<s:property value="number"/>" style="text-overflow: ellipsis; font-size: 12px; overflow:hidden; white-space: nowrap; width: 90px; display: block;" title="<s:property value="O_name"/>"><s:property value="O_name"/></a></td>
+								<td><span style="text-overflow: ellipsis; font-size: 12px; overflow:hidden; white-space: nowrap; width: 60px; display: block;" title="<s:property value="O_intotime"/>"><s:property value="O_intotime"/></span></td>
+								<td><s:property value="O_from"/></td>
+							</tr>
+						</s:iterator>
 					</tbody>
 				</table>
 			</div>
@@ -168,21 +140,22 @@
 	</div>
 	<div class="HideFloatWarp">
 		<!-- 漂浮栏:反馈|返回顶部|关注官微|白色的导航栏 -->
-		<a href="#SearchWarp" title="返回顶部">
 			<div class="Float_Top">
-				<span class="topicon">top</span>
+				<a href="#SearchWarp" title="返回顶部">
+					<span class="topicon">top</span>
+				</a>
 			</div>
-		</a>
-		<a href="javascript:void(0);" title="关注官微"  data-toggle="modal" data-target="#myCQCode">
 			<div class="Float_QeCode">
-				<img src="Img/CGCode.png" />
+				<a href="javascript:void(0);" title="关注官微"  data-toggle="modal" data-target="#myCQCode">
+					<img src="Img/CGCode.png" />
+				</a>
 			</div>
-		</a>
-		<a href="javascript:void(0);" title="用户反馈" data-toggle="modal" data-target="#myfeedback">
+		
 			<div class="Float_feedback">
-				<img src="Img/email.png" />
+				<a href="javascript:void(0);" title="用户反馈" data-toggle="modal" data-target="#myfeedback">
+					<img src="Img/email.png" />
+				</a>
 			</div>
-		</a>
 	</div>
 	
 	<!--  关注官微的模态框弹出内容  -->

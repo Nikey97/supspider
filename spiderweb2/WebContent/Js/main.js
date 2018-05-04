@@ -14,7 +14,7 @@ $(function(){
 	var height=$(window).height();
 	$(window).bind('scroll', function(){
 		var top = $(this).scrollTop(); 
-		if(top>height){
+		if(top>height/2){
 			$(".Float_Top").css('visibility','visible');
 		}else{
 			$(".Float_Top").css('visibility','hidden');
@@ -24,7 +24,7 @@ $(function(){
 	/* 注册密码框选中时出现提示 */
 	
 	$("#psw").focusin(function(){
-		$(".div_pswTip").show();
+		$(".div_pswTip").fadeIn();
 	});
 	
 	/* 登录页面的登录信息提交   */
@@ -49,6 +49,7 @@ $(function(){
 						$("#div_psw").attr('class','form-group');
 						window.location.href="index.jsp";
 					}else if(msgs==0){
+						$('.Tip-login').fadeIn();
 						$('#div_email').attr("class","form-group has-error input_style");
 						$("#div_psw").attr('class','form-group has-error');
 					}

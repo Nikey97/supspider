@@ -9,6 +9,7 @@ public class Other {
 	private String O_intotime;
 	private int O_count;
 	private String O_from;
+	private String O_link;
 	
 	public int getNumber() {
 		return number;
@@ -51,5 +52,11 @@ public class Other {
 	}
 	public void setO_from(String o_from) {
 		O_from = o_from;
+	}
+	public String getO_link() {
+		return O_link;
+	}
+	public void setO_link(String o_link) {
+		O_link = o_link;
 	}
 }

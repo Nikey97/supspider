@@ -8,6 +8,7 @@ public class Movie {
 	private String M_intotime;
 	private int M_count;
 	private String M_from;
+	private String M_link;
 	
 	public int getNumber() {
 		return number;
@@ -50,5 +51,11 @@ public class Movie {
 	}
 	public void setM_from(String m_from) {
 		M_from = m_from;
+	}
+	public String getM_link() {
+		return M_link;
+	}
+	public void setM_link(String m_link) {
+		M_link = m_link;
 	}
 }

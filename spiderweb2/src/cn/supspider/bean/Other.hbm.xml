@@ -13,5 +13,6 @@
     		<property name="O_intotime" column="t_intotime" type="string"></property>
     		<property name="O_count" column="t_count" type="int"></property>
     		<property name="O_from" column="t_from" type="string"></property>
+    		<property name="O_link" column="t_link" type="string"></property>
     	</class>
     </hibernate-mapping>

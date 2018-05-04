@@ -19,7 +19,8 @@
 		<bean id="index" class="cn.supspider.action.index" scope="prototype">
 			<property name="hibernateTemplate" ref="hibernateTemplate"></property>
 			<property name="ad_allWebinfo" ref="ad_allWebinfo"></property>
+			<property name="movie" ref="movie"></property>
 		</bean>
-		
-		
+		<!-- 首页的最新资源注入 -->
+		<bean id="movie" class="cn.supspider.bean.Movie"></bean>
 </beans> 

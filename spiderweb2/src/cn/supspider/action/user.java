@@ -84,6 +84,13 @@ public class user extends ActionSupport implements ModelDriven<userinfo>{
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter out=response.getWriter();
 		System.out.println("邮箱:"+userinfo.getEmail()+"|"+"密码"+userinfo.getPassWord());
+		List<userinfo> list = (List<cn.supspider.bean.userinfo>) hibernateTemplate.find("from userinfo where Email=? and PassWord=?", userinfo.getEmail(),userinfo.getPassWord());
+		if(!list.isEmpty()) {
+			out.print(1);
+			context.getSession().put("user_name", userinfo.getUserName());//存入用户的id
+		}else {
+			out.print(0);
+		}
 		return NONE;
 	}
 	//邮箱注册响应校验
@@ -105,7 +112,7 @@ public class user extends ActionSupport implements ModelDriven<userinfo>{
 					userinfo.setId(userinfo.getId());
 					userinfo.setActive(1);
 					hibernateTemplate.saveOrUpdate(userinfo);
-					return SUCCESS;
+					return "su";
 				}else {
 					//激活失败
 					this.addActionError("很抱歉,您没有在指定时间内激活账号.请重新注册!");

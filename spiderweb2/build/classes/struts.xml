@@ -19,6 +19,7 @@
 			<action name="user_*" class="user" method="{1}">
 				<result name="success">/RegSuccess.jsp</result>
 				<result name="input">/register.jsp</result>
+				<result name="su">/VerifySuccess.jsp</result>
 			</action>
 			<action name="index" class="index">
 				<result name="success">/index.jsp</result>

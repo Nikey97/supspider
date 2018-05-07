@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>(结果列表页面传过来的值)</title>
+<title><s:property value="ResourceAll.R_name"/></title>
 	<link rel="stylesheet" href="Css/bootstrap.min.css">
 	<link rel="stylesheet" href="Css/bootstrap-theme.min.css">
 	<link rel="stylesheet" href="Css/main.css">
@@ -23,7 +24,7 @@
 		<div class="nav nav-myself navbar-header">
 			<button type="button" class="navbar-toggle collapsed sr-onlyBlue" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
 			</button>
-			<span class="spanName" style="color: #6495ED; line-height: 50px; margin-left: 10px;"><a href="index.jsp">SupSpider</a></span>
+			<span class="spanName" style="color: #6495ED; line-height: 50px; margin-left: 10px;"><a href="index">SupSpider</a></span>
 		</div>
 		<div class="collapse navbar-collapse MobileMune" id="bs-example-navbar-collapse-1">
 			<ul class="nav MobileMune_ul">
@@ -36,14 +37,14 @@
 	<div class="container-fluid One-Context-warp">
 		<!--内容框-->
 		<div class="One-context col-lg-12 col-md-12 col-sm-12">
-			<h3 class="context-h3">资源标题呈现区资源标题呈现区资源标题呈现区资源标题呈现区</h3>
+			<h3 class="context-h3"><s:property value="ResourceAll.R_name"/></h3>
 			<div class="Context-allinfo col-lg-12 col-md-12 col-sm-12">
 				<div class="Context-info col-lg-8 col-md-8 col-sm-8">
 					<ul class="Context-ul-normalize">
-						<li>入库时间：<span class="info-span">2018.09.21 6:00</span></li>
-						<li>文件大小：<span class="info-span">2.3Gb</span></li>	
-						<li>文件类型：<span class="info-span">.mp3</span></li>	
-						<li>资源来源：<span class="info-span">百度云</span></li>	
+						<li>入库时间：<span class="info-span"><s:property value="ResourceAll.R_intotime"/></span></li>
+						<li>文件大小：<span class="info-span"><s:property value="ResourceAll.R_size"/></span></li>	
+						<li>文件类型：<span class="info-span"><s:property value="ResourceAll.R_type"/></span></li>
+						<li>资源来源：<span class="info-span"><s:property value="ResourceAll.R_from"/></span></li>	
 						<li>资源描述：<span class="info-span">欢迎来到 Firefox！ 我们将展示给你所有基本的 Firefox 知识，这样你就可以从容开始。当你需要更进一步时，我们也留给你一系列有用的链接。欢迎来到 Firefox！ 我们将展示给你所有基本的 Firefox 知识，这样你就可以从容开始。当你需要更进一步时，我们也留给你一系列有用的链接。欢迎来到 Firefox！ 我们将展示给你所有基本的 Firefox 知识，这样你就可以从容开始。当你需要更进一步时，我们也留给你一系列有用的链接。欢迎来到 Firefox！ 我们将展示给你所有基本的 Firefox 知识，这样你就可以从容开始。当你需要更进一步时，我们也留给你一系列有用的链接。欢迎来到 Firefox！ 我们将展示给你所有基本的 Firefox 知识，这样你就可以从容开始。当你需要更进一步时，我们也留给你一系列有用的链接。欢迎来到 Firefox！ 我们将展示给你所有基本的 Firefox 知识，这样你就可以从容开始。当你需要更进一步时，我们也留给你一系列有用的链接。欢迎来到 Firefox！ 我们将展示给你所有基本的 Firefox 知识，这样你就可以从容开始。当你需要更进一步时，我们也留给你一系列有用的链接。欢迎来到 Firefox！ 我们将展示给你所有基本的 Firefox 知识，这样你就可以从容开始。当你需要更进一步时，我们也留给你一系列有用的链接。欢迎来到 Firefox！ 我们将展示给你所有基本的 Firefox 知识，这样你就可以从容开始。当你需要更进一步时，我们也留给你一系列有用的链接。欢迎来到 Firefox！ 我们将展示给你所有基本的 Firefox 知识，这样你就可以从容开始。当你需要更进一步时，我们也留给你一系列有用的链接。</span></li>	
 						<!--  点击传送至重定向页  -->
 						<li>资源链接：<span class="btn btn-success"><a href="#" class="info-a">点击下载</a></span></li>	
@@ -128,7 +129,7 @@
 	</div>
 	<div class="container-fluid Copey-div">
 		<span class="Copey-span">
-			Copyright © <a href="index.jsp" class="Bottom_warp_a">SupSpider资源搜索</a>
+			Copyright © <a href="index" class="Bottom_warp_a">SupSpider资源搜索</a>
 		</span>
 	</div>
 </body>

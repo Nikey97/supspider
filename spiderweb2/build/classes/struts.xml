@@ -20,6 +20,8 @@
 				<result name="success">/RegSuccess.jsp</result>
 				<result name="input">/register.jsp</result>
 				<result name="su">/VerifySuccess.jsp</result>
+				<result name="resultall">/resultall.jsp</result>
+				<result name="OneResultAll">/oneresult.jsp</result>
 			</action>
 			<action name="index" class="index">
 				<result name="success">/index.jsp</result>

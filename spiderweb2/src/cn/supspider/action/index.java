@@ -1,5 +1,6 @@
 package cn.supspider.action;
 
+
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,9 +14,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.util.ValueStack;
 
-import cn.supspider.bean.Movie;
-import cn.supspider.bean.Music;
-import cn.supspider.bean.Other;
+import cn.supspider.bean.ResourceAll;
 import cn.supspider.bean.ad_allWebinfo;
 
 @SuppressWarnings("serial")
@@ -41,23 +40,23 @@ public class index extends ActionSupport implements ModelDriven<ad_allWebinfo>{
 		public ad_allWebinfo getAd_allWebinfo() {
 			return ad_allWebinfo;
 		}
-		
 		//实例化相应的request的Api
 		ActionContext context=ActionContext.getContext();
 		//获取值栈
 		ValueStack stack = context.getValueStack();
 		
-		//实例化注入Movie
-		private Movie movie;
-		public void setMovie(Movie movie) {
-			this.movie = movie;
+		//实例化注入资源仓库
+		private ResourceAll resourceAll;
+		public void setResourceAll(ResourceAll resourceAll) {
+			this.resourceAll = resourceAll;
 		}
-		public Movie getMovie() {
-			return movie;
+		public ResourceAll getResourceAll() {
+			return resourceAll;
 		}
-		
+		//
 		
 		public String execute() throws Exception {
+			ValueStack stack=ActionContext.getContext().getValueStack();
 			@SuppressWarnings({ "unchecked", "unused" })
 			//网站信息查询
 			List<ad_allWebinfo> list=(List<ad_allWebinfo>) hibernateTemplate.find("from ad_allWebinfo where number=?", 1);//1.
@@ -71,18 +70,17 @@ public class index extends ActionSupport implements ModelDriven<ad_allWebinfo>{
 			
 			//最新资源
 			hibernateTemplate.setMaxResults(8);
-			ValueStack stack = ActionContext.getContext().getValueStack();
-			@SuppressWarnings({ "unchecked", "unused" })
-			List<Movie> list2= (List<Movie>) hibernateTemplate.find("from Movie");
-			stack.set("MovieList", list2);
-			List<Music> list3 = (List<Music>) hibernateTemplate.find("from Music");
-			stack.set("MusicList", list3);
-			List<Other> list4 = (List<Other>) hibernateTemplate.find("from Other");
-			stack.set("OtherList", list4);
+			@SuppressWarnings("unchecked")
+			List<ResourceAll> MusicList = (List<ResourceAll>) hibernateTemplate.find("from ResourceAll where R_type=?","1");
+			stack.set("MusicList", MusicList);
+			@SuppressWarnings("unchecked")
+			List<ResourceAll> MovieList = (List<ResourceAll>) hibernateTemplate.find("from ResourceAll where R_type=?","0");
+			stack.set("MovieList", MovieList);
+			@SuppressWarnings("unchecked")
+			List<ResourceAll> OtherList = (List<ResourceAll>) hibernateTemplate.find("from ResourceAll where R_type=?","2");
+			stack.set("OtherList", OtherList);
 			return SUCCESS;
 		}
-
-
 		@Override
 		public ad_allWebinfo getModel() {
 			// TODO Auto-generated method stub

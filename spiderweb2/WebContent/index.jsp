@@ -49,7 +49,7 @@
 					<span name="data">共收录了<mark>12890</mark>个资源</span>
 				</div>
 				<div class="div_search">
-					<form action="#" method="post">
+					<form action="user_QueryResultInfo.action" method="post">
 						<input type="text" class="div_searchInput" placeholder="请输入电影名|音乐名|资源关键字" name="SearchName">
 					</form>
 				</div>
@@ -78,9 +78,9 @@
 					<tbody>
 						<s:iterator value="MusicList">
 							<tr>
-								<td><a href="oneresult.jsp?id=<s:property value="number"/>" style="text-overflow: ellipsis; font-size: 12px; overflow:hidden; white-space: nowrap; width: 90px; display: block;" title="<s:property value="M_name"/>"><s:property value="M_name"/></a></td>
-								<td><span style="text-overflow: ellipsis; font-size: 12px; overflow:hidden; white-space: nowrap; width: 60px; display: block;" title="<s:property value="M_intotime"/>"><s:property value="M_intotime"/></span></td>
-								<td><s:property value="M_from"/></td>
+								<td><a href="oneresult.jsp?id=<s:property value="number"/>" style="text-overflow: ellipsis; font-size: 12px; overflow:hidden; white-space: nowrap; width: 90px; display: block;" title="<s:property value="R_name"/>"><marquee scrollamount="5"><s:property value="R_name"/></marquee></a></td>
+								<td><span style="text-overflow: ellipsis; font-size: 12px; overflow:hidden; white-space: nowrap; width: 60px; display: block;" title="<s:property value="R_intotime"/>"><s:property value="R_intotime"/></span></td>
+								<td><s:property value="R_from"/></td>
 							</tr>
 						</s:iterator>	
 					</tbody>
@@ -101,9 +101,9 @@
 					<tbody>
 						<s:iterator value="MovieList">
 							<tr>
-								<td><a href="oneresult.jsp?id=<s:property value="number"/>" style="text-overflow: ellipsis; font-size: 12px; overflow:hidden; white-space: nowrap; width: 90px; display: block;" title="<s:property value="M_name"/>"><s:property value="M_name"/></a></td>
-								<td><span style="text-overflow: ellipsis; font-size: 12px; overflow:hidden; white-space: nowrap; width: 60px; display: block;" title="<s:property value="M_intotime"/>"><s:property value="M_intotime"/></span></td>
-								<td><s:property value="M_from"/></td>
+								<td><a href="oneresult.jsp?id=<s:property value="number"/>" style="text-overflow: ellipsis; font-size: 12px; overflow:hidden; white-space: nowrap; width: 90px; display: block;" title="<s:property value="R_name"/>"><marquee scrollamount="5"><s:property value="R_name"/></marquee></a></td>
+								<td><span style="text-overflow: ellipsis; font-size: 12px; overflow:hidden; white-space: nowrap; width: 60px; display: block;" title="<s:property value="R_intotime"/>"><s:property value="R_intotime"/></span></td>
+								<td><s:property value="R_from"/></td>
 							</tr>
 						</s:iterator>
 					</tbody>
@@ -124,9 +124,9 @@
 					<tbody>
 						<s:iterator value="OtherList">
 							<tr>
-								<td><a href="oneresult.jsp?id=<s:property value="number"/>" style="text-overflow: ellipsis; font-size: 12px; overflow:hidden; white-space: nowrap; width: 90px; display: block;" title="<s:property value="O_name"/>"><s:property value="O_name"/></a></td>
-								<td><span style="text-overflow: ellipsis; font-size: 12px; overflow:hidden; white-space: nowrap; width: 60px; display: block;" title="<s:property value="O_intotime"/>"><s:property value="O_intotime"/></span></td>
-								<td><s:property value="O_from"/></td>
+								<td><a href="oneresult.jsp?id=<s:property value="number"/>" style="text-overflow: ellipsis; font-size: 12px; overflow:hidden; white-space: nowrap; width: 90px; display: block;" title="<s:property value="R_name"/>"><marquee scrollamount="5"><s:property value="R_name"/></marquee></a></td>
+								<td><span style="text-overflow: ellipsis; font-size: 12px; overflow:hidden; white-space: nowrap; width: 60px; display: block;" title="<s:property value="R_intotime"/>"><s:property value="R_intotime"/></span></td>
+								<td><s:property value="R_from"/></td>
 							</tr>
 						</s:iterator>
 					</tbody>
@@ -136,7 +136,7 @@
 	</div>
 	<div class="container-fluid Bottom_warp">
 		<!--  底部栏 -->
-		<span>Copyright © <a href="index.jsp" class="Bottom_warp_a">SupSpider资源搜索</a></span>
+		<span>Copyright © <a href="index" class="Bottom_warp_a">SupSpider资源搜索</a></span>
 	</div>
 	<div class="HideFloatWarp">
 		<!-- 漂浮栏:反馈|返回顶部|关注官微|白色的导航栏 -->

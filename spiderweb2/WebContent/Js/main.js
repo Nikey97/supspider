@@ -79,6 +79,5 @@ $(function(){
 		$(this).css('background','#fff');
 	});
 	
-	
-	
+	//获取隐藏控件中 的数据做操作
 });

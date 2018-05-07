@@ -17,8 +17,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+import com.opensymphony.xwork2.util.ValueStack;
 
 import cn.supspider.Utils.UtilMethods;
+import cn.supspider.bean.ResourceAll;
 import cn.supspider.bean.userinfo;
 
 	
@@ -59,6 +61,15 @@ public class user extends ActionSupport implements ModelDriven<userinfo>{
 	public void setToEmailaddress(String toEmailaddress) {
 		ToEmailaddress = toEmailaddress;
 	}
+	//注入资源库
+	private ResourceAll resourceAll;
+	public ResourceAll getResourceAll() {
+		return resourceAll;
+	}
+	public void setResourceAll(ResourceAll resourceAll) {
+		this.resourceAll = resourceAll;
+	}
+	
 	public String SignUp() throws Exception {
 		@SuppressWarnings("unchecked")
 		List<userinfo> list = (List<cn.supspider.bean.userinfo>) hibernateTemplate.find("from userinfo where Email=?", userinfo.getEmail());
@@ -125,7 +136,51 @@ public class user extends ActionSupport implements ModelDriven<userinfo>{
 		}
 		return NONE;
 	}
+	//词条模糊搜索
+	private String SearchName;
+	public String getSearchName() {
+		return SearchName;
+	}
+	public void setSearchName(String searchName) {
+		SearchName = searchName;
+	}
+	public String QueryResultInfo() {
+		//获取前台数据,对数据库模糊查询.
+		/*	1.将三个分类数据库进行整合成一个
+		 * 	2.改首页的最新查询
+		 * 	3.完善首页的搜索功能
+		 * */
+		ValueStack stack=ActionContext.getContext().getValueStack();
+		@SuppressWarnings("unchecked")//模糊查询
+		List<ResourceAll> list = (List<ResourceAll>) hibernateTemplate.find("from ResourceAll where R_name like '%"+SearchName+"%'");
+		SearchName=getSearchName();//搜索值存入值栈
+		stack.set("Reslist", list);//存入值栈
+		return "resultall";
+	}
 	
+	//返回查询页面的所有信息
+	private int number;
+	public int getNumber() {
+		return number;
+	}
+	public void setNumber(int number) {
+		this.number = number;
+	}
+	public String QueryResultAllInfo() {
+		@SuppressWarnings({ "unchecked", "unused" })
+		List<ResourceAll> list = (List<ResourceAll>) hibernateTemplate.find("from ResourceAll where number=?", number);//查询
+		if(list.isEmpty()) {
+			System.out.println("是空的");
+		}
+		for (ResourceAll res : list) {
+			resourceAll.setR_name(res.getR_name());
+			resourceAll.setR_size(res.getR_size());
+			resourceAll.setR_type(res.getR_type());
+			resourceAll.setR_from(res.getR_from());
+			resourceAll.setR_intotime(res.getR_intotime());
+		}
+		return "OneResultAll";
+	}
 	
 	
 	

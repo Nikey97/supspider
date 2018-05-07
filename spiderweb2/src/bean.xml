@@ -53,8 +53,9 @@
 		<bean id="ToJson" class="cn.supspider.Utils.ToJsonType"></bean> 
 		<bean id="ad_allWebinfo" class="cn.supspider.bean.ad_allWebinfo"></bean>
 		<bean id="advs" class="cn.supspider.bean.advs"></bean>
-		<bean id="utilMethods" class="cn.supspider.Utils.UtilMethods"></bean>
 		<bean id="userinfo" class="cn.supspider.bean.userinfo"></bean>
+		<bean id="utilMethods" class="cn.supspider.Utils.UtilMethods"></bean>
+		
 		<!-- 用户操作属性配置 -->
 		<import resource="user_bean.xml"/>
 		

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    <hibernate-mapping>
+    	<class name="cn.supspider.bean.ResourceAll" table="resAll">
+    		<id name="number" column="t_number" type="int"><!-- id为主键 -->
+    			<generator class="native"></generator>
+    		</id>
+    		<property name="R_name" column="t_name" type="string"></property>
+    		<property name="R_size" column="t_size" type="string"></property>
+    		<property name="R_type" column="t_type" type="string"></property>
+    		<property name="R_intotime" column="t_intotime" type="string"></property>
+    		<property name="R_count" column="t_count" type="int"></property>
+    		<property name="R_from" column="t_from" type="string"></property>
+    		<property name="R_link" column="t_link" type="string"></property>
+    	</class>
+    </hibernate-mapping>

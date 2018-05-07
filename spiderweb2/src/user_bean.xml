@@ -13,14 +13,15 @@
 			<property name="userinfo" ref="userinfo"></property>
 			<property name="utilMethods" ref="utilMethods"></property>
 			<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+			<property name="resourceAll" ref="ResAll"></property>
 		</bean>
 		
 		<!-- 访问首页数据回显的配置 -->
 		<bean id="index" class="cn.supspider.action.index" scope="prototype">
 			<property name="hibernateTemplate" ref="hibernateTemplate"></property>
 			<property name="ad_allWebinfo" ref="ad_allWebinfo"></property>
-			<property name="movie" ref="movie"></property>
+			<property name="resourceAll" ref="ResAll"></property>
 		</bean>
 		<!-- 首页的最新资源注入 -->
-		<bean id="movie" class="cn.supspider.bean.Movie"></bean>
+		<bean id="ResAll" class="cn.supspider.bean.ResourceAll"></bean>
 </beans> 

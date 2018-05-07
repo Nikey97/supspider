@@ -21,10 +21,7 @@
 				
 				<mapping resource="cn/supspider/bean/userFeedback.hbm.xml"/>
 				
-				<mapping resource="cn/supspider/bean/Music.hbm.xml"/>
-				
-				<mapping resource="cn/supspider/bean/Movie.hbm.xml"/>
-				
-				<mapping resource="cn/supspider/bean/Other.hbm.xml"/>
+				<mapping resource="cn/supspider/bean/ResourceAll.hbm.xml"/>
+
 		</session-factory>
 	</hibernate-configuration>

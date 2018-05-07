@@ -68,7 +68,7 @@
 			</div>
 		</form>
 		<!--返回首页 -->
-		<a href="index.jsp">
+		<a href="index">
 			<img src="Img/index.png" class="div_position img-responsive">
 		</a>
 	</div>

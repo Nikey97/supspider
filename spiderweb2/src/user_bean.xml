@@ -14,6 +14,7 @@
 			<property name="utilMethods" ref="utilMethods"></property>
 			<property name="hibernateTemplate" ref="hibernateTemplate"></property>
 			<property name="resourceAll" ref="ResAll"></property>
+			<property name="userFeedback" ref="userfb"></property>
 		</bean>
 		
 		<!-- 访问首页数据回显的配置 -->
@@ -24,4 +25,5 @@
 		</bean>
 		<!-- 首页的最新资源注入 -->
 		<bean id="ResAll" class="cn.supspider.bean.ResourceAll"></bean>
+		<bean id="userfb" class="cn.supspider.bean.userFeedback"></bean>
 </beans> 

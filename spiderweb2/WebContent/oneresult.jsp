@@ -27,7 +27,9 @@
 			<span class="spanName" style="color: #6495ED; line-height: 50px; margin-left: 10px;"><a href="index">SupSpider</a></span>
 		</div>
 		<div class="collapse navbar-collapse MobileMune" id="bs-example-navbar-collapse-1">
+			<input type="hidden" id="username" value="<s:property value="username"/>">
 			<ul class="nav MobileMune_ul">
+				<li><a href="javascript:void(0);" class="buttonLogin" style="color: #6495ED" id="userCancel">Hi&nbsp;!&nbsp;,&nbsp;<s:property value="username"/></a></li>
 				<li><a href="login.jsp" class="buttonLogin" style="color: #6495ED">登录</a></li>
 				<li><a href="#" class="buttonLogin" style="color: #6495ED">关于</a></li>
 			</ul>
@@ -43,8 +45,9 @@
 					<ul class="Context-ul-normalize">
 						<li>入库时间：<span class="info-span"><s:property value="ResourceAll.R_intotime"/></span></li>
 						<li>文件大小：<span class="info-span"><s:property value="ResourceAll.R_size"/></span></li>	
-						<li>文件类型：<span class="info-span"><s:property value="ResourceAll.R_type"/></span></li>
+						<li>文件类型：<span class="info-span"><s:property value="ResourceAll.R_doctype"/></span></li>
 						<li>资源来源：<span class="info-span"><s:property value="ResourceAll.R_from"/></span></li>	
+						<li>点击次数：<span class="info-span"><s:property value="ResourceAll.R_count"/></span></li>
 						<li>资源描述：<span class="info-span">欢迎来到 Firefox！ 我们将展示给你所有基本的 Firefox 知识，这样你就可以从容开始。当你需要更进一步时，我们也留给你一系列有用的链接。欢迎来到 Firefox！ 我们将展示给你所有基本的 Firefox 知识，这样你就可以从容开始。当你需要更进一步时，我们也留给你一系列有用的链接。欢迎来到 Firefox！ 我们将展示给你所有基本的 Firefox 知识，这样你就可以从容开始。当你需要更进一步时，我们也留给你一系列有用的链接。欢迎来到 Firefox！ 我们将展示给你所有基本的 Firefox 知识，这样你就可以从容开始。当你需要更进一步时，我们也留给你一系列有用的链接。欢迎来到 Firefox！ 我们将展示给你所有基本的 Firefox 知识，这样你就可以从容开始。当你需要更进一步时，我们也留给你一系列有用的链接。欢迎来到 Firefox！ 我们将展示给你所有基本的 Firefox 知识，这样你就可以从容开始。当你需要更进一步时，我们也留给你一系列有用的链接。欢迎来到 Firefox！ 我们将展示给你所有基本的 Firefox 知识，这样你就可以从容开始。当你需要更进一步时，我们也留给你一系列有用的链接。欢迎来到 Firefox！ 我们将展示给你所有基本的 Firefox 知识，这样你就可以从容开始。当你需要更进一步时，我们也留给你一系列有用的链接。欢迎来到 Firefox！ 我们将展示给你所有基本的 Firefox 知识，这样你就可以从容开始。当你需要更进一步时，我们也留给你一系列有用的链接。欢迎来到 Firefox！ 我们将展示给你所有基本的 Firefox 知识，这样你就可以从容开始。当你需要更进一步时，我们也留给你一系列有用的链接。</span></li>	
 						<!--  点击传送至重定向页  -->
 						<li>资源链接：<span class="btn btn-success"><a href="#" class="info-a">点击下载</a></span></li>	

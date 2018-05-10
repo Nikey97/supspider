@@ -27,7 +27,9 @@
 			<span class="spanName" style="color: #6495ED; line-height: 50px; margin-left: 10px;"><a href="index">SupSpider</a></span>
 		</div>
 		<div class="collapse navbar-collapse MobileMune" id="bs-example-navbar-collapse-1">
+			<input type="hidden" id="username" value="<s:property value="username"/>">
 			<ul class="nav MobileMune_ul">
+				<li><a href="javascript:void(0);" class="buttonLogin" style="color: #6495ED" id="userCancel">Hi&nbsp;!&nbsp;,&nbsp;<s:property value="username"/></a></li>
 				<li><a href="login.jsp" class="buttonLogin" style="color: #6495ED">登录</a></li>
 				<li><a href="#" class="buttonLogin" style="color: #6495ED">关于</a></li>
 			</ul>

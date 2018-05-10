@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 import org.springframework.orm.hibernate5.HibernateTemplate;
@@ -21,6 +22,7 @@ import com.opensymphony.xwork2.util.ValueStack;
 
 import cn.supspider.Utils.UtilMethods;
 import cn.supspider.bean.ResourceAll;
+import cn.supspider.bean.userFeedback;
 import cn.supspider.bean.userinfo;
 
 	
@@ -43,7 +45,6 @@ public class user extends ActionSupport implements ModelDriven<userinfo>{
 		this.hibernateTemplate = hibernateTemplate;
 	}
 	//获取response对象
-	ActionContext context=ActionContext.getContext();
 	HttpServletResponse response = ServletActionContext.getResponse();
 	HttpServletRequest request=ServletActionContext.getRequest();
 	
@@ -69,6 +70,16 @@ public class user extends ActionSupport implements ModelDriven<userinfo>{
 	public void setResourceAll(ResourceAll resourceAll) {
 		this.resourceAll = resourceAll;
 	}
+	//用户反馈表
+	private userFeedback userFeedback;
+	public void setUserFeedback(userFeedback userFeedback) {
+		this.userFeedback = userFeedback;
+	}
+	public userFeedback getUserFeedback() {
+		return userFeedback;
+	}
+	
+	//
 	
 	public String SignUp() throws Exception {
 		@SuppressWarnings("unchecked")
@@ -90,15 +101,24 @@ public class user extends ActionSupport implements ModelDriven<userinfo>{
 		return SUCCESS;
 	}
 	//用户登录操作
+	//为向值栈中存入用户信息,用于前台验证登录等操作
 	@SuppressWarnings("unchecked")
+	private String username;
+	public String getUsername() {
+		return username;
+	}
 	public String SignIn() throws IOException {
 		response.setCharacterEncoding("UTF-8");
+		HttpSession session = request.getSession();
 		PrintWriter out=response.getWriter();
 		System.out.println("邮箱:"+userinfo.getEmail()+"|"+"密码"+userinfo.getPassWord());
 		List<userinfo> list = (List<cn.supspider.bean.userinfo>) hibernateTemplate.find("from userinfo where Email=? and PassWord=?", userinfo.getEmail(),userinfo.getPassWord());
+		for (userinfo user : list) {
+			username=user.getUserName();
+		}//从list集合中取出用户名
 		if(!list.isEmpty()) {
 			out.print(1);
-			context.getSession().put("user_name", userinfo.getUserName());//存入用户的id
+			session.setAttribute("user_name", username);//存入用户的名
 		}else {
 			out.print(0);
 		}
@@ -144,6 +164,7 @@ public class user extends ActionSupport implements ModelDriven<userinfo>{
 	public void setSearchName(String searchName) {
 		SearchName = searchName;
 	}
+	
 	public String QueryResultInfo() {
 		//获取前台数据,对数据库模糊查询.
 		/*	1.将三个分类数据库进行整合成一个
@@ -155,6 +176,11 @@ public class user extends ActionSupport implements ModelDriven<userinfo>{
 		List<ResourceAll> list = (List<ResourceAll>) hibernateTemplate.find("from ResourceAll where R_name like '%"+SearchName+"%'");
 		SearchName=getSearchName();//搜索值存入值栈
 		stack.set("Reslist", list);//存入值栈
+		//查询是否登录,并返回用户名
+		HttpSession session = request.getSession();
+		if(session.getAttribute("user_name")!=null) {
+			username=(String) session.getAttribute("user_name");
+		}
 		return "resultall";
 	}
 	
@@ -169,18 +195,112 @@ public class user extends ActionSupport implements ModelDriven<userinfo>{
 	public String QueryResultAllInfo() {
 		@SuppressWarnings({ "unchecked", "unused" })
 		List<ResourceAll> list = (List<ResourceAll>) hibernateTemplate.find("from ResourceAll where number=?", number);//查询
-		if(list.isEmpty()) {
-			System.out.println("是空的");
-		}
+		int Count=0;//查询次数
 		for (ResourceAll res : list) {
+			resourceAll.setNumber(number);
 			resourceAll.setR_name(res.getR_name());
 			resourceAll.setR_size(res.getR_size());
+			resourceAll.setR_doctype(res.getR_doctype());
 			resourceAll.setR_type(res.getR_type());
 			resourceAll.setR_from(res.getR_from());
 			resourceAll.setR_intotime(res.getR_intotime());
+			Count=(res.getR_count())+1;
+			resourceAll.setR_count(Count);//向数据库加一操作
+			resourceAll.setR_link(res.getR_link());
+		}
+		hibernateTemplate.clear();
+		hibernateTemplate.update(resourceAll);
+		//查询是否登录,并返回用户名
+		HttpSession session = request.getSession();
+		if(session.getAttribute("user_name")!=null) {
+			username=(String) session.getAttribute("user_name");
 		}
 		return "OneResultAll";
 	}
+	
+	//用户注销账户操作
+	public String UserCancel() {
+		HttpSession session = request.getSession();
+		if(session.getAttribute("user_name")!=null) {
+			session.removeAttribute("user_name");
+		}
+		return "index";
+	}
+	
+	//用户提交反馈反馈信息持久化
+	private String uName;
+	private String fTitle;
+	private String fContext;
+	public String getuName() {
+		return uName;
+	}
+	public void setuName(String uName) {
+		this.uName = uName;
+	}
+	public String getfTitle() {
+		return fTitle;
+	}
+	public void setfTitle(String fTitle) {
+		this.fTitle = fTitle;
+	}
+	public String getfContext() {
+		return fContext;
+	}
+	public void setfContext(String fContext) {
+		this.fContext = fContext;
+	}
+	
+	@SuppressWarnings({ "unchecked", "unused" })
+	public String UserFeedback() throws IOException, ParseException {
+		/*步奏:
+		 * 		1.获取前台的用户名,反馈标题,意见或信息
+		 * 		2.根据获取的用户名,查询并写入数据库
+		 * */
+		PrintWriter out=response.getWriter();
+		List<userFeedback> listTime = (List<cn.supspider.bean.userFeedback>) hibernateTemplate.find("from userFeedback where look=0 and userName=?",uName);
+		if(!listTime.isEmpty()) {
+			String SubTime="";
+			for (userFeedback Feedback : listTime) {
+				SubTime=Feedback.getSubmitTime();
+			}
+			Date dateSub = df.parse(SubTime);
+			Date dateNow = df.parse(utilMethods.getNowSystemTime());
+			long s=(dateNow.getTime()-dateSub.getTime())/1000;//计算提交的时间有没有过一天
+			int day=(int) (s/(24*3600));
+			if(day>1) {
+				List<userinfo> list = (List<cn.supspider.bean.userinfo>) hibernateTemplate.find("from userinfo where UserName=?", uName);
+				for (userinfo user : list) {
+					userinfo.setId(user.getId());
+				}
+				userFeedback.setUserinfo(userinfo);
+				userFeedback.setUserName(getuName());
+				userFeedback.setTitle(getfTitle());
+				userFeedback.setContext(getfContext());
+				userFeedback.setSubmitTime(utilMethods.getNowSystemTime());
+				userFeedback.setLook(0);
+				hibernateTemplate.save(userFeedback);//储存到数据库
+				out.print(1);
+			}else{
+				out.print(2);
+			}
+		}else {
+			List<userinfo> list = (List<cn.supspider.bean.userinfo>) hibernateTemplate.find("from userinfo where UserName=?", uName);
+			for (userinfo user : list) {
+				userinfo.setId(user.getId());
+			}
+			userFeedback.setUserinfo(userinfo);
+			userFeedback.setUserName(getuName());
+			userFeedback.setTitle(getfTitle());
+			userFeedback.setContext(getfContext());
+			userFeedback.setSubmitTime(utilMethods.getNowSystemTime());
+			userFeedback.setLook(0);
+			hibernateTemplate.save(userFeedback);//储存到数据库
+			out.print(1);
+		}
+		return NONE;
+	}
+	//首页模糊搜索分页请求
+	
 	
 	
 	

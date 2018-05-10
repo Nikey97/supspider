@@ -1,7 +1,5 @@
 package cn.supspider.bean;
 
-import java.util.Date;
-import java.util.Set;
 
 public class userFeedback {
 		/*
@@ -16,7 +14,7 @@ public class userFeedback {
 		private String userName;
 		private String title;
 		private String context;
-		private Date submitTime;
+		private String submitTime;
 		private int look;
 		
 		//Î¬³ÖÍâ¼ü
@@ -27,6 +25,7 @@ public class userFeedback {
 		public void setUserinfo(userinfo userinfo) {
 			this.userinfo = userinfo;
 		}
+		
 		
 		public int getId() {
 			return id;
@@ -52,10 +51,10 @@ public class userFeedback {
 		public void setContext(String context) {
 			this.context = context;
 		}
-		public Date getSubmitTime() {
+		public String getSubmitTime() {
 			return submitTime;
 		}
-		public void setSubmitTime(Date submitTime) {
+		public void setSubmitTime(String submitTime) {
 			this.submitTime = submitTime;
 		}
 		public int getLook() {

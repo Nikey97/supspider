@@ -30,15 +30,15 @@
 				<span class="span_name">SupSpider</span>
 				<h3 class="h3_loginname">注册</h3>
 				<span style="color:red;"><s:actionerror/></span>
-				<div class="form-group input_style">
+				<div class="form-group input_style" id="div-email">
 					<label for="email">电子邮件地址</label>
 					<input type="email" class="form-control" id="email" name="Email" placeholder="例如:netspider@yeah.net">
 				</div>
-				<div class="form-group">
+				<div class="form-group" id="div-username">
 					<label for="username">用户名</label>
 					<input type="text" class="form-control" id="username" name="UserName" placeholder="例如:feng123">
 				</div>
-				<div class="form-group">
+				<div class="form-group" id="div-psw">
 					<label for="psw">密码</label>
 					<input type="password"  class="form-control" id="psw" name="PassWord">
 				</div>
@@ -46,23 +46,23 @@
 					<span><span class="glyphicon glyphicon-lock"></span>&nbsp;&nbsp;您的密码需要满足以下条件：</span>
 					<ul class="ul_rule">
 						<li>至少包括一个数字或一个符号。</li>
-						<li>同时包括小写和大写拉丁字符。</li>
+						<li>同时包括小写和大写字母。</li>
 						<li>至少为 8 个字符长。</li>
 						<li>与确认密码一致</li>
 					</ul>
 				</div>
-				<div class="form-group">
+				<div class="form-group" id="div-qpsw">
 					<label for="Qpsw">确认密码</label>
 					<input type="password"  class="form-control" id="Qpsw" name="Qpassword">
 				</div>
-				<div class="checkbox">
+				<div class="checkbox" id="div-agree">
 					<label>
-						<input type="checkbox" name="agree" value="1">&nbsp;&nbsp;我已阅读并接受<a href="#">使用条款</a>和<a href="#">隐私政策</a>。
+						<input type="checkbox" name="agree" id="agree" value="1">&nbsp;&nbsp;我已阅读并接受<a href="#">使用条款</a>和<a href="#">隐私政策</a>。
 					</label>
 				</div>
 				<div class="form-group">
 					<input type="reset" value="清空" class="btn btn-default btn-radius">&nbsp;&nbsp;
-					<input type="submit" value="注册" class="btn btn-primary btn-radius" id="register_send" >
+					<input type="submit" value="注册" id="reg-button" class="btn btn-primary btn-radius" id="register_send" >
 				</div>
 				<span class="span_TipLogin">已经有账号?&nbsp;&nbsp;<a href="login.jsp">登录</a></span>
 			</div>

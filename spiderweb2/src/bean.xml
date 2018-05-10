@@ -59,5 +59,4 @@
 		<!-- 用户操作属性配置 -->
 		<import resource="user_bean.xml"/>
 		
-		
 </beans> 

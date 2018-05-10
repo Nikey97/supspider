@@ -9,7 +9,7 @@ public class ResourceAll {
 	private int R_count;
 	private String R_from;
 	private String R_link;
-	
+	private String R_doctype;
 	
 	public int getNumber() {
 		return number;
@@ -59,5 +59,10 @@ public class ResourceAll {
 	public void setR_link(String r_link) {
 		R_link = r_link;
 	}
-
+	public String getR_doctype() {
+		return R_doctype;
+	}
+	public void setR_doctype(String r_doctype) {
+		R_doctype = r_doctype;
+	}
 }

@@ -10,6 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title><s:property value="web_Name"/></title>
+	<link rel="icon" href="Img/spiderman.png" type="image/x-icon" />
 	<link rel="stylesheet" href="Css/bootstrap.min.css">
 	<link rel="stylesheet" href="Css/bootstrap-theme.min.css">
 	<link rel="stylesheet" href="Css/main.css">
@@ -29,11 +30,13 @@
 				  <button type="button" class="navbar-toggle collapsed sr-only" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
 				  </button>
 				  <div class="spanNameDiv">
-					<a href="index.jsp"><span class="spanName">SupSpider</span></a>
+					<a href="index"><span class="spanName">SupSpider</span></a>
 				  </div>
 				</div>
+				<input type="hidden" id="username" value="<s:property value="username"/>">
 				<div class="collapse navbar-collapse MobileMune" id="bs-example-navbar-collapse-1">
 					<ul class="nav MobileMune_ul">
+						<li><a href="javascript:void(0);" class="buttonLogin" id="userCancel">Hi&nbsp;!&nbsp;,&nbsp;<s:property value="username"/></a></li>
 						<li><a href="login.jsp" class="buttonLogin">登录</a></li>
 						<li><a href="#" class="buttonLogin">关于</a></li>
 					</ul>
@@ -55,7 +58,7 @@
 				</div>
 				<div class="div_HotSearch">
 					<ul class="ul_normalize">
-						<li><a href="#"><span class="icon_hot">头牌玩家</span></a></li>
+						<!--<li><a href="#"><span class="icon_hot">头牌玩家</span></a></li>-->
 					</ul>
 				</div>
 			</div>
@@ -78,7 +81,7 @@
 					<tbody>
 						<s:iterator value="MusicList">
 							<tr>
-								<td><a href="oneresult.jsp?id=<s:property value="number"/>" style="text-overflow: ellipsis; font-size: 12px; overflow:hidden; white-space: nowrap; width: 90px; display: block;" title="<s:property value="R_name"/>"><marquee scrollamount="5"><s:property value="R_name"/></marquee></a></td>
+								<td><a href="user_QueryResultAllInfo.action?number=<s:property value="number"/>" style="text-overflow: ellipsis; font-size: 12px; overflow:hidden; white-space: nowrap; width: 90px; display: block;" title="<s:property value="R_name"/>"><marquee scrollamount="5"><s:property value="R_name"/></marquee></a></td>
 								<td><span style="text-overflow: ellipsis; font-size: 12px; overflow:hidden; white-space: nowrap; width: 60px; display: block;" title="<s:property value="R_intotime"/>"><s:property value="R_intotime"/></span></td>
 								<td><s:property value="R_from"/></td>
 							</tr>
@@ -101,7 +104,7 @@
 					<tbody>
 						<s:iterator value="MovieList">
 							<tr>
-								<td><a href="oneresult.jsp?id=<s:property value="number"/>" style="text-overflow: ellipsis; font-size: 12px; overflow:hidden; white-space: nowrap; width: 90px; display: block;" title="<s:property value="R_name"/>"><marquee scrollamount="5"><s:property value="R_name"/></marquee></a></td>
+								<td><a href="user_QueryResultAllInfo.action?number=<s:property value="number"/>" style="text-overflow: ellipsis; font-size: 12px; overflow:hidden; white-space: nowrap; width: 90px; display: block;" title="<s:property value="R_name"/>"><marquee scrollamount="5"><s:property value="R_name"/></marquee></a></td>
 								<td><span style="text-overflow: ellipsis; font-size: 12px; overflow:hidden; white-space: nowrap; width: 60px; display: block;" title="<s:property value="R_intotime"/>"><s:property value="R_intotime"/></span></td>
 								<td><s:property value="R_from"/></td>
 							</tr>
@@ -124,7 +127,7 @@
 					<tbody>
 						<s:iterator value="OtherList">
 							<tr>
-								<td><a href="oneresult.jsp?id=<s:property value="number"/>" style="text-overflow: ellipsis; font-size: 12px; overflow:hidden; white-space: nowrap; width: 90px; display: block;" title="<s:property value="R_name"/>"><marquee scrollamount="5"><s:property value="R_name"/></marquee></a></td>
+								<td><a href="user_QueryResultAllInfo.action?number=<s:property value="number"/>" style="text-overflow: ellipsis; font-size: 12px; overflow:hidden; white-space: nowrap; width: 90px; display: block;" title="<s:property value="R_name"/>"><marquee scrollamount="5"><s:property value="R_name"/></marquee></a></td>
 								<td><span style="text-overflow: ellipsis; font-size: 12px; overflow:hidden; white-space: nowrap; width: 60px; display: block;" title="<s:property value="R_intotime"/>"><s:property value="R_intotime"/></span></td>
 								<td><s:property value="R_from"/></td>
 							</tr>
@@ -141,7 +144,7 @@
 	<div class="HideFloatWarp">
 		<!-- 漂浮栏:反馈|返回顶部|关注官微|白色的导航栏 -->
 			<div class="Float_Top">
-				<a href="#SearchWarp" title="返回顶部">
+				<a href="javascript:void(0);" onclick="toTop()" title="返回顶部">
 					<span class="topicon">top</span>
 				</a>
 			</div>
@@ -176,31 +179,32 @@
 	</div>
 	
 	<!-- 用户反馈的模态框弹出内容 -->
-	<form action="#" method="post" id="feedback_send">
+	<!--<form action="user_UserFeedback.action" method="post" id="feedback_send">-->
 		<div class="modal fade" id="myfeedback" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		  <div class="modal-dialog" role="document">
 			<div class="modal-content">
 			  <div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title" id="myModalLabel">用户反馈</h4>
+				<!--<input type="hidden" name="uName" value="<s:property value="username"/>">-->
 			  </div>
 			  <div class="modal-body">
 				<div class="form-group">
 					<label for="exampleInputfeedbackt">反馈问题标题</label>
-					 <input type="text" class="form-control" id="exampleInputfeedbackt" placeholder="请输入反馈标题">
+					<input type="text" class="form-control" id="fTitle" placeholder="请输入反馈标题">
 				</div>
 				<div class="form-group">
 					<label for="exampleInputfeedbackm">描述反馈问题</label>
-					<textarea class="form-control" rows="4" placeholder="请输入遇到的问题或建议"  style="resize:none"></textarea>
+					<textarea class="form-control" rows="4" placeholder="请输入遇到的问题或建议" id="fContext" style="resize:none"></textarea>
 				</div>
 			  </div>
 			  <div class="modal-footer">
-				<input type="reset" class="btn btn-default" id="feedback_send" value="清空">
+				<input type="reset" class="btn btn-default" value="清空">
 				<input type="submit" class="btn btn-primary" id="feedback_send" value="提交">
 			  </div>
 			</div>
 		  </div>
 		</div>	
-	</form>
+	<!--</form>-->
 </body>
 </html>

@@ -1,12 +1,7 @@
 package cn.supspider.bean;
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-
-import javax.persistence.Column;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 public class userinfo {
 		private int id;
@@ -82,5 +77,9 @@ public class userinfo {
 		}
 		public void setCode(int code) {
 			this.code = code;
+		}
+		
+		public userinfo() {
+			// TODO Auto-generated constructor stub
 		}
 }

@@ -4,6 +4,7 @@ package cn.supspider.action;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 import org.springframework.orm.hibernate5.HibernateTemplate;
@@ -42,8 +43,7 @@ public class index extends ActionSupport implements ModelDriven<ad_allWebinfo>{
 		}
 		//实例化相应的request的Api
 		ActionContext context=ActionContext.getContext();
-		//获取值栈
-		ValueStack stack = context.getValueStack();
+		HttpServletRequest request=ServletActionContext.getRequest();
 		
 		//实例化注入资源仓库
 		private ResourceAll resourceAll;
@@ -53,8 +53,12 @@ public class index extends ActionSupport implements ModelDriven<ad_allWebinfo>{
 		public ResourceAll getResourceAll() {
 			return resourceAll;
 		}
+		//为向值栈中存入用户信息,用于前台验证登录等操作
+		private String username;
+		public String getUsername() {
+			return username;
+		}
 		//
-		
 		public String execute() throws Exception {
 			ValueStack stack=ActionContext.getContext().getValueStack();
 			@SuppressWarnings({ "unchecked", "unused" })
@@ -79,6 +83,11 @@ public class index extends ActionSupport implements ModelDriven<ad_allWebinfo>{
 			@SuppressWarnings("unchecked")
 			List<ResourceAll> OtherList = (List<ResourceAll>) hibernateTemplate.find("from ResourceAll where R_type=?","2");
 			stack.set("OtherList", OtherList);
+			//判断用户是否登录,返回到页面
+			HttpSession session = request.getSession();
+			if(session.getAttribute("user_name")!=null) {
+				username=(String) session.getAttribute("user_name");
+			}
 			return SUCCESS;
 		}
 		@Override

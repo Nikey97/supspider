@@ -3,6 +3,7 @@
 	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 	<struts>
+		<constant name="struts.i18n.encoding" value="UTF-8" /> 
 		<package name="ManagePage" extends="struts-default">
 			<default-action-ref name="index" />
 			<action name="ad_*" class="ad" method="{1}">
@@ -23,6 +24,7 @@
 				<result name="resultall">/resultall.jsp</result>
 				<result name="OneResultAll">/oneresult.jsp</result>
 				<result name="index" type="redirect">/index</result>
+				<result name="resultalls">/resultall.jsp</result>
 			</action>
 			<action name="index" class="index">
 				<result name="success">/index.jsp</result>

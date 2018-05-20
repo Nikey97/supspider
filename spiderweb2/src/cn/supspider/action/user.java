@@ -2,8 +2,10 @@ package cn.supspider.action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -12,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
+import org.hibernate.Hibernate;
+import org.hibernate.Session;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,6 +24,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.util.ValueStack;
 
+import cn.supspider.Utils.QueryPagingPage;
 import cn.supspider.Utils.UtilMethods;
 import cn.supspider.bean.ResourceAll;
 import cn.supspider.bean.userFeedback;
@@ -47,6 +52,12 @@ public class user extends ActionSupport implements ModelDriven<userinfo>{
 	//获取response对象
 	HttpServletResponse response = ServletActionContext.getResponse();
 	HttpServletRequest request=ServletActionContext.getRequest();
+	
+	//获取分页的类
+	private QueryPagingPage query;
+	public void setQuery(QueryPagingPage query) {
+		this.query = query;
+	}
 	
 	//重写接口中的方法
 	@Override
@@ -158,30 +169,116 @@ public class user extends ActionSupport implements ModelDriven<userinfo>{
 	}
 	//词条模糊搜索
 	private String SearchName;
+	private int PageCount;
+	
 	public String getSearchName() {
 		return SearchName;
 	}
 	public void setSearchName(String searchName) {
 		SearchName = searchName;
 	}
-	
+	public int getPageCount() {
+		return PageCount;
+	}
+	public void setPageCount(int pageCount) {
+		PageCount = pageCount;
+	}
+
+	@SuppressWarnings("unchecked")
 	public String QueryResultInfo() {
 		//获取前台数据,对数据库模糊查询.
 		/*	1.将三个分类数据库进行整合成一个
 		 * 	2.改首页的最新查询
 		 * 	3.完善首页的搜索功能
 		 * */
-		ValueStack stack=ActionContext.getContext().getValueStack();
-		@SuppressWarnings("unchecked")//模糊查询
-		List<ResourceAll> list = (List<ResourceAll>) hibernateTemplate.find("from ResourceAll where R_name like '%"+SearchName+"%'");
-		SearchName=getSearchName();//搜索值存入值栈
-		stack.set("Reslist", list);//存入值栈
 		//查询是否登录,并返回用户名
 		HttpSession session = request.getSession();
 		if(session.getAttribute("user_name")!=null) {
 			username=(String) session.getAttribute("user_name");
 		}
+		ValueStack stack=ActionContext.getContext().getValueStack();//模糊查询
+		SearchName=getSearchName();//搜索值存入值栈
+		int AllCount = hibernateTemplate.find("from ResourceAll where R_name like '%"+SearchName+"%'").size();//查询所有的个数
+		if(AllCount/8==0) {
+			PageCount=1;
+			Last=0;
+			Next=0;
+		}else {
+			PageCount=AllCount/8;
+			//禁止上一个
+			Last=0;
+			Next=1;
+		}
+		stack.set("NowPage", 1);
+		List<ResourceAll> list = query.getListForpage("from ResourceAll where R_name like '%"+SearchName+"%'", 0, 8);//分页查询条数
+		stack.set("Reslist", list);//存入值栈
 		return "resultall";
+	} 
+	//首页模糊搜索分页请求
+		/*步奏:
+		 * 		1.新建bean,所有的属性的setget方法.
+		 * 		2.查出所有符合的信息,每个页面固定的列数
+		 * 		3.
+		 * */
+	private String getSearchName;
+	private int NowPage;
+	private int Next;
+	private int Last;
+	public int getNowPage() {
+		return NowPage;
+	}
+	public void setNowPage(int nowPage) {
+		NowPage = nowPage;
+	}
+	public String getGetSearchName() {
+		return getSearchName;
+	}
+	public void setGetSearchName(String getSearchName) {
+		this.getSearchName = getSearchName;
+	}
+	public int getNext() {
+		return Next;
+	}
+	public void setNext(int next) {
+		Next = next;
+	}
+	public int getLast() {
+		return Last;
+	}
+	public void setLast(int last) {
+		Last = last;
+	}
+	@SuppressWarnings({ "unchecked", "unused" })
+	public String QueryPaingRes() throws UnsupportedEncodingException {
+		ValueStack stack=ActionContext.getContext().getValueStack();//模糊查询
+		getSearchName=new String(SearchName.getBytes("ISO-8859-1"),"UTF-8");
+		SearchName=getSearchName;//继续放入值栈
+		stack.set("NowPage", NowPage);//当前页数存入值栈   
+		int AllCount = hibernateTemplate.find("from ResourceAll where R_name like '%"+SearchName+"%'").size();//查询所有的个数
+		if(AllCount/8==0) {
+			PageCount=1;
+			//搜素只有一个,禁止上一页下一页
+			Last=0;
+			Next=0;
+		}else {
+			PageCount=AllCount/8;
+			if(NowPage==1) {
+				//为第一个
+				Last=0;
+				Next=1;
+			}else if(PageCount==NowPage) {
+				//为最后一个
+				Last=1;
+				Next=0;
+			}else {
+				//不为第一个也不为第二个
+				Last=1;
+				Next=1;
+			}
+		}
+		List<ResourceAll> list = query.getListForpage("from ResourceAll where R_name like '%"+SearchName+"%'", 8*(NowPage-1), 8);
+		stack.set("Reslist", list);//存入值栈
+		return "resultalls";
 	}
 	
 	//返回查询页面的所有信息
@@ -299,8 +396,6 @@ public class user extends ActionSupport implements ModelDriven<userinfo>{
 		}
 		return NONE;
 	}
-	//首页模糊搜索分页请求
-	
 	
 	
 	

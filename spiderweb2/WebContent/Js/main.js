@@ -18,10 +18,37 @@ $(function(){
 		}else{
 			$(".Float_Top").css('visibility','hidden');
 		}
+	}); 
+	
+	/*  查询信息返回分页判断  */
+	var NowPage = $('#NowPage').val();
+	var Next = $('#Next').val();
+	var Last = $('#Last').val();
+	if(NowPage>0){
+		$('ul.pagination li:eq('+NowPage+')').attr('class','active');
+	}
+	$('ul.pagination li:eq('+NowPage+')').click(function(){
+		return false;//阻止发送请求
 	});
+	if(Next==0&&Last==0){
+		//只有一页,禁止下上一页		
+		$('ul.pagination li:eq(0)').attr('class','disabled');
+		$('ul.pagination li:last-child').attr('class','disabled');
+	}else if(Next!=0&&Last==0){
+		//在第一页页数不为一,静止上一个
+		$('ul.pagination li:eq(0)').attr('class','disabled');
+		$('ul.pagination li:last-child').attr('class','');
+	}else if(Next==0&&Last!=0){
+		//在最后一个,禁止最后一个
+		$('ul.pagination li:eq(0)').attr('class','');
+		$('ul.pagination li:last-child').attr('class','disabled');
+	}else{
+		//不在第一个也不在最后一个的位置
+		$('ul.pagination li:eq(0)').attr('class','');
+		$('ul.pagination li:last-child').attr('class','');
+	}
 	
 	/* 注册密码框选中时出现提示 */
-	
 	$("#psw").focusin(function(){
 		$(".div_pswTip").fadeIn();
 	});

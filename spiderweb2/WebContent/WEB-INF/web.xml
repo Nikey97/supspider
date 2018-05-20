@@ -12,8 +12,12 @@
   	<filter>
         <filter-name>struts2</filter-name>
         <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+        <init-param>
+        	<param-name>struts.i18n.encoding</param-name>
+         	<param-value>UTF-8</param-value>
+        </init-param> 
     </filter>
-
+    
     <filter-mapping>
         <filter-name>struts2</filter-name>
         <url-pattern>/*</url-pattern>

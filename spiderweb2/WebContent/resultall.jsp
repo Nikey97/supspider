@@ -50,14 +50,22 @@
 		<div class="col-lg-8 col-md-8 col-sm-8 result-warp">
 			<!-- 结果列表 -->
 			<ul class="doc-list-normalize">
-				<s:iterator value="Reslist">
-					<li>
-						<div class="list-diy">
-							<span class="doc-title"><a href="user_QueryResultAllInfo.action?number=<s:property value="number"/>"><s:property value="R_name"/></a></span>
-							<span class="doc-form">来源平台：<s:property value="R_from"/></span>
-						</div>
-					</li>
+				<s:iterator value="Reslist" status="st">
+					<s:if test="#st.count==0">
+						<li><script>alert("1");</script></li>
+					</s:if> 
+					<s:else>
+						<li>
+							<div class="list-diy">  
+								<span class="doc-title"><a href="user_QueryResultAllInfo.action?number=<s:property value="number"/>"><s:property value="R_name"/></a></span>
+								<span class="doc-form">来源平台：<s:property value="R_from"/></span>
+							</div>
+						</li>
+					</s:else>	
 				</s:iterator>
+				<input type="hidden" id="NowPage" value="<s:property value="NowPage"/>">
+				<input type="hidden" id="Next" value="<s:property value="Next"/>">
+				<input type="hidden" id="Last" value="<s:property value="Last"/>">
 			</ul>
 			<nav aria-label="Page navigation nav-right">
 			  <ul class="pagination">
@@ -66,11 +74,9 @@
 					<span aria-hidden="true">&laquo;</span>
 				  </a>
 				</li>
-				<li><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
+				<s:iterator begin="1" end="%{ PageCount }" status="st">
+					<li><a href="user_QueryPaingRes.action?SearchName=<s:property value="SearchName"/>&NowPage=<s:property value="#st.index+1"/>"><s:property value="#st.index+1"/></a></li>
+				</s:iterator>
 				<li>
 				  <a href="#" aria-label="Next">
 					<span aria-hidden="true">&raquo;</span>

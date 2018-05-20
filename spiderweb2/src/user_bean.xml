@@ -15,6 +15,7 @@
 			<property name="hibernateTemplate" ref="hibernateTemplate"></property>
 			<property name="resourceAll" ref="ResAll"></property>
 			<property name="userFeedback" ref="userfb"></property>
+			<property name="query" ref="query"></property>
 		</bean>
 		
 		<!-- 访问首页数据回显的配置 -->
@@ -26,4 +27,7 @@
 		<!-- 首页的最新资源注入 -->
 		<bean id="ResAll" class="cn.supspider.bean.ResourceAll"></bean>
 		<bean id="userfb" class="cn.supspider.bean.userFeedback"></bean>
+		<bean id="query" class="cn.supspider.Utils.QueryPagingPage">
+			<property name="sessionFactory" ref="sessionFactory"></property>
+		</bean>
 </beans> 

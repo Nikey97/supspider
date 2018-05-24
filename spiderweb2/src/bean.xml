@@ -45,6 +45,7 @@
 			<property name="advs" ref="advs"></property>
 			<property name="utilMethods" ref="utilMethods"></property>
 			<property name="userinfo" ref="userinfo"></property>
+			<property name="userFeedback" ref="userfb"></property>
 		</bean>
 		<bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
 			<property name="sessionFactory" ref="sessionFactory"></property>
@@ -55,7 +56,6 @@
 		<bean id="advs" class="cn.supspider.bean.advs"></bean>
 		<bean id="userinfo" class="cn.supspider.bean.userinfo"></bean>
 		<bean id="utilMethods" class="cn.supspider.Utils.UtilMethods"></bean>
-		
 		<!-- 用户操作属性配置 -->
 		<import resource="user_bean.xml"/>
 		

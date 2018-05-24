@@ -70,7 +70,7 @@
 			<nav aria-label="Page navigation nav-right">
 			  <ul class="pagination">
 				<li>
-				  <a href="#" aria-label="Previous">
+				  <a href="user_QueryPaingRes.action?SearchName=<s:property value="SearchName"/>&NowPage=<s:property value="NowPage-1"/>" aria-label="Previous">
 					<span aria-hidden="true">&laquo;</span>
 				  </a>
 				</li>
@@ -78,7 +78,7 @@
 					<li><a href="user_QueryPaingRes.action?SearchName=<s:property value="SearchName"/>&NowPage=<s:property value="#st.index+1"/>"><s:property value="#st.index+1"/></a></li>
 				</s:iterator>
 				<li>
-				  <a href="#" aria-label="Next">
+				  <a href="user_QueryPaingRes.action?SearchName=<s:property value="SearchName"/>&NowPage=<s:property value="NowPage+1"/>" aria-label="Next">
 					<span aria-hidden="true">&raquo;</span>
 				  </a>
 				</li>
@@ -87,11 +87,11 @@
 		</div>
 		<div class="col-lg-4 col-md-4 col-sm-4 ad-warp">
 			<!-- 创收广告-->
-			<div class="col-lg-12 col-md-12 col-sm-12 ad-frist">
-				广告框一
+			<div class="col-lg-12 col-md-12 col-sm-12 ad-frist visible-lg-block visible-md-block">
+				
 			</div>
-			<div class="col-lg-12 col-md-12 col-sm-12 ad-second">
-				广告框二
+			<div class="col-lg-12 col-md-12 col-sm-12 ad-second visible-lg-block visible-md-block">
+				
 			</div>
 		</div>
 	</div>

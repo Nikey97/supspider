@@ -22,11 +22,13 @@ import org.springframework.web.context.ServletConfigAware;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+import com.opensymphony.xwork2.util.ValueStack;
 
 import cn.supspider.Utils.ToJsonType;
 import cn.supspider.Utils.UtilMethods;
 import cn.supspider.bean.ad_allWebinfo;
 import cn.supspider.bean.advs;
+import cn.supspider.bean.userFeedback;
 import cn.supspider.bean.userbean;
 import cn.supspider.bean.userinfo;
 import net.sf.json.JSONArray;
@@ -52,7 +54,6 @@ public class ad extends ActionSupport implements ModelDriven<userbean>{
 	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
 		this.hibernateTemplate = hibernateTemplate;
 	}
-	ActionContext context=ActionContext.getContext();
 	
 	//注入Json工具类
 	private ToJsonType ToJson;
@@ -83,12 +84,19 @@ public class ad extends ActionSupport implements ModelDriven<userbean>{
 	public void setUserinfo(userinfo userinfo) {
 		this.userinfo = userinfo;
 	}
-
+	//插入用户反馈表
+	private userFeedback userFeedback;
+	public void setUserFeedback(userFeedback userFeedback) {
+		this.userFeedback = userFeedback;
+	}
+	
+	@SuppressWarnings("unchecked")
 	public String execute() throws Exception {
 		//管理员登录验证
-		@SuppressWarnings("unchecked")
+		ActionContext context=ActionContext.getContext();
 		List<userbean> list=(List<userbean>) hibernateTemplate.find("FROM userbean WHERE name=? AND password=?", bean.getName(),bean.getPassword());
 		if(list.isEmpty()) {
+			context.put("error", 1);
 			return "failed";
 		}else {
 			//将用户名存入session,用于做判断是否登录.
@@ -283,11 +291,21 @@ public class ad extends ActionSupport implements ModelDriven<userbean>{
 		hibernateTemplate.delete(userinfo);
 		return "deletesu";
 	}
-	//接收用户反馈持久化到数据库
-	public String UserFeedbackInfo() {
-		
-		
-		return NONE;
+	//查看用户反馈信息
+	private int feedback_id;
+	public int getFeedback_id() {
+		return feedback_id;
+	}
+	public void setFeedback_id(int feedback_id) {
+		this.feedback_id = feedback_id;
+	}
+	public String QueryFeedBackInfo() {
+		ValueStack stack=ActionContext.getContext().getValueStack();//模糊查询
+		userFeedback = hibernateTemplate.get(userFeedback.class, feedback_id);
+		stack.set("feedback", userFeedback);
+		userFeedback.setLook(1);
+		hibernateTemplate.saveOrUpdate(userFeedback);
+		return "query";
 	}
 	
 }

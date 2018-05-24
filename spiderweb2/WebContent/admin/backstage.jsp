@@ -1,3 +1,5 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="cn.supspider.Utils.DBUtil"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -30,8 +32,19 @@
 			<h1>SupSpider后台管理 v1.0</h1>
 		</section>
 		<div>
+			<%! 
+				DBUtil dbUtil=new DBUtil(); 
+			%>
+			<%
+				String sql="select * from user_feedback where f_look=0;";
+				ResultSet set = dbUtil.DBQuery(sql);
+				int count=0;
+				while(set.next()){
+					count++;
+				}
+			%>
 			<div class="leftTip">
-				<a href="#" class="a_normailze" title="反馈"><span class="icoTip" id="tipdate"><span class="tipData">(35)</span></span></a>
+				<a href="#" class="a_normailze" title="反馈"><span class="icoTip" id="tipdate"><span class="tipData">(<%=count %>)</span></span></a>
 			</div>
 			<div class="rightExit">
 				<a href="#" title="注销"><span class="icoExit" id="Exit"></span></a>

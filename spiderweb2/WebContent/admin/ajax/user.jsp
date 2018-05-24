@@ -187,19 +187,19 @@
 				</table>
 			</div>
 			<div class="ad_paingStyle">
-						第<%=intPage %>页&nbsp;共<%=intPageCount %>
-						<%
-							if(intPage<intPageCount){
-								%>
-								<a href="user.jsp?page=<%=intPage+1%>">下一页</a>
-								<%
-							}
-							if(intPage>1){
-								%>
-								<a href="user.jsp?page=<%=intPage-1%>">上一页</a>
-								<%
-							}
-						%>
+					第<%=intPage %>页&nbsp;共<%=intPageCount %>
+					<%
+						if(intPage<intPageCount){
+							%>
+							<a href="user.jsp?page=<%=intPage+1%>">下一页</a>
+							<%
+						}
+						if(intPage>1){
+							%>
+							<a href="user.jsp?page=<%=intPage-1%>">上一页</a>
+							<%
+						}
+					%>
 			</div>
 		</div>
 	</body>

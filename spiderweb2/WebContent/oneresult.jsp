@@ -50,7 +50,7 @@
 						<li>点击次数：<span class="info-span"><s:property value="ResourceAll.R_count"/></span></li>
 						<li>资源描述：<span class="info-span">欢迎来到 Firefox！ 我们将展示给你所有基本的 Firefox 知识，这样你就可以从容开始。当你需要更进一步时，我们也留给你一系列有用的链接。欢迎来到 Firefox！ 我们将展示给你所有基本的 Firefox 知识，这样你就可以从容开始。当你需要更进一步时，我们也留给你一系列有用的链接。欢迎来到 Firefox！ 我们将展示给你所有基本的 Firefox 知识，这样你就可以从容开始。当你需要更进一步时，我们也留给你一系列有用的链接。欢迎来到 Firefox！ 我们将展示给你所有基本的 Firefox 知识，这样你就可以从容开始。当你需要更进一步时，我们也留给你一系列有用的链接。欢迎来到 Firefox！ 我们将展示给你所有基本的 Firefox 知识，这样你就可以从容开始。当你需要更进一步时，我们也留给你一系列有用的链接。欢迎来到 Firefox！ 我们将展示给你所有基本的 Firefox 知识，这样你就可以从容开始。当你需要更进一步时，我们也留给你一系列有用的链接。欢迎来到 Firefox！ 我们将展示给你所有基本的 Firefox 知识，这样你就可以从容开始。当你需要更进一步时，我们也留给你一系列有用的链接。欢迎来到 Firefox！ 我们将展示给你所有基本的 Firefox 知识，这样你就可以从容开始。当你需要更进一步时，我们也留给你一系列有用的链接。欢迎来到 Firefox！ 我们将展示给你所有基本的 Firefox 知识，这样你就可以从容开始。当你需要更进一步时，我们也留给你一系列有用的链接。欢迎来到 Firefox！ 我们将展示给你所有基本的 Firefox 知识，这样你就可以从容开始。当你需要更进一步时，我们也留给你一系列有用的链接。</span></li>	
 						<!--  点击传送至重定向页  -->
-						<li>资源链接：<span class="btn btn-success"><a href="#" class="info-a">点击下载</a></span></li>	
+						<li>资源链接：<span class="btn btn-success"><a href="user_ResultLinkBack.action?number=<s:property value="ResourceAll.number"/>" class="info-a">点击下载</a></span></li>	
 					</ul>
 				</div>
 				<div class="Context-ad col-lg-4 col-md-4 col-sm-4">
@@ -65,6 +65,7 @@
 			</div>
 		</div>
 	</div>
+	<input type="hidden" id="code" value="<s:property value="code"/>" />
 	<div class="container-fluid Comment-wrap">
 		<!--评论区框-->
 		<div class="col-lg-12 col-md-12 col-sm-12 Comment-context">

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -16,6 +17,7 @@
 		 	<div class="inputWarp">
 		 		<img src="../Img/userlogo.png" />
 		 		<div class="inputContent">
+		 				<input type="hidden" value="<s:property value="error"/>" id="login-error">
 		 				<form method="post" action="ad_execute.action"> 
 				 			<input type="text" name="name" placeholder="请输入管理员账户"/><p>
 				 			<input type="password" name="password" placeholder="请输入密码"/><p>

@@ -259,8 +259,8 @@ html,body{
 	text-decoration: none;
 }
 .ad_navright{
-	float: right;
-	margin-right: 16px;
+	margin-top: 30px;
+	text-align: center;
 }
 
 .jurisdiction_icon{
@@ -286,3 +286,22 @@ html,body{
 	margin-right: auto;
 	display: block;
 }
+/*  查询所有用户反馈信息页面样式  */
+.header-style{
+	height: 50px;
+	background: #B2DBA1;
+	line-height: 53px;
+}
+.feedback-context{
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	float: none;
+	margin-top: 10px;
+}
+.feedback-context h4{
+	display: inline-block;
+	font-family: 楷体;
+	font-size: 25px;
+}
+

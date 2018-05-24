@@ -250,6 +250,7 @@ public class user extends ActionSupport implements ModelDriven<userinfo>{
 	}
 	@SuppressWarnings({ "unchecked", "unused" })
 	public String QueryPaingRes() throws UnsupportedEncodingException {
+		System.out.println("NowPages:"+NowPage);
 		ValueStack stack=ActionContext.getContext().getValueStack();//模糊查询
 		getSearchName=new String(SearchName.getBytes("ISO-8859-1"),"UTF-8");
 		SearchName=getSearchName;//继续放入值栈
@@ -397,6 +398,36 @@ public class user extends ActionSupport implements ModelDriven<userinfo>{
 		return NONE;
 	}
 	
+	//转跳到回显资源
+	private int code;
+	public int getCode() {
+		return code;
+	}
+	public void setCode(int code) {
+		this.code = code;
+	}
+	@SuppressWarnings({ "unchecked", "unused" })
+	public String ResultLinkBack() {
+		System.out.println("资源链接回显请求!"+"---number:"+number);
+		ValueStack stack=ActionContext.getContext().getValueStack();
+		//查询是否登录,并返回用户名
+		HttpSession session = request.getSession();
+		if(session.getAttribute("user_name")!=null) {
+			username=(String) session.getAttribute("user_name");
+			List<userinfo> list = (List<userinfo>) hibernateTemplate.find("from userinfo where UserName=? and active=0", username);
+			if(!list.isEmpty()) {
+			   stack.set("code", 2);//没激活
+			   System.out.println(2);
+			   return "ERBack";
+			}else {
+			   return "RLBack";
+			}
+		}else {
+			System.out.println(1);
+			stack.set("code", 1);//没登录
+			return "ERBack";
+		}
+	}
 	
 	
 }

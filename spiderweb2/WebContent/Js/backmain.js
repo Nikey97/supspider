@@ -3,7 +3,7 @@ $(function(){
 	/*
 	 默认点中第一项
 	 * */
-	$("#body .rightwarp").attr("src","ajax/welcome.html");
+	$("#body .rightwarp").attr("src","ajax/welcome.jsp");
 	$("#body .leftwarp div ul li:eq(0)").css("background","#fff");
 	/*
 	 管理页导航的
@@ -17,7 +17,7 @@ $(function(){
 	
 	//第一项管理的点击
 	$("#body .leftwarp div ul li:eq(0)").click(function(){
-		$("#body .rightwarp").attr("src","ajax/welcome.html");
+		$("#body .rightwarp").attr("src","ajax/welcome.jsp");
 	});
 	//第二项管理的点击
 	$("#body .leftwarp div ul li:eq(1)").click(function(){
@@ -33,7 +33,7 @@ $(function(){
 	});
 	//第五项管理的点击
 	$("#body .leftwarp div ul li:eq(4)").click(function(){
-		$("#body .rightwarp").attr("src","ajax/feedback.html");
+		$("#body .rightwarp").attr("src","ajax/feedback.jsp");
 	});
 	
 	
@@ -41,7 +41,7 @@ $(function(){
 		提示信息与退出按钮实现
 	*/
 	$("#tipdate").click(function(){
-		$("#body .rightwarp").attr("src","ajax/feedback.html");
+		$("#body .rightwarp").attr("src","ajax/feedback.jsp");
 	});
 	$("#Exit").click(function(){
 		//用户注销操作
@@ -57,6 +57,7 @@ $(function(){
 	/*
 	 *  点击删除用户:先提示 
 	 * */
+	
 	$('.delete_icon_a').click(function(){
 		var alertStr = "您确定删除该用户?";
 		if(confirm(alertStr)===true){

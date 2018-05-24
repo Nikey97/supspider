@@ -237,6 +237,22 @@ $(function(){
 //			$('.ul_rule li:eq(2)').css('color','');
 //		}
 //	});
+
+	//用户管理页面登录错误提示
+	var error_code = $('#login-error').val();
+	if(error_code == 1){
+		alert('用户名或密码错误');
+	}
+	
+	//用户点击链接后的错误反馈
+	var code = $("#code").val();
+	if(code==1){
+		alert("系统检测到您没有登录,正在转跳...");
+		window.location.href="login.jsp";
+	}else if(code==2){
+		alert("系统检测到您没有激活,请前往邮件点击激活邮件激活账号.");
+	}
+	
 });
 //首页回到页面顶部的操作
 function toTop(){

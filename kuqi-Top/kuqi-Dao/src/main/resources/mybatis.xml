@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+    <settings>
+        <!--  设置二级缓存的总开关 -->
+        <setting name="cacheEnabled" value="true"/>
+        <setting name="lazyLoadingEnabled" value="true" />
+    </settings>
+
+    <typeAliases>
+        <!--  定义pojo的别名-->
+        <!--<typeAlias type="pojo.user" alias="user"></typeAlias>-->
+        <!--  批量定义别名-->
+        <!-- package指定一个包名,mybatis自动扫描包中的po类,别名就是类名(首字母大写或小写都可以) -->
+        <package name="cn.kuqi.Pojo"/>
+    </typeAliases>
+
+    <!--<environments default="development">-->
+        <!--<environment id="development">-->
+            <!--<transactionManager type="JDBC"/>-->
+            <!--<dataSource type="POOLED">-->
+                <!--<property name="driver" value="com.mysql.jdbc.Driver"></property>-->
+                <!--<property name="url" value="jdbc:mysql://localhost:3306/netspider?characterEncoding=utf-8"/>-->
+                <!--<property name="username" value="root"></property>-->
+                <!--<property name="password" value="1069"></property>-->
+            <!--</dataSource>-->
+        <!--</environment>-->
+    <!--</environments>-->
+
+    <!-- 加载映射文件 -->
+<!--     <mappers> -->
+<!--         <mapper resource="cn/kuqi/Mapper/ItemsMapper.xml"></mapper> -->
+<!--         <mapper resource="cn/kuqi/Mapper/OrdersMapper.xml"></mapper> -->
+<!--         <mapper resource="cn/kuqi/Mapper/UserMapper.xml"></mapper> -->
+<!--     </mappers> -->
+
+</configuration>

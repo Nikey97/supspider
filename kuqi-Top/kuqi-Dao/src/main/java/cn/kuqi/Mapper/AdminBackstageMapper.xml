@@ -31,6 +31,35 @@
     <result column="AC_Remark" jdbcType="VARCHAR" property="acRemark" />
   </resultMap>
   
+  <!-- 查询所有的文章的list的映射 -->
+  <resultMap type="cn.kuqi.Pojo.ArticleExt" id="QueryArticleList">
+  	<collection property="data" ofType="Article">
+  		<id column="A_Number"  property="aNumber" />
+	    <result column="A_ID" property="aId" />
+	    <result column="A_ViewCount" property="aViewcount" />
+	    <result column="A_Praise" property="aPraise" />
+	    <result column="A_Content" property="aContent" />
+	    <result column="A_Trample" property="aTrample" />
+	    <result column="A_PublishTime" property="aPublishtime" />
+	    <result column="A_CollectedCount" property="aCollectedcount" />
+	    <result column="A_Type" property="aType" />
+  	</collection>
+  </resultMap>
+  
+  
+  <resultMap type="cn.kuqi.Pojo.Article" id="QueryArticle">
+ 	<id column="A_Number"  property="aNumber" />
+    <result column="A_ID" property="aId" />
+    <result column="A_ViewCount" property="aViewcount" />
+    <result column="A_Praise" property="aPraise" />
+    <result column="A_Content" property="aContent" />
+    <result column="A_Trample" property="aTrample" />
+    <result column="A_PublishTime" property="aPublishtime" />
+    <result column="A_CollectedCount" property="aCollectedcount" />
+    <result column="A_Type" property="aType" />
+  </resultMap>
+  
+  
   <!-- 通过用户名查询Users  -->
   <select id="QueryUserInfoByName" parameterType="java.lang.String" resultMap="BaseResultMap">
   		select * from users where U_Name= #{username}
@@ -66,5 +95,29 @@
   		delete from article_classfiy where AC_Number=#{Number}
   </delete>
   
+  <!-- 查询所有文章 -->
+  <select id="QueryAllArticle" resultMap="QueryArticleList">
+  		select * from article
+  </select>
+  
+  <!-- 查询单篇文章 -->
+  <select id="QueryArticleByNumber" resultMap="QueryArticle">
+  		select * from article where A_Number=#{Number}
+  </select>
+  
+  <!-- 删除单篇文章 -->
+  <delete id="DeleteArticleByNumber">
+  		delete from article where A_Number=#{Number}
+  </delete>
+  
+  <!-- 修改单篇文章 -->
+  <update id="UpdataArticleByNumber">
+		UPDATE article SET A_Content = #{Content} WHERE A_Number = #{Number}   
+  </update>
+  
+  <!-- 通过分类来查找文章 -->
+  <select id="QueryArticleByClassfiy" resultMap="QueryArticleList">
+  		select article.* from article where A_ID=#{ClassfiyNumber}
+  </select>
   
 </mapper>

@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cn.kuqi.Mapper.AdminBackstageMapper;
+import cn.kuqi.Pojo.Article;
 import cn.kuqi.Pojo.ArticleClassfiy;
 import cn.kuqi.Pojo.ArticleClassfiyExt;
+import cn.kuqi.Pojo.ArticleExt;
 import cn.kuqi.Pojo.MessageInfo;
 import cn.kuqi.Pojo.Users;
 import cn.kuqi.Service.AdminBackstageService;
@@ -66,19 +68,12 @@ public class AdminBackstageServiceImpi implements AdminBackstageService{
 
 	/*  后台管理-->文章 管理-->操作        查询所有分类    */
 	public ArticleClassfiyExt QueryAllArticleClassfiyService() {
-		
-		ArticleClassfiyExt articleClassfiyExt=new ArticleClassfiyExt();
-		
+		ArticleClassfiyExt articleClassfiyExt = new ArticleClassfiyExt(); 
 		List<ArticleClassfiy> list= usersMapperExt.QueryAllClassfiy();
-		
 		articleClassfiyExt.setData(list);
-		
 		articleClassfiyExt.setCode(0);
-		
 		articleClassfiyExt.setMsg("");
-		
-		articleClassfiyExt.setCount(list.size());
-		
+		articleClassfiyExt.setCount(articleClassfiyExt.getData().size());
 		return articleClassfiyExt;
 	}
 
@@ -156,5 +151,63 @@ public class AdminBackstageServiceImpi implements AdminBackstageService{
 		}
 	}
 	
+	/*  后台管理-->文章 管理-->操作     查询所有文章    */
+	public ArticleExt QueryAllArticleService() {
+		ArticleExt articleExt = usersMapperExt.QueryAllArticle();
+		articleExt.setCode(0);
+		articleExt.setMsg("");
+		articleExt.setCount(articleExt.getData().size());
+		return articleExt;
+	}
 	
+	/*  后台管理-->文章 管理-->操作     查询单篇文章  */
+	public Article QueryArticleByNumberService(Integer Number) {
+		Article article = usersMapperExt.QueryArticleByNumber(Number);
+		return article;
+	}
+	
+	
+	/*  后台管理-->文章 管理-->操作     删除单篇文章    */
+	public MessageInfo DeleteArticleByNumberService(Integer Number) {
+		MessageInfo msg = new MessageInfo();
+		
+		Article article = usersMapperExt.QueryArticleByNumber(Number);
+		
+		if (article != null) {
+			int i = usersMapperExt.DeleteArticleByNumber(Number);
+			if (i == 1) {
+				msg.setCode(0);
+				msg.setMsg("删除成功");
+			}else {
+				msg.setCode(1);
+				msg.setMsg("删除失败");
+			}
+			return msg;
+		}else {
+			msg.setCode(2);
+			msg.setMsg("拒接访问， 删除的文章不存在");
+			return msg;
+		}
+	}
+	
+	/*  后台管理-->文章 管理-->操作     修改单篇文章    */
+	public String UpdataArticleByNumberService(Integer Number, String Content) {
+		
+		int i = usersMapperExt.UpdataArticleByNumber(Number, Content);//执行操作
+		
+		if (i == 1) {
+			return "{\"code\":0,\"msg\":\"修改成功\",}";
+		}else {
+			return "{\"code\":1,\"msg\":\"修改失败\",}";
+		}
+	}
+	
+	/*  后台管理-->文章 管理-->操作   使用分类查询单篇文章    */
+	public ArticleExt QueryArticleByClassfiy(Integer ClassfiyNumber) {
+		ArticleExt articleExt = usersMapperExt.QueryArticleByClassfiy(ClassfiyNumber);
+		articleExt.setCode(0);
+		articleExt.setMsg("");
+		articleExt.setCount(articleExt.getData().size());
+		return articleExt;
+	}
 }

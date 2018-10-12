@@ -2,6 +2,7 @@ package cn.kuqi.Controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import cn.kuqi.Pojo.Article;
 import cn.kuqi.Pojo.ArticleClassfiy;
 import cn.kuqi.Pojo.ArticleClassfiyExt;
+import cn.kuqi.Pojo.ArticleExt;
 import cn.kuqi.Pojo.MessageInfo;
 import cn.kuqi.ServiceImpi.AdminBackstageServiceImpi;
 
@@ -69,11 +72,9 @@ public class AdminBackStageController {
 		return null;
 	}
 	
-	@RequestMapping(value= ("/query_classfiy.do"),method= {RequestMethod.GET})//获取全部分类接口
+	@RequestMapping(value= ("/query_classfiy.do"),method= {RequestMethod.GET})//获取全部分类
 	public@ResponseBody ArticleClassfiyExt QueryClassfiy() {
-		
 		ArticleClassfiyExt articleClassfiyExt = adminBackstageServiceImpi.QueryAllArticleClassfiyService();
-		
 		return articleClassfiyExt;
 	}
 	
@@ -101,7 +102,7 @@ public class AdminBackStageController {
 		}
 	}
 	
-	@RequestMapping(value= ("/alter_classfiy.do "),method= {RequestMethod.POST})//修改分类
+	@RequestMapping(value= ("/alter_classfiy.do"),method= {RequestMethod.POST})//修改分类
 	public@ResponseBody MessageInfo AlterClassfiy(@RequestBody ArticleClassfiy articleClassfiy) {
 		MessageInfo msg = adminBackstageServiceImpi.UpdataArticleClassfiyService(articleClassfiy.getAcNumber(), articleClassfiy.getAcClassfiyname(), articleClassfiy.getAcRemark());
 		return msg;
@@ -111,6 +112,50 @@ public class AdminBackStageController {
 	public @ResponseBody MessageInfo DeleteAlterClassfiy(@RequestBody ArticleClassfiy articleClassfiy) {
 		MessageInfo messageInfo = adminBackstageServiceImpi.DeleteArticleClassfiyService(articleClassfiy.getAcNumber());
 		return messageInfo;
+	}
+	
+	@RequestMapping(value= ("/query_article.do"),method= {RequestMethod.GET})//文章操作  
+	public @ResponseBody ArticleExt QueryAllArticle() {
+		ArticleExt articleExt = adminBackstageServiceImpi.QueryAllArticleService();
+		return articleExt;
+	} 
+	
+	@RequestMapping(value= ("/delete_article.do"),method= {RequestMethod.POST})//删除文章
+	public@ResponseBody MessageInfo DeleteArticleByNumber(@RequestBody Article article) {
+		MessageInfo msg = adminBackstageServiceImpi.DeleteArticleByNumberService(article.getaNumber());
+		return msg;
+	}
+	/*
+	 *   修改文章
+	 * 		需求分析：
+	 *			controller接收前台的文章编号，Dao查询返回数据。 
+	 * 			并转发到编辑页面
+	 * */
+	@RequestMapping(value= ("/alter_article"),method= {RequestMethod.POST})
+	public String AlterArticleByNumber(Integer ArticleNumber,String ArticleContent,Model model) {
+		
+		//查询回显执行的
+		if (ArticleNumber != null && ArticleContent == null) {
+			Article article = adminBackstageServiceImpi.QueryArticleByNumberService(ArticleNumber);
+			model.addAttribute("article", article);//向页面回显数据
+			return null;//转向发博客页面
+		}
+		
+		//修改执行的
+		if (ArticleNumber != null && ArticleContent != null) {
+			String json = adminBackstageServiceImpi.UpdataArticleByNumberService(ArticleNumber, ArticleContent);//拿到执行结果
+			model.addAttribute("msg", json);//向页面回显数据
+			return null;//转向发博客页面
+		}
+		
+		model.addAttribute("msg", "请求异常，请联系管理员");
+		return null;//转向发博客页面
+	}
+	
+	@RequestMapping(value= ("/queryClassfiy_article.do"),method= {RequestMethod.POST})//使用分类来查询文章
+	public @ResponseBody ArticleExt QueryArticleByClassfiy(@RequestBody ArticleClassfiy articleClassfiy) {
+		ArticleExt articleExt = adminBackstageServiceImpi.QueryArticleByClassfiy(articleClassfiy.getAcNumber());
+		return articleExt;
 	}
 	
 }

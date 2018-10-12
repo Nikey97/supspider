@@ -4,7 +4,10 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import cn.kuqi.Pojo.Article;
 import cn.kuqi.Pojo.ArticleClassfiy;
+import cn.kuqi.Pojo.ArticleClassfiyExt;
+import cn.kuqi.Pojo.ArticleExt;
 import cn.kuqi.Pojo.Users;
 
 public interface AdminBackstageMapper {
@@ -67,5 +70,33 @@ public interface AdminBackstageMapper {
 	 * */
 	Integer DeleteArtcleClassfiyByNumber(@Param("Number")Integer Number);
 	
-
+	/*
+	 *  后台管理--> 文章操作    查询所有文章 
+	 * 	
+	 * */
+	ArticleExt QueryAllArticle();
+	
+	/*
+	 *  后台管理--> 文章操作    查询单篇文章 
+	 * 	
+	 * */
+	Article QueryArticleByNumber(@Param("Number")Integer Number);
+	
+	/*
+	 *  后台管理--> 删除文章
+	 * 
+	 * */
+	Integer DeleteArticleByNumber(@Param("Number")Integer Number) ;
+	
+	/*
+	 *  后台管理--> 修改文章
+	 * */
+	Integer UpdataArticleByNumber(@Param("Number")Integer Number,@Param("Content")String Content);
+	
+	/*
+	 * 	 后台管理--> 文章操作    按分类查询文章
+	 * 
+	 * */
+	ArticleExt QueryArticleByClassfiy(@Param("ClassfiyNumber")Integer ClassfiyNumber);
+	
 }

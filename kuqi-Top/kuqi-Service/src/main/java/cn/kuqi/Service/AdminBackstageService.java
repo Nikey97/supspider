@@ -3,8 +3,10 @@
  */
 package cn.kuqi.Service;
 
+import cn.kuqi.Pojo.Article;
 import cn.kuqi.Pojo.ArticleClassfiy;
 import cn.kuqi.Pojo.ArticleClassfiyExt;
+import cn.kuqi.Pojo.ArticleExt;
 import cn.kuqi.Pojo.MessageInfo;
 
 /**
@@ -66,4 +68,39 @@ public interface AdminBackstageService {
 	  *
 	  * */
 	 MessageInfo DeleteArticleClassfiyService(Integer Number) ;
+	 
+	 /*
+	  * 后台管理-->文章操作  查询所有文章
+	  * 
+	  * 
+	  * */
+	 ArticleExt QueryAllArticleService();
+	 
+	 /*
+	  * 后台管理-->文章操作  查询单篇文章
+	  * 
+	  * 
+	  * */
+	 Article QueryArticleByNumberService(Integer Number);
+	 
+	 
+	 
+	 /*
+	  * 后台管理-->文章删除
+	  * 需求分析：
+	  * 		Controller 接收要删除的文章编号， 再执行sql删除选择的编号
+	  * */
+	 MessageInfo DeleteArticleByNumberService(Integer Number) ;
+	 
+	 /*
+	  * 后台管理--> 文章修改
+	  * 
+	  * */
+	 String UpdataArticleByNumberService(Integer Number,String Content);
+	 
+	 /*
+	  * 后台管理--> 使用分类来查询所有文章
+	  * 
+	  * */
+	 ArticleExt QueryArticleByClassfiy(Integer ClassfiyNumber) ;
 }

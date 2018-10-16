@@ -37,6 +37,7 @@
   		<id column="A_Number"  property="aNumber" />
 	    <result column="A_ID" property="aId" />
 	    <result column="A_ViewCount" property="aViewcount" />
+	    <result column="A_Title" property="aTitle" />
 	    <result column="A_Praise" property="aPraise" />
 	    <result column="A_Content" property="aContent" />
 	    <result column="A_Trample" property="aTrample" />
@@ -45,13 +46,13 @@
 	    <result column="A_Type" property="aType" />
   	</collection>
   </resultMap>
-  
-  
+  <!-- 文章 -->
   <resultMap type="cn.kuqi.Pojo.Article" id="QueryArticle">
  	<id column="A_Number"  property="aNumber" />
     <result column="A_ID" property="aId" />
     <result column="A_ViewCount" property="aViewcount" />
     <result column="A_Praise" property="aPraise" />
+    <result column="A_Title" property="aTitle" />
     <result column="A_Content" property="aContent" />
     <result column="A_Trample" property="aTrample" />
     <result column="A_PublishTime" property="aPublishtime" />
@@ -59,6 +60,62 @@
     <result column="A_Type" property="aType" />
   </resultMap>
   
+  <!-- 友情链接 -->
+  <resultMap id="LinkResultMap" type="cn.kuqi.Pojo.Link">
+    <id column="L_Number" property="lNumber" />
+    <result column="L_Name" property="lName" />
+    <result column="L_AddTime" property="lAddtime" />
+    <result column="L_ClickCount" property="lClickcount" />
+    <result column="L_Link" property="lLink" />
+  </resultMap>
+  
+  <!-- 友情链接list -->
+  <resultMap id="LinkResultList" type="cn.kuqi.Pojo.LinkExt">
+    <collection property="data" ofType="Link">
+	    <id column="L_Number" property="lNumber" />
+	    <result column="L_Name" property="lName" />
+	    <result column="L_AddTime" property="lAddtime" />
+	    <result column="L_ClickCount" property="lClickcount" />
+	    <result column="L_Link" property="lLink" />
+    </collection>
+  </resultMap>
+  
+  <!-- 博客信息 -->
+  <resultMap id="BlogInfoResultMap" type="cn.kuqi.Pojo.Bloginfo">
+    <id column="BI_Number" property="biNumber" />
+    <result column="BI_BlogerNickname" property="biBlogernickname" />
+    <result column="BI_HeadPortrait" property="biHeadportrait" />
+    <result column="BI_BlogName" property="biBlogname" />
+    <result column="BI_Antistop" property="biAntistop" />
+    <result column="BI_Motto" property="biMotto" />
+    <result column="BI_Theme" property="biTheme" />
+  </resultMap> 
+  
+  <!-- 用户实体类信息 -->
+  <resultMap id="UsersResultMap" type="cn.kuqi.Pojo.Users">
+    <id column="U_ID" property="uId" />
+    <result column="U_Name" property="uName" />
+    <result column="U_Nickname" property="uNickname" />
+    <result column="U_Signature" property="uSignature" />
+    <result column="U_Email" property="uEmail" />
+    <result column="U_Psw" property="uPsw" />
+    <result column="U_RegisterTime" property="uRegistertime" />
+    <result column="U_Permission" property="uPermission" />
+  </resultMap>
+  
+  <!-- 用户实体类List -->
+  <resultMap type="cn.kuqi.Pojo.UsersExt" id="UsersResultList">
+  	<collection property="data" ofType="cn.kuqi.Pojo.Users">
+ 		<id column="U_ID" property="uId" />
+	    <result column="U_Name" property="uName" />
+	    <result column="U_Nickname" property="uNickname" />
+	    <result column="U_Signature" property="uSignature" />
+	    <result column="U_Email" property="uEmail" />
+	    <result column="U_Psw" property="uPsw" />
+	    <result column="U_RegisterTime" property="uRegistertime" />
+	    <result column="U_Permission" property="uPermission" />
+  	</collection>
+  </resultMap>
   
   <!-- 通过用户名查询Users  -->
   <select id="QueryUserInfoByName" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -119,5 +176,145 @@
   <select id="QueryArticleByClassfiy" resultMap="QueryArticleList">
   		select article.* from article where A_ID=#{ClassfiyNumber}
   </select>
+  
+  <!-- 发博客 -->
+  <insert id="AddArticle" parameterType="cn.kuqi.Pojo.Article">
+  		insert into article(A_ID,A_Title,A_Content,A_ViewCount,A_Praise,A_Trample,A_PublishTime,A_CollectedCount,A_Type) value(${aId},'${aTitle}','${aContent}',${aViewcount},${aPraise},${aTrample},'${aPublishtime}',${aCollectedcount},${aType})
+  </insert>
+  
+  <!-- 添加友链 -->
+  <insert id="AddLink" parameterType="cn.kuqi.Pojo.Link">
+  		insert into link(
+  			L_Name,
+  			L_AddTime,
+  			L_ClickCount,
+  			L_Link
+  		) 
+  		value(
+  			'${lName}',
+  			'${lAddtime}',
+  			${lClickcount},
+  			'${lLink}'
+  		)
+  </insert>
+  
+  <!-- 查询友链 信息 多 -->
+  <select id="QueryLinks" resultMap="LinkResultMap">
+  		select * from link 
+  </select>
+  
+  <!-- 查询友链 信息 单-->
+  <select id="QueryLinkOne" parameterType="int" resultMap="LinkResultMap">
+  		select * from link where L_Number = #{Number}
+  </select>
+  
+  <!-- 删除友链 -->
+  <delete id="DeleteLinkByNumber">
+  		delete from link where L_Number=#{Number}
+  </delete>
+  
+  <!-- 修改友链信息 -->
+  <update id="AlterLinkByNumber" parameterType="cn.kuqi.Pojo.Link">
+		UPDATE link SET 
+			L_Name = '${lName}',
+			L_Link = '${lLink}' 
+			WHERE 
+			L_Number = ${lNumber}
+  </update>
+  
+  <!-- 修改博客的信息 -->
+  <!-- 查询 -->
+  <select id="QueryBlogInfoByNumber" resultMap="BlogInfoResultMap">
+  		select * from bloginfo where BI_Number = 1
+  </select>
+  <!-- 修改 -->
+  <update id="AlterBlogInfoByNumber">
+		UPDATE bloginfo  
+		
+		<trim prefix="set" suffixOverrides=",">
+			<if test="biBlogernickname != null">
+				BI_BlogerNickname = '${biBlogernickname}',
+			</if>
+			<if test="biHeadportrait != null">
+				BI_HeadPortrait = '${biHeadportrait}',
+			</if>
+			<if test="biBlogname != null">
+				BI_BlogName = '${biBlogname}',
+			</if>
+			<if test="biAntistop != null">
+				BI_Antistop = '${biAntistop}',
+			</if>
+			<if test="biMotto != null">
+				BI_Motto = '${biMotto}',
+			</if>
+		</trim>
+		
+		WHERE
+		
+		BI_Number = 1 
+  </update>
+  
+  
+  
+  <!-- 用户综合查询 -->
+  <select id="QueryUsersInfoByAllData" parameterType="cn.kuqi.Pojo.Users" resultMap="UsersResultMap">
+	select * from users 
+	<where>
+		<if test="uId != null">
+			U_ID = ${uId}
+		</if>
+		<if test="uName != null">
+			and U_Name = '${uName}'
+		</if>
+		<if test="uEmail != null">
+			and U_Email = '${uEmail}'
+		</if>
+		<if test="uNickname != null">
+			and U_Nickname like '%${uNickname}%'
+		</if>
+	</where>
+  </select>
+  
+  <!-- 删除用户 -->
+  <delete id="DeleteUserByUID">
+  		delete from users where U_ID = #{ID}
+  </delete>
+  
+  <!-- 修改用户信息 -->
+  <update id="AlterUserInfo">
+		UPDATE users  
+		
+		<trim prefix="set" suffixOverrides=",">
+			<if test="uName != null">
+				U_Name = '${uName}',
+			</if>
+			<if test="uNickname != null">
+				U_Nickname = '${uNickname}',
+			</if>
+			<if test="uSignature != null">
+				U_Signature = '${uSignature}',
+			</if>
+			<if test="uEmail != null">
+				U_Email = '${uEmail}',
+			</if>
+			<if test="uPsw != null">
+				U_Psw = '${uPsw}',
+			</if>
+			<if test="uPermission != null">
+				U_Permission = ${uPermission}
+			</if>
+		</trim>
+		
+		WHERE
+		
+		U_ID = ${uId}   
+  </update>
+  
+  <!-- 单个用户查询  -->
+  <select id="QueryUserInfoByID" parameterType="cn.kuqi.Pojo.Users" resultMap="UsersResultMap">
+		select * from users where U_ID = ${uId}
+  </select>
+  
+  
   
 </mapper>

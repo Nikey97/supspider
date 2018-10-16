@@ -88,15 +88,17 @@
 	    <groupId>javax.servlet</groupId>
 	    <artifactId>jstl</artifactId>
 	</dependency>
-	
-	
+
 	<dependency>
 		<groupId>com.Nikey</groupId>
 		<artifactId>kuqi-Dao</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</dependency>
-	
-	
+	<dependency>
+		<groupId>com.Nikey</groupId>
+		<artifactId>kuqi-Util</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</dependency>
   </dependencies>
   <build>
     <finalName>kuqi-Service</finalName>

@@ -8,7 +8,11 @@ import cn.kuqi.Pojo.Article;
 import cn.kuqi.Pojo.ArticleClassfiy;
 import cn.kuqi.Pojo.ArticleClassfiyExt;
 import cn.kuqi.Pojo.ArticleExt;
+import cn.kuqi.Pojo.Bloginfo;
+import cn.kuqi.Pojo.Link;
+import cn.kuqi.Pojo.LinkExt;
 import cn.kuqi.Pojo.Users;
+import cn.kuqi.Pojo.UsersExt;
 
 public interface AdminBackstageMapper {
 		
@@ -37,7 +41,6 @@ public interface AdminBackstageMapper {
 	 * 
 	 * */
 	Integer InsertClassfiy(@Param("Name")String ClassfiyName,@Param("Remark")String ClassfiyRemark) ;
-	
 	
 	/*
 	 * 	后台管理--> 修改分类    修改查询分类
@@ -97,6 +100,56 @@ public interface AdminBackstageMapper {
 	 * 	 后台管理--> 文章操作    按分类查询文章
 	 * 
 	 * */
-	ArticleExt QueryArticleByClassfiy(@Param("ClassfiyNumber")Integer ClassfiyNumber);
+	ArticleExt QueryArticleByClassfiy(@Param("ClassfiyNumber")Integer ClassfiyNumber);	
+	/*
+	 * 	后台管理--> 文章添加
+	 * 	需求分析：
+	 * 			controllr 接收文章标题、分类、内容，再执行插入操作。
+	 * 			返回执行结果
+	 * */
+	Integer AddArticle(Article article);
 	
+	/*
+	 *  后台管理--> 友情链接    添加
+	 * 
+	 * 		需求：插入链接	
+	 * 			返回添加链接	
+	 * */
+	Integer AddLink(Link link);//添加
+	
+	List<Link> QueryLinks();//查询所有友链
+	
+	Link QueryLinkOne(Integer Number);//查询单个
+	
+	Integer DeleteLinkByNumber(Integer Number);//删除友链信息
+	
+	Integer AlterLinkByNumber(Link link);//修改友链信息
+	
+	
+	/*
+	 * 后台管理--> 用户管理 --> 用户综合查询
+	 * 
+	 * 需求分析：
+	 * 		1.前台提交实体类数据（json）,controller接收后执行Service查询数据库。
+	 * 		2.查询内容：用户ID、Email、用户名、用户昵称
+	 * */
+	List<Users> QueryUsersInfoByAllData(Users users) ;//综合条件查询
+	
+	Users QueryUserInfoByID(Users users);//通过ID查单个用户
+	
+	Integer DeleteUserByUID(@Param("ID") Integer UID) ;//删除用户
+	
+	Integer AlterUserInfo(Users users);//修改用户
+	
+	
+	
+	/*
+	 * 博客管理-->信息操作 
+	 * 	需求分析：
+	 * 			1.进入页面请求响应博客信息，设置到表单显示。   信息查询接口
+	 * 			2.修改信息		信息修改接口
+	 * */
+	Bloginfo QueryBlogInfoByNumber() ;//查询博客信息
+	
+	Integer AlterBlogInfoByNumber(Bloginfo bloginfo) ;//修改博客信息
 }

@@ -7,7 +7,12 @@ import cn.kuqi.Pojo.Article;
 import cn.kuqi.Pojo.ArticleClassfiy;
 import cn.kuqi.Pojo.ArticleClassfiyExt;
 import cn.kuqi.Pojo.ArticleExt;
+import cn.kuqi.Pojo.Bloginfo;
+import cn.kuqi.Pojo.Link;
+import cn.kuqi.Pojo.LinkExt;
 import cn.kuqi.Pojo.MessageInfo;
+import cn.kuqi.Pojo.Users;
+import cn.kuqi.Pojo.UsersExt;
 
 /**
  * @author Nikey
@@ -102,5 +107,68 @@ public interface AdminBackstageService {
 	  * 后台管理--> 使用分类来查询所有文章
 	  * 
 	  * */
-	 ArticleExt QueryArticleByClassfiy(Integer ClassfiyNumber) ;
+	 ArticleExt QueryArticleByClassfiyService(Integer ClassfiyNumber) ;
+	 
+	 /*
+	  * 后台管理--> 发博客
+	  * 
+	  * */
+	 String AddArticleService(Article article);
+	 
+	 /*
+	  * 后台管理--> 友情链接    添加
+	  * 
+	  * */
+	 MessageInfo AddLinkService(Link link) ;
+	 
+	 
+	 /*
+	  * 后台管理--> 友情链接    查询所有的链接或者是单条
+	  * 
+	  * */
+	 LinkExt QueryLinkService(Link link);
+	 
+	 /*
+	  * 后台管理--> 友情链接    删除友链
+	  * 
+	  * */
+	 MessageInfo DeleteLinkService(Link link);
+	 
+	 /*
+	  * 后台管理--> 友情链接    修改友链
+	  * 
+	  * */
+	 MessageInfo AlterLinkService(Link link);
+	 
+	 /*
+	  * 后台管理--> 友情链接    修改博客信息
+	  * */
+	 Bloginfo AlterBlogInfoByNumber(Bloginfo bloginfo, MessageInfo messageInfo);
+	 
+	 
+	 
+	 
+	 /*
+	  * 后台管理 -->用户综合条件查询
+	  * 需求分析：
+	  *			用户执行无数据请求，查询的是制定个数的用户。
+	  *			有数据请求，查询符合条件的用户
+	  * */
+	 UsersExt QueryUsersInfoByAllDataService(Users users);//综合条件查询
+	 
+	 MessageInfo DeleteUserByIDService(Users users);//删除用户
+	 
+	 MessageInfo AlterUserInfoByIdService(Users users);//修改用户信息
+	 
+	 
+	 /*
+	  * 后台管理-->博客信息查询
+	  * 	需求分析：
+	  * 			1.进入页面请求响应博客信息，设置到表单显示。   信息查询接口
+	  * 			2.修改信息		信息修改接口
+	  * */
+	 Bloginfo QueryBlogInfoService();//查询博客
+	 
+	 MessageInfo AlterBlogInfoService(Bloginfo bloginfo);//修改博客信息
+	 
 }

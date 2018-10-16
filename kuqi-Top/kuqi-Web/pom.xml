@@ -107,13 +107,23 @@
 	<dependency>  
 	    <groupId>com.fasterxml.jackson.core</groupId>  
 	    <artifactId>jackson-databind</artifactId>  
-	</dependency>  
+	</dependency>
+
+	<!-- 上传文件组件 -->
+	<dependency>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+    </dependency>
+    
+    <dependency>
+        <groupId>commons-fileupload</groupId>
+        <artifactId>commons-fileupload</artifactId>
+    </dependency>
 
 	<dependency>
 		<groupId>com.Nikey</groupId>
 		<artifactId>kuqi-Service</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
-		<type>jar</type>
 	</dependency>
 	
   </dependencies>

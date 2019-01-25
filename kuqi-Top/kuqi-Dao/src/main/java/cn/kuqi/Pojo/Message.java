@@ -24,5 +24,4 @@ public class Message {
 		public void setCount(int count) {
 			this.count = count;
 		}
-		
 }

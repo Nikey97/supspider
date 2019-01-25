@@ -6,13 +6,12 @@ import org.apache.ibatis.annotations.Param;
 
 import cn.kuqi.Pojo.Article;
 import cn.kuqi.Pojo.ArticleClassfiy;
-import cn.kuqi.Pojo.ArticleClassfiyExt;
 import cn.kuqi.Pojo.ArticleExt;
+import cn.kuqi.Pojo.BlogInfoJoinTheme;
 import cn.kuqi.Pojo.Bloginfo;
 import cn.kuqi.Pojo.Link;
-import cn.kuqi.Pojo.LinkExt;
+import cn.kuqi.Pojo.Theme;
 import cn.kuqi.Pojo.Users;
-import cn.kuqi.Pojo.UsersExt;
 
 public interface AdminBackstageMapper {
 		
@@ -33,8 +32,21 @@ public interface AdminBackstageMapper {
 	 * 	需求分析：
 	 * 			执行接口能查询所有的结果
 	 * */
-	List<ArticleClassfiy> QueryAllClassfiy();
+	List<ArticleClassfiy> QueryAllClassfiy(@Param("now") Integer now, @Param("max") Integer max);
 	
+	/*	后台管理系统--> 查询分类总数
+	 * 
+	 * 	需求分析：
+	 * 			执行接口能查询分类总数
+	 * */
+	Integer QueryCountClassfiy();
+	
+	/*	后台管理系统--> 查询单个分类
+	 * 
+	 * 	需求分析：
+	 * 			执行接口能查询所有的结果
+	 * */
+	ArticleClassfiy QueryOneClassfiy(Integer Number);
 	
 	/*  后台管理 --> 添加分类
 	 * 	
@@ -71,19 +83,43 @@ public interface AdminBackstageMapper {
 	 * 			controller接收前台的Number值，Dao接收执行删除语句。再返回执行结果
 	 * 		
 	 * */
-	Integer DeleteArtcleClassfiyByNumber(@Param("Number")Integer Number);
+	Integer DeleteArtcleClassfiyByNumber(@Param("number") Integer number);
 	
 	/*
 	 *  后台管理--> 文章操作    查询所有文章 
 	 * 	
 	 * */
-	ArticleExt QueryAllArticle();
+	List<Article> QueryAllArticle(@Param("now") Integer now, @Param("max") Integer max);
+	
+	/*
+	 *  后台管理--> 文章操作    查询所有未发布的文章 
+	 * 	
+	 * */
+	List<Article> QueryAllDraft(@Param("now") Integer now, @Param("max") Integer max);
+	
+	/*
+	 *  后台管理--> 文章操作    查询所有未发布的文章总记录数 
+	 * 	
+	 * */
+	Integer QueryAllDraftCount();
+	
+	/*
+	 *  后台管理--> 文章操作    查询所有文章记录数
+	 * 	
+	 * */
+	Integer QueryCountArticle();
 	
 	/*
 	 *  后台管理--> 文章操作    查询单篇文章 
 	 * 	
 	 * */
 	Article QueryArticleByNumber(@Param("Number")Integer Number);
+	
+	/*
+	 *  后台管理--> 文章操作    查询文章所有评论记录数 
+	 * 	
+	 * */
+	Integer QueryArticleAllComment(@Param("Number") Integer Number);
 	
 	/*
 	 *  后台管理--> 删除文章
@@ -95,6 +131,7 @@ public interface AdminBackstageMapper {
 	 *  后台管理--> 修改文章
 	 * */
 	Integer UpdataArticleByNumber(@Param("Number")Integer Number,@Param("Content")String Content);
+	
 	
 	/*
 	 * 	 后台管理--> 文章操作    按分类查询文章
@@ -115,15 +152,17 @@ public interface AdminBackstageMapper {
 	 * 		需求：插入链接	
 	 * 			返回添加链接	
 	 * */
-	Integer AddLink(Link link);//添加
+	Integer addLink(Link link);//添加
 	
-	List<Link> QueryLinks();//查询所有友链
+	List<Link> queryLinks(@Param("now") Integer now, @Param("max") Integer max, 
+			@Param("lName") String lName, @Param("lLink") String lLink, @Param("lNumber") Integer lNumber);//查询所有友链
 	
-	Link QueryLinkOne(Integer Number);//查询单个
+	List<Link> queryAllLinks();//查询所有连接条数
 	
-	Integer DeleteLinkByNumber(Integer Number);//删除友链信息
+	Integer deleteLinkByNumber(Integer Number);//删除友链信息
 	
-	Integer AlterLinkByNumber(Link link);//修改友链信息
+	Integer alterLinkByNumber(Link link);//修改友链信息
+	
 	
 	
 	/*
@@ -133,7 +172,7 @@ public interface AdminBackstageMapper {
 	 * 		1.前台提交实体类数据（json）,controller接收后执行Service查询数据库。
 	 * 		2.查询内容：用户ID、Email、用户名、用户昵称
 	 * */
-	List<Users> QueryUsersInfoByAllData(Users users) ;//综合条件查询
+	List<Users> queryUsersInfoByAllData(Users users) ;//综合条件查询
 	
 	Users QueryUserInfoByID(Users users);//通过ID查单个用户
 	
@@ -141,7 +180,8 @@ public interface AdminBackstageMapper {
 	
 	Integer AlterUserInfo(Users users);//修改用户
 	
-	
+	List<Users> queryAllUser(@Param("now") Integer now, @Param("max") Integer max);//用户信息分页查询
+		
 	
 	/*
 	 * 博客管理-->信息操作 
@@ -149,7 +189,17 @@ public interface AdminBackstageMapper {
 	 * 			1.进入页面请求响应博客信息，设置到表单显示。   信息查询接口
 	 * 			2.修改信息		信息修改接口
 	 * */
-	Bloginfo QueryBlogInfoByNumber() ;//查询博客信息
+	BlogInfoJoinTheme queryBlogInfoByNumber() ;//查询博客信息
 	
-	Integer AlterBlogInfoByNumber(Bloginfo bloginfo) ;//修改博客信息
+	Integer alterBlogInfoByNumber(Bloginfo bloginfo) ;//修改博客信息
+	
+	/*
+	 * 博客管理-->主题操作
+	 * 需求分析：
+	 * 		1.上传文件： 存入上传的路径
+	 * 		2.修改主题
+	 * 		3.删除主题
+	 * */
+	Integer InsertBlogTheme(Theme theme);//存入上传的主体信息
+	
 }

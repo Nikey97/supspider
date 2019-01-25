@@ -17,12 +17,10 @@
     <result column="U_Permission" jdbcType="INTEGER" property="uPermission" />
   </resultMap>
   
-  <resultMap type="cn.kuqi.Pojo.ArticleClassfiyExt" id="ClassfiyResultMap">
-  	<collection property="data" ofType="ArticleClassfiy">
-  		<id column="AC_Number" property="acNumber" />
-  		<result column="AC_ClassfiyName" property="acClassfiyname" />
-  		<result column="AC_Remark" property="acRemark"/>
-  	</collection>
+  <resultMap type="cn.kuqi.Pojo.ArticleClassfiy" id="ClassfiyResultMap">
+		<id column="AC_Number" property="acNumber" />
+		<result column="AC_ClassfiyName" property="acClassfiyname" />
+		<result column="AC_Remark" property="acRemark"/>
   </resultMap>
   
   <resultMap id="ClassfiyResult" type="cn.kuqi.Pojo.ArticleClassfiy">
@@ -46,6 +44,7 @@
 	    <result column="A_Type" property="aType" />
   	</collection>
   </resultMap>
+  
   <!-- 文章 -->
   <resultMap type="cn.kuqi.Pojo.Article" id="QueryArticle">
  	<id column="A_Number"  property="aNumber" />
@@ -58,6 +57,8 @@
     <result column="A_PublishTime" property="aPublishtime" />
     <result column="A_CollectedCount" property="aCollectedcount" />
     <result column="A_Type" property="aType" />
+    <result column="A_Status" property="aStatus" />
+    <result column="A_CommentCount" property="aCommentcount" />
   </resultMap>
   
   <!-- 友情链接 -->
@@ -67,17 +68,7 @@
     <result column="L_AddTime" property="lAddtime" />
     <result column="L_ClickCount" property="lClickcount" />
     <result column="L_Link" property="lLink" />
-  </resultMap>
-  
-  <!-- 友情链接list -->
-  <resultMap id="LinkResultList" type="cn.kuqi.Pojo.LinkExt">
-    <collection property="data" ofType="Link">
-	    <id column="L_Number" property="lNumber" />
-	    <result column="L_Name" property="lName" />
-	    <result column="L_AddTime" property="lAddtime" />
-	    <result column="L_ClickCount" property="lClickcount" />
-	    <result column="L_Link" property="lLink" />
-    </collection>
+    <result column="L_Show" property="lShow" />
   </resultMap>
   
   <!-- 博客信息 -->
@@ -90,6 +81,13 @@
     <result column="BI_Motto" property="biMotto" />
     <result column="BI_Theme" property="biTheme" />
   </resultMap> 
+  
+  <resultMap id="getBlogInfoJoinTheme" type="cn.kuqi.Pojo.BlogInfoJoinTheme" extends="BlogInfoResultMap">
+  	<association property="theme" javaType="cn.kuqi.Pojo.Theme">
+ 		<id column="T_Number" jdbcType="INTEGER" property="tNumber" />
+   		<result column="T_Title" jdbcType="VARCHAR" property="tTitle" />
+  	</association>
+  </resultMap>
   
   <!-- 用户实体类信息 -->
   <resultMap id="UsersResultMap" type="cn.kuqi.Pojo.Users">
@@ -129,7 +127,17 @@
   
   <!-- 查询所有的文章分类 -->
   <select id="QueryAllClassfiy" resultMap="ClassfiyResultMap">
-  		select * from article_classfiy
+  		select * from article_classfiy limit ${now},${max}
+  </select>
+  
+  <!-- 查询分类所有记录数 -->
+  <select id="QueryCountClassfiy" resultType="integer">
+  		select count(*) from article_classfiy
+  </select>
+  
+  <!-- 查询单个文章分类 -->
+  <select id="QueryOneClassfiy" resultMap="ClassfiyResult" parameterType="integer">
+  		select * from article_classfiy where AC_Number = #{number}
   </select>
   
   <!-- 添加分类 -->
@@ -149,17 +157,37 @@
   
   <!-- 删除分类 -->
   <delete id="DeleteArtcleClassfiyByNumber">
-  		delete from article_classfiy where AC_Number=#{Number}
+  		delete from article_classfiy where AC_Number=${number}
   </delete>
   
   <!-- 查询所有文章 -->
-  <select id="QueryAllArticle" resultMap="QueryArticleList">
-  		select * from article
+  <select id="QueryAllArticle" resultMap="QueryArticle">
+  		select * from article limit ${now},${max}
+  </select>
+  
+  <!-- 查询所有未发布的文章 -->
+  <select id="QueryAllDraft" resultMap="QueryArticle">
+  		select * from article where A_Status = 0 limit ${now},${max}
+  </select>
+  
+   <!-- 查询未发布文章的所有记录数 -->
+  <select id="QueryAllDraftCount" resultType="integer">
+  		select count(*) from article where A_Status = 0
+  </select>
+  
+  <!-- 查询分类所有记录数 -->
+  <select id="QueryCountArticle" resultType="integer">
+  		select count(*) from article
   </select>
   
   <!-- 查询单篇文章 -->
   <select id="QueryArticleByNumber" resultMap="QueryArticle">
   		select * from article where A_Number=#{Number}
+  </select>
+  
+  <!-- 查询文章所有的评论记录数 -->
+  <select id="QueryArticleAllComment" resultType="integer">
+  		select count(*) from user_comment 
   </select>
   
   <!-- 删除单篇文章 -->
@@ -183,71 +211,123 @@
   </insert>
   
   <!-- 添加友链 -->
-  <insert id="AddLink" parameterType="cn.kuqi.Pojo.Link">
+  <insert id="addLink" parameterType="cn.kuqi.Pojo.Link">
   		insert into link(
   			L_Name,
   			L_AddTime,
   			L_ClickCount,
-  			L_Link
+  			L_Link,
+  			L_Show
   		) 
   		value(
   			'${lName}',
   			'${lAddtime}',
   			${lClickcount},
-  			'${lLink}'
+  			'${lLink}',
+  			'${lShow}'
   		)
   </insert>
   
   <!-- 查询友链 信息 多 -->
-  <select id="QueryLinks" resultMap="LinkResultMap">
-  		select * from link 
+  <select id="queryLinks" resultMap="LinkResultMap">
+  		select 
+  			*
+  		from 
+  			link 
+  		<where>
+  			<if test="lName != null and lName != ''">
+  				L_Name = '${lName}'
+  			</if>
+  			<if test="lLink != null and lLink != ''">
+  				L_Link = '${lLink}'
+  			</if>
+  			<if test="lNumber != null and lNumber != ''">
+  				L_Number = '${lNumber}'
+  			</if>
+  		</where>
+  		limit 
+  			${now},
+  			${max}
   </select>
   
-  <!-- 查询友链 信息 单-->
-  <select id="QueryLinkOne" parameterType="int" resultMap="LinkResultMap">
-  		select * from link where L_Number = #{Number}
+  <!-- 查询所有条数 -->
+  <select id="queryAllLinks" resultMap="LinkResultMap">
+  		select 
+  			*
+  		from 
+  			link 
   </select>
   
   <!-- 删除友链 -->
-  <delete id="DeleteLinkByNumber">
-  		delete from link where L_Number=#{Number}
+  <delete id="deleteLinkByNumber">
+  		delete 
+  		from 
+  			link 
+  		where 
+  			L_Number=#{Number}
   </delete>
   
   <!-- 修改友链信息 -->
-  <update id="AlterLinkByNumber" parameterType="cn.kuqi.Pojo.Link">
-		UPDATE link SET 
-			L_Name = '${lName}',
-			L_Link = '${lLink}' 
-			WHERE 
+  <update id="alterLinkByNumber" parameterType="cn.kuqi.Pojo.Link">
+		UPDATE link
+			<trim prefix="set" suffixOverrides=",">
+				<if test="lName != null and lName != ''">
+					L_Name = '${lName}',
+				</if> 
+				<if test="lLink != null and lLink != ''">
+					L_Link = '${lLink}',
+				</if>
+				<if test="lShow != null">
+					L_Show = ${lShow}
+				</if>
+			</trim>
+		WHERE
 			L_Number = ${lNumber}
   </update>
   
   <!-- 修改博客的信息 -->
+  
   <!-- 查询 -->
-  <select id="QueryBlogInfoByNumber" resultMap="BlogInfoResultMap">
-  		select * from bloginfo where BI_Number = 1
+  <select id="queryBlogInfoByNumber" resultMap="getBlogInfoJoinTheme">
+  		select 
+	  		BI_BlogerNickname,
+	  		BI_HeadPortrait,
+	  		BI_BlogName,
+	  		BI_Antistop,
+	  		BI_Motto,
+	  		BI_Theme,
+	  		T_Title 
+  		from 
+  			bloginfo 
+  		Left Join 
+  			theme 
+  		on 
+  			bloginfo.BI_Theme = theme.T_Number
+  		and 
+  			bloginfo.BI_Number = 1
   </select>
+  
   <!-- 修改 -->
-  <update id="AlterBlogInfoByNumber">
+  <update id="alterBlogInfoByNumber">
 		UPDATE bloginfo  
 		
-		<trim prefix="set" suffixOverrides=",">
-			<if test="biBlogernickname != null">
+		<set>
+			<if test="biBlogernickname != null and biBlogernickname != ''">
 				BI_BlogerNickname = '${biBlogernickname}',
 			</if>
-			<if test="biHeadportrait != null">
+			<if test="biHeadportrait != null and biHeadportrait != ''">
 				BI_HeadPortrait = '${biHeadportrait}',
 			</if>
-			<if test="biBlogname != null">
+			<if test="biBlogname != null and biBlogname != ''">
 				BI_BlogName = '${biBlogname}',
 			</if>
-			<if test="biAntistop != null">
+			<if test="biAntistop != null and biAntistop != ''">
 				BI_Antistop = '${biAntistop}',
 			</if>
-			<if test="biMotto != null">
-				BI_Motto = '${biMotto}',
+			<if test="biMotto != null and biMotto != ''">
+				BI_Motto = '${biMotto}'
 			</if>
-		</trim>
+		</set>
 		
 		WHERE
 		
@@ -258,7 +338,7 @@
   
   <!-- 用户综合查询 -->
   <select id="QueryUsersInfoByAllData" parameterType="cn.kuqi.Pojo.Users" resultMap="UsersResultMap">
-	select * from users 
+	select U_ID,U_Name,U_Nickname,U_Email,U_RegisterTime,U_Permission from users 
 	<where>
 		<if test="uId != null">
 			U_ID = ${uId}
@@ -273,6 +353,22 @@
 			and U_Nickname like '%${uNickname}%'
 		</if>
 	</where>
+  </select>
+  
+  <!-- 分页查询所有用户 -->
+  <select id="queryAllUser" resultMap="UsersResultMap">
+  		select 
+  			U_ID,
+  			U_Name,
+  			U_Nickname,
+  			U_Email,
+  			U_RegisterTime,
+  			U_Permission 
+  		from 
+  			users 
+  		limit 
+  			${now},
+  			${max}
   </select>
   
   <!-- 删除用户 -->
@@ -314,7 +410,6 @@
   <select id="QueryUserInfoByID" parameterType="cn.kuqi.Pojo.Users" resultMap="UsersResultMap">
 		select * from users where U_ID = ${uId}
   </select>
-  
   
   
 </mapper>

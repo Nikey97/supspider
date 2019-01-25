@@ -176,6 +176,23 @@
 	    <artifactId>spring-webmvc</artifactId>
 	</dependency>
 	
+	<!-- spring-redis实现 -->
+	<dependency>
+	    <groupId>org.springframework.data</groupId>
+	    <artifactId>spring-data-redis</artifactId>
+	</dependency>
+	<!-- redis客户端jar -->
+	<dependency>
+	    <groupId>redis.clients</groupId>
+	    <artifactId>jedis</artifactId>
+	</dependency>
+	<!-- Ehcache实现,用于参考 -->
+	<dependency>
+	    <groupId>org.mybatis</groupId>
+	    <artifactId>mybatis-ehcache</artifactId>
+	</dependency>
+	
   </dependencies>
   <description>管理Dao层</description>
+  
 </project>

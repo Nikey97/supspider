@@ -8,7 +8,7 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>kuqi-Service</artifactId>
-  <name>kuqi-Service Maven Webapp</name>
+  <name>kuqi-Service</name>
   <url>http://maven.apache.org</url>
   
   <dependencies>
@@ -17,6 +17,12 @@
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
     </dependency>
+    
+    <dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>javax.servlet-api</artifactId>
+	    <scope>provided</scope>  
+	</dependency>
     
     <dependency>
 	    <groupId>org.springframework</groupId>

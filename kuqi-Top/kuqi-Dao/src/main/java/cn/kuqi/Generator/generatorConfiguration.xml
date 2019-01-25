@@ -38,15 +38,17 @@
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
 
-        <table tableName="advertising"></table>
-        <table tableName="article"></table>
-        <table tableName="article_classfiy"></table>
-		<table tableName="bloginfo"></table>
+<!--         <table tableName="advertising"></table> -->
+<!--         <table tableName="article"></table> -->
+<!--         <table tableName="article_classfiy"></table> -->
+<!--         <table tableName="article_praise"></table> -->
+<!-- 		<table tableName="article_trample"></table> -->
+<!-- 		<table tableName="bloginfo"></table> -->
 		<table tableName="link"></table>
-		<table tableName="theme"></table>
-		<table tableName="time_userlogin"></table>
-		<table tableName="user_comment"></table>
-		<table tableName="users"></table>
+<!-- 		<table tableName="theme"></table> -->
+<!-- 		<table tableName="time_userlogin"></table> -->
+<!-- 		<table tableName="user_comment"></table> -->
+<!-- 		<table tableName="users"></table> -->
 		
     </context>                
 

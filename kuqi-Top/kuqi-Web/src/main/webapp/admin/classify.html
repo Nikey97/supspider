@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>库奇博客后台 - 文章分类</title>
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="vendor/fontawesome-free/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="vendor/fontawesome-free/css/v4-shims.min.css" />
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css" />
+    <link href="vendor/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/sb-admin.css" rel="stylesheet">
+  </head>
+
+  <body id="page-top">
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+      <a class="navbar-brand mr-1" href="index">库奇博客后台系统</a>
+
+      <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Navbar -->
+      <ul class="navbar-nav ml-auto ml-md-0">
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-bell fa-fw"></i>
+            <span class="badge badge-danger">0</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+            <a class="dropdown-item" href="#">系统消息</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-envelope fa-fw"></i>
+            <span class="badge badge-danger">0</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
+            <a class="dropdown-item" href="#">用户反馈</a>
+            <!--<a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>-->
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user-circle fa-fw"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="updataBlog">设置</a>
+            <a class="dropdown-item" href="#">活动日志</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="logout" data-toggle="modal" data-target="#logoutModal">注销</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <ul class="sidebar navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="sendOut.html">
+          	<!--fas fa-fw fa-tachometer-alt-->
+            <i class="fa fa-pencil-square-o"></i>
+            <span>发博客</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-book"></i>
+            <span>文章管理</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">Article Screens:</h6>
+            <a class="dropdown-item" href="classfiy">分类</a>
+            <a class="dropdown-item" href="article">操作</a>
+            <a class="dropdown-item" href="draft">草稿箱</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+        	<a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-rss-square"></i>
+            <span>博客管理</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">Blog Screens:</h6>
+            <a class="dropdown-item" href="updataBlog">信息操作</a>
+            <a class="dropdown-item" href="register.html">友链操作</a>
+            <a class="dropdown-item" href="register.html">主题操作</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+        	<a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-user"></i>
+            <span>用户管理</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">User Screens:</h6>
+            <a class="dropdown-item" href="login.html">操作</a>
+          </div>
+        </li>
+      </ul>
+
+			<!--主内容区-->
+      <div id="content-wrapper">
+	    	<div class="container-fluid">
+	    		
+						<div class="head-info">
+							<span>文章分类</span>
+						</div>
+						
+						<div class="classfiys">
+							
+							<div class="operty">
+								
+								<div class="classfiy-operty">
+									<span>分类操作</span><a href="javascript:;" id="classfiy-dropdown"><i class="fa fa-angle-double-down"></i>&nbsp;</a>
+								</div>
+								
+								<div class="classfiy-operty-content">
+									<button type="button" class="btn btn-default" id="classfiy-add" data-toggle="modal" data-target="#ClassfiyAddModalCenter">添加</button>
+									<button type="button" class="btn btn-default" id="classfiy-updata" data-toggle="modal">修改</button>
+									<button type="button" class="btn btn-default" id="classfiy-del">删除</button>
+								</div>
+								
+							</div>
+							
+							<div class="classfiy-table">
+								<table class="table table-bordered">
+									<thead>
+										<tr>
+											<td><input type="checkbox" name="classfiys"></td>
+											<td>编号</td>
+											<td>分类名</td>
+											<td>描述</td>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="li : ${dataList}">
+											<td><input type="checkbox" name="classfiy" th:value="${li.acNumber}" value="1002"></td>
+											<td th:text="${li.acNumber}">1110</td>
+											<td th:text="${li.acClassfiyname}">spring</td>
+											<td th:text="${li.acRemark}">spring技术</td>
+										</tr>
+									</tbody>
+								</table>
+								
+								<div class="pagings">
+									<nav aria-label="Page navigation example">
+									  <ul class="pagination" id="pager">
+									  	
+									  	<li class="page-item disabled" id="pagerNumber"><a class="page-link" id="pagerPre-a"><<</a></li>
+									    
+									    <li class="page-item disabled" id="pagerNext-li"><a class="page-link" id="pagerNext-a">>></a></li>
+									    
+									    <input type="hidden" id="pagersAll" th:value="${pagerAll}" />
+									    <input type="hidden" id="pagerNow" th:value="${pagerNow}" />
+									    
+									  </ul>
+									</nav>
+								</div>
+							</div>
+							
+						</div>
+						
+	    	</div>
+    	</div>
+
+    	<!-- Sticky Footer -->
+    	<footer class="sticky-footer">
+      	<div class="container my-auto">
+        	<div class="copyright text-center my-auto">
+          	<span>Copyright © KuQi 2018</span>
+        	</div>
+      	</div>
+    	</footer>
+    </div>
+      <!-- /.content-wrapper -->
+   </div>
+  <!-- /#wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">注销账户</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">您是否注销账户？</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">取消</button>
+            <a class="btn btn-primary" href="logout">注销</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+		<!-- Classfiy-Add Modal -->
+		<div class="modal fade" id="ClassfiyAddModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLongTitle">添加分类</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        <form id="classfiy-add-form" method="post" action="add_classfiy.do">
+		        	<div class="form-group">
+						    <label for="exampleInputEmail1">名称：</label>
+						    <input type="text" name="classfiyName" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="请输入分类名称...">
+		        	</div>
+						  <div class="form-group">
+		            <label for="message-text" class="col-form-label">描述:</label>
+		            <textarea name="classfiyDescription" class="form-control" id="exampleInputEmail2" placeholder="请输入分类描述..."></textarea>
+		          </div>
+		        </form>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="reset" onclick="ClassfiyAddReset();" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <button type="submit" id="classfiy-add-button" class="btn btn-primary">添加</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+		<!-- Classfiy-Updata Modal -->
+		<div class="modal fade" id="ClassfiyUpdataModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLongTitle">修改分类</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        <form method="post" id="classfiy-updata-form" action="alter_classfiy.do">
+		        	<div class="form-group">
+						    <label for="exampleInputEmail1">名称:</label>
+						    <input type="text" name="classfiyNameUpdata" class="form-control" id="classfiy-name-updata" aria-describedby="emailHelp" placeholder="请输入分类名称...">
+						  </div>
+						  <div class="form-group">
+		            <label for="message-text" class="col-form-label">描述:</label>
+		            <textarea name="classfiyDescriptionUpdata" class="form-control" id="classfiy-description-updata" placeholder="请输入分类描述..."></textarea>
+		          </div>
+		          <input type="hidden" name="classfiyNumberUpdata" id="classfiy-number-updata"  />
+		        </form>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" onclick="ClassfiyAddReset();" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <button type="button" id="classfiy-updata-button" class="btn btn-primary">修改</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
+		<!--  msgs隐藏域  -->
+		<input type="hidden" id="msgs" th:value="${msgs}" />
+		
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+		
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Page level plugin JavaScript-->
+    <script src="vendor/datatables/jquery.dataTables.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin.js"></script>
+
+    <!-- Demo scripts for this page-->
+    <script src="js/demo/datatables-demo.js"></script>
+
+		<script type="text/javascript">
+			$(function(){
+				//分页页数实现
+				var all = $("#pagersAll").val();
+				var now = $("#pagerNow").val();
+				if(now == 0 || now == undefined){
+					now = 1;
+				}
+				else if(all == 0 || all == undefined)
+				{
+					all = 0;
+				}
+				if(all != "" && now != "")
+				{
+					var pagerAll = parseInt(all / 5) + 1;
+					while(pagerAll > 0)
+					{
+						if(pagerAll == now)
+						{
+							$("#pagerNumber").after("<li class='page-item active'><a class='page-link' href='classfiy?pager="+pagerAll+"' >"+pagerAll+"</a></li>");
+						}
+						else
+						{
+							$("#pagerNumber").after("<li class='page-item'><a class='page-link' href='classfiy?pager="+pagerAll+"' >"+pagerAll+"</a></li>");
+						}
+						pagerAll--;
+					}
+					if(now == 1 && now == parseInt(all / 5) + 1)
+					{
+						$("#pagerNext-li").attr("class","page-item disabled");//（既是第一页，也是最后一页）
+						$("#pagerNumber").attr("class","page-item disabled");
+					}
+					else if(now == parseInt(all / 5) + 1)
+					{
+						$("#pagerNumber").attr("class","page-item");//上一页激活 (在最后一页)
+						$("#pagerPre-a").attr("href","classfiy?pager="+ --now +"");
+						$("#pagerNext-li").attr("class","page-item disabled");
+					}
+					else if(now == 1 || now == 0)
+					{
+						$("#pagerNext-li").attr("class","page-item");//下一页激活 （在第一页）
+						$("#pagerNext-a").attr("href","classfiy?pager="+ ++now +"");
+						$("#pagerNumber").attr("class","page-item disabled");
+					}
+					else
+					{
+						var nows = now;
+						$("#pagerNumber").attr("class","page-item");//上一页激活 （不在第一页也不在最后一页）
+						$("#pagerPre-a").attr("href","classfiy?pager="+ --now +"");
+						
+						$("#pagerNext-li").attr("class","page-item");//下一页激活
+						$("#pagerNext-a").attr("href","classfiy?pager="+ ++nows +"");
+					}
+				}
+			});
+		</script>
+  </body>
+</html>

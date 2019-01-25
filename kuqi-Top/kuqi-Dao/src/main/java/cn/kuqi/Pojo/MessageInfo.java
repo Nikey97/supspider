@@ -5,7 +5,7 @@ public class MessageInfo {
 		private int code;
 		private String msg;
 		private String status;
-		
+		private boolean pass;
 		
 		public int getCode() {
 			return code;
@@ -25,5 +25,10 @@ public class MessageInfo {
 		public void setStatus(String status) {
 			this.status = status;
 		}
-		
+		public boolean isPass() {
+			return pass;
+		}
+		public void setPass(boolean pass) {
+			this.pass = pass;
+		}
 }

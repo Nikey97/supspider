@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class MyDateUtils {
-	
+	protected String name = "java";
 	
 	//获取系统当前时间
 	public String getSystemNowTime(String DateFormat) {
@@ -13,4 +13,8 @@ public class MyDateUtils {
 		String time = simpleDateFormat.format(date);//获取系统当前时间
 		return time;
 	}
+	
+	
+	
+	
 }

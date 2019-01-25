@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd"> 
+        
+	<!-- 自动装载处理器:装载Controller和Service,Service一定要在类上加注释@Service.不然无法装载     -->
+	<context:component-scan base-package="cn.kuqi.Controller"/>
+	
+	<context:component-scan base-package="cn.kuqi.ServiceImpi"/>  
+	
+    <mvc:default-servlet-handler />
+    
+    <!-- 处理器适配器与映射器的加载注解适配器 -->    
+    <mvc:annotation-driven />
+    
+    <!-- 视图解析器 -->
+    
+    <!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" 
+            id="internalResourceViewResolver">
+        <property name="prefix" value="/" />
+        <property name="suffix" value=".jsp" />
+ 		</bean> -->
+    
+    <!-- 上传文件配置 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+         <property name="defaultEncoding" value="UTF-8" />
+         <!-- 指定所上传文件的总大小,单位字节。注意maxUploadSize属性的限制不是针对单个文件，而是所有文件的容量之和 -->
+         <property name="maxUploadSize" value="10240000" /><!-- 上传的最大size  -->
+         <property name="maxInMemorySize" value="4096" />
+		 <property name="resolveLazily" value="true" /><!-- 懒接收 -->
+    </bean>
+    
+	<!--     配置拦截器: 拦截检查用户是否登录 -->
+    <mvc:interceptors>
+    	<mvc:interceptor>
+<!--     	拦截所有的contorller -->
+    		<mvc:mapping path="/**"/>
+<!--     		<mvc:exclude-mapping path="/"/> -->
+<!--     		拦截器的全限定名  -->
+			<bean class="cn.kuqi.Interceptor.UserCheckIndentityInterceptor"></bean>
+    	</mvc:interceptor>
+    </mvc:interceptors>
+    
+    <!--     配置拦截器: 拦截检查是否安装 -->
+    <mvc:interceptors>
+    	<mvc:interceptor>
+    		<mvc:mapping path="/**"/>
+			<bean class="cn.kuqi.Interceptor.IsInstallInterceptor"></bean>
+    	</mvc:interceptor>
+    </mvc:interceptors>
+    
+    <!-- 模板解析器  -->
+    <bean id="templateResolver" class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
+        <property name="prefix" value="" />
+        <property name="suffix" value=".html" />
+        <property name="templateMode" value="HTML5" />
+        <property name="cacheable" value="false" />
+        <property name="characterEncoding" value="UTF-8"/>
+    </bean>
+
+    <bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
+        <property name="templateResolver" ref="templateResolver" />
+    </bean>
+
+    <bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
+        <property name="templateEngine" ref="templateEngine" />
+        <property name="characterEncoding"  value="UTF-8" />
+    </bean>
+    
+</beans>

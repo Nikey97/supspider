@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>库奇博客后台 - 网站设置</title>
+    <link rel="stylesheet" href="vendor/fontawesome-free/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="vendor/fontawesome-free/css/v4-shims.min.css" />
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css" />
+    <link href="vendor/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/sb-admin.css" rel="stylesheet">
+  </head>
+
+  <body id="page-top">
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+      <a class="navbar-brand mr-1" href="index">库奇博客后台系统</a>
+
+      <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Navbar -->
+      <ul class="navbar-nav ml-auto ml-md-0">
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-bell fa-fw"></i>
+            <span class="badge badge-danger">0</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+            <a class="dropdown-item" href="#">系统消息</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-envelope fa-fw"></i>
+            <span class="badge badge-danger">0</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
+            <a class="dropdown-item" href="#">用户反馈</a>
+            <!--<a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>-->
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user-circle fa-fw"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="updataBlog">设置</a>
+            <a class="dropdown-item" href="#">活动日志</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="logout" data-toggle="modal" data-target="#logoutModal">注销</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <ul class="sidebar navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="sendOut.html">
+          	<!--fas fa-fw fa-tachometer-alt-->
+            <i class="fa fa-pencil-square-o"></i>
+            <span>发博客</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-book"></i>
+            <span>文章管理</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">Article Screens:</h6>
+            <a class="dropdown-item" href="classfiy">分类</a>
+            <a class="dropdown-item" href="article">操作</a>
+            <a class="dropdown-item" href="draft">草稿箱</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+        	<a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-rss-square"></i>
+            <span>博客管理</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">Blog Screens:</h6>
+            <a class="dropdown-item" href="updataBlog">信息操作</a>
+            <a class="dropdown-item" href="register.html">友链操作</a>
+            <a class="dropdown-item" href="register.html">主题操作</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+        	<a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-user"></i>
+            <span>用户管理</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">User Screens:</h6>
+            <a class="dropdown-item" href="login.html">操作</a>
+          </div>
+        </li>
+      </ul>
+
+			<!--
+            	作者：13044926957@163.com
+            	时间：2019-01-04
+            	描述：修改博客信息
+            			（1）博主昵称
+									（2）头像
+									（3）座右铭
+									（4）关键词
+									（5）搜索词条
+									（6）博客名
+            -->
+			<!--主内容区-->
+      <div id="content-wrapper">
+	    	<div class="container-fluid">
+	    		<div class="row">
+	    			<div class="col-sm">
+	    				<h2>博客设置</h2>
+						</div>
+	    		</div>
+	    		<div class="row">
+						<div class="col-sm">
+							<!-- 信息录入区 -->
+							<form action="alter_bloginfo.do" method="post">
+								<div class="form-group">
+							    <label for="BlogName">博客名称：</label>
+							    <input type="text" class="form-control" name="biBlogname" id="BlogName" placeholder="站点名称">
+							    <!--<p class="help-block ErrorStyle"><img src="img/ava_error.png" width="30" height="30" />&nbsp;输入的信息没有改动</p>-->
+								</div>
+								<div class="form-group">
+							    <label for="BloggerName">博主昵称：</label>
+							    <input type="text" class="form-control" name="biBlogernickname" id="BloggerName" placeholder="昵称">
+							    <!--<p class="help-block ErrorStyle"><img src="img/ava_error.png" width="30" height="30" />&nbsp;输入的信息没有改动</p>-->
+								</div>
+								<div class="form-group">
+							    <label for="BloggerReadMe">博主自述：</label>
+							    <input type="text" class="form-control" name="biMotto" id="BloggerReadMe" placeholder="自述">
+							    <!--<p class="help-block ErrorStyle"><img src="img/ava_error.png" width="30" height="30" />&nbsp;输入的信息没有改动</p>-->
+								</div>
+								<div class="form-group">
+							    <label for="BlogKeyword">博客被搜关键字：</label>
+							    <input type="text" class="form-control" name="biAntistop" id="BlogKeyword" placeholder="关键字">
+							    <!--<p class="help-block ErrorStyle"><img src="img/ava_error.png" width="30" height="30" />&nbsp;输入的信息没有改动</p>-->
+								</div>
+								<div class="form-group">
+							    <label for="BloggerImage">博主头像：</label>
+							    <!--<input type="file" id="BloggerImage" accept=".jpg,.png,.gif" multiple="multiple">-->
+							    <!--<input class="btn btn-default" type="button" id="BloggerImage" value="">-->
+							    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#loadImage">
+									 	点击上传
+									</button>
+							    <p class="help-block"><img id="showHeadImg" th:src="${'http://localhost:8080'+data.biHeadportrait}" width="64" height="64" style="border: 1px solid #7A7A7A;"/><span id="loadMsg"></span></p>
+							  </div>
+							  <button type="submit" class="btn btn-primary">提交</button>
+							</form>						
+						</div>
+						<div class="col-sm attach">
+							<div class="col-12 attach-tip">
+								<h5>提示：</h5>
+								<ol>
+									<li>博客名称是整个站点的名字</li>
+									<li>博客的被搜关键字是提供给搜索引擎收录，设置它可以让百度找到你的博客。</li>
+									<li>博客描述也是提供给搜索引擎收入使用的，他能让搜索引擎认识你。</li>
+									<li>博主昵称会显示在博客首页和文章作者中，方便让读者认识称呼你。</li>
+									<li>博客自述可以让读者了解你</li>
+								</ol>
+							</div>
+							<div class="col-12 attach-show">
+								<h5>博客详情：</h5>
+								<ul>
+									<li>博客名称：<span th:text="${ data.biBlogname }">花裤兜派大星的狂拽酷炫技术博客</span></li>
+									<li>博主昵称：<span th:text="${ data.biBlogernickname }">花裤兜派大星</span></li>
+									<li>博主自述：<span th:text="${ data.biMotto }">互联网高可用架构技术狂热者</span></li>
+									<li>博客被搜关键字：<span th:text="${ data.biAntistop }">微服务、分布式、高并发、高可用技术</span></li>
+									<li>博客主题：<span th:text="${ data.theme.tTitle }">默认</span></li>
+									<li>博主头像：<img th:src="${data.biHeadportrait}" width="64" height="64" /></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+	    	</div>
+    	</div>
+
+    	<!-- Sticky Footer -->
+    	<footer class="sticky-footer">
+      	<div class="container my-auto">
+        	<div class="copyright text-center my-auto">
+          	<span>Copyright © KuQi 2018</span>
+        	</div>
+      	</div>
+    	</footer>
+    </div>
+      <!-- /.content-wrapper -->
+   </div>
+  <!-- /#wrapper -->
+
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">注销账户</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">您是否注销账户？</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">取消</button>
+            <a class="btn btn-primary" href="logout">注销</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+		<!-- Classfiy-Add Modal -->
+		<div class="modal fade" id="ClassfiyAddModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLongTitle">添加分类</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        <form id="classfiy-add-form" method="post" action="add_classfiy.do">
+		        	<div class="form-group">
+						    <label for="exampleInputEmail1">名称：</label>
+						    <input type="text" name="classfiyName" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="请输入分类名称...">
+		        	</div>
+						  <div class="form-group">
+		            <label for="message-text" class="col-form-label">描述:</label>
+		            <textarea name="classfiyDescription" class="form-control" id="exampleInputEmail2" placeholder="请输入分类描述..."></textarea>
+		          </div>
+		        </form>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="reset" onclick="ClassfiyAddReset();" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <button type="submit" id="classfiy-add-button" class="btn btn-primary">添加</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+		<!-- Classfiy-Updata Modal -->
+		<div class="modal fade" id="ClassfiyUpdataModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLongTitle">修改分类</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        <form method="post" id="classfiy-updata-form" action="alter_classfiy.do">
+		        	<div class="form-group">
+						    <label for="exampleInputEmail1">名称:</label>
+						    <input type="text" name="classfiyNameUpdata" class="form-control" id="classfiy-name-updata" aria-describedby="emailHelp" placeholder="请输入分类名称...">
+						  </div>
+						  <div class="form-group">
+		            <label for="message-text" class="col-form-label">描述:</label>
+		            <textarea name="classfiyDescriptionUpdata" class="form-control" id="classfiy-description-updata" placeholder="请输入分类描述..."></textarea>
+		          </div>
+		          <input type="hidden" name="classfiyNumberUpdata" id="classfiy-number-updata"  />
+		        </form>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" onclick="ClassfiyAddReset();" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <button type="button" id="classfiy-updata-button" class="btn btn-primary">修改</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
+		<!-- 模态框上传头像 -->
+		<div class="modal fade" id="loadImage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">上传头像</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        <form  id="loadImageForm" action="upload_imgHead.do" method="post" enctype="multipart/form-data">
+	        	  <div class="form-group">
+						    <label for="exampleInputFile">File input</label>
+						    <input type="file" id="exampleInputFile" name="meFile">
+						    <p class="help-block"></p>
+						  </div>
+		        </form>
+		      </div>
+		      <div class="modal-footer">
+		        <input form="loadImageForm" type="reset" class="btn btn-secondary" data-dismiss="modal" value="Close"></input>
+		        <input form="loadImageForm" id="BloggerImage" type="submit" class="btn btn-primary" value="上传"></input>
+		      </div>
+		    </div>
+		  </div>
+		</div>	
+		
+		<!--  msgs隐藏域  -->
+		<input type="hidden" id="msgs" th:value="${msgs}" />
+		
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+		
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Page level plugin JavaScript-->
+    <script src="vendor/datatables/jquery.dataTables.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin.js"  type="text/javascript" charset="UTF-8"></script>
+
+    <!-- Demo scripts for this page-->
+    <script src="js/demo/datatables-demo.js"></script>
+    
+  </body>
+</html>

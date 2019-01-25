@@ -1,31 +1,30 @@
 package cn.kuqi.ServiceImpi;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import cn.kuqi.Service.AdminBackstageService;
 import cn.kuqi.DateUtil.MyDateUtils;
 import cn.kuqi.Mapper.AdminBackstageMapper;
 import cn.kuqi.Pojo.Article;
 import cn.kuqi.Pojo.ArticleClassfiy;
-import cn.kuqi.Pojo.ArticleClassfiyExt;
 import cn.kuqi.Pojo.ArticleExt;
+import cn.kuqi.Pojo.BlogInfoJoinTheme;
 import cn.kuqi.Pojo.Bloginfo;
 import cn.kuqi.Pojo.Link;
 import cn.kuqi.Pojo.LinkExt;
 import cn.kuqi.Pojo.MessageInfo;
 import cn.kuqi.Pojo.Users;
-import cn.kuqi.Pojo.UsersExt;
-
 
 @Service
+@Transactional
 public class AdminBackstageServiceImpi implements AdminBackstageService{
 
 	@Autowired
 	AdminBackstageMapper usersMapperExt;
+	
 	/*
 	 * 后台管理系统 --> 后台登录
 	 * 
@@ -52,7 +51,6 @@ public class AdminBackstageServiceImpi implements AdminBackstageService{
 				//密码有误
 				return LOGIN_STATUS_PSWERREO;
 			}
-			
 		}
 		
 		//使用的账号是邮箱
@@ -65,134 +63,201 @@ public class AdminBackstageServiceImpi implements AdminBackstageService{
 				//密码有误
 				return LOGIN_STATUS_PSWERREO;
 			}
-			
 		}
-		
 		return LOGIN_STATUS_USERESERREO;
 	}
-
-	/*  后台管理-->文章 管理-->操作        查询所有分类    */
-	public ArticleClassfiyExt QueryAllArticleClassfiyService() {
-		ArticleClassfiyExt articleClassfiyExt = new ArticleClassfiyExt(); 
-		List<ArticleClassfiy> list= usersMapperExt.QueryAllClassfiy();
-		articleClassfiyExt.setData(list);
-		articleClassfiyExt.setCode(0);
-		articleClassfiyExt.setMsg("");
-		articleClassfiyExt.setCount(articleClassfiyExt.getData().size());
-		return articleClassfiyExt;
+	
+	/**  
+	  * @user: Nikey 
+	  * @MethodName: QueryAllArticleClassfiyService
+	  * @Description: 查询所有分类  
+	  * @return return_type    
+	  * @date: 2018年11月29日 下午3:21:22  
+	  * @todo: TODO
+	  */
+	public List<ArticleClassfiy> QueryAllArticleClassfiyService(Integer now, Integer max) {
+		return usersMapperExt.QueryAllClassfiy(now,max);
+	}
+	
+	public Integer QueryCountArticleClassfiyService() {
+		return usersMapperExt.QueryCountClassfiy();
+	}
+	
+	/**  
+	  * @user: Nikey 
+	  * @MethodName:QueryOneArticleClassfiyService
+	  * @Description: 查询单个分类  
+	  * @return ArticleClassfiy     
+	  * @date: 2018年11月29日 下午4:11:24  
+	  * @todo: TODO
+	  */
+	public ArticleClassfiy QueryOneArticleClassfiyService(Integer Number) {
+		return usersMapperExt.QueryOneClassfiy(Number);
 	}
 
-	/*  后台管理-->文章 管理-->操作        添加分类    */
-	public MessageInfo AddClassfiyService(String ClassfiyName, String ClassfiyRemark) {
-		
-		MessageInfo msg = new MessageInfo(); 
-		
-		int i = usersMapperExt.InsertClassfiy(ClassfiyName, ClassfiyRemark);
-		
-		if (i == 1) {
-			msg.setCode(i);
-			msg.setMsg("添加成功");
-			return msg;
-		}else {
-			msg.setCode(i);
-			msg.setMsg("添加失败，请联系管理员。");
-			return msg;
+	/**  
+	  * @user: Nikey 
+	  * @MethodName: AddClassfiyService
+	  * @Description: 添加文章分类  
+	  * @return return_type     
+	  * @date: 2018年11月29日 下午1:38:00  
+	  * @todo: TODO
+	  */
+	@Transactional(readOnly=true)
+	public Integer AddClassfiyService(String ClassfiyName, String ClassfiyRemark) {
+		return usersMapperExt.InsertClassfiy(ClassfiyName, ClassfiyRemark);
+	}
+	
+	/**  
+	  * @user: Nikey 
+	  * @MethodName: UpdataArticleClassfiyService
+	  * @Description: 修改文章分类   
+	  * @return return_type     
+	  * @date: 2018年11月29日 下午5:29:05  
+	  * @todo: TODO
+	  */
+	public Integer UpdataArticleClassfiyService(Integer Number, String ClassfiyName, String ClassfiyRemark) {
+		int msgs;
+		ArticleClassfiy articleClassfiy = usersMapperExt.SelectArtcleClassfiyByNumber(Number);
+		if (ClassfiyName.equals(articleClassfiy.getAcClassfiyname()) && ClassfiyRemark.equals(articleClassfiy.getAcRemark()))
+		{
+			return 2;	
 		}
-	}
-	
-	
-	/*  后台管理-->文章 管理-->操作        修改查询分类    */
-	public ArticleClassfiy SelectArticleClassfiyService(Integer Number) {
-		
-		ArticleClassfiy articleClassfiy = usersMapperExt.SelectArtcleClassfiyByNumber(Number);
-		//容错判断
-		return articleClassfiy;
-	}
-	
-	
-	/*  后台管理-->文章 管理-->操作        修改分类    */
-	public MessageInfo UpdataArticleClassfiyService(Integer Number, String ClassfiyName, String ClassfiyRemark) {
-		MessageInfo msg = new MessageInfo();
-		
-		ArticleClassfiy articleClassfiy = usersMapperExt.SelectArtcleClassfiyByNumber(Number);
-		
-		if (ClassfiyName.equals(articleClassfiy.getAcClassfiyname()) && ClassfiyRemark.equals(articleClassfiy.getAcRemark())) {
-			msg.setCode(2);
-			msg.setMsg("拒接访问，您的操作没有修改内容");
-			return msg;	
-		}else {
+		else
+		{
 			int i = usersMapperExt.UpdataArtcleClassfiyByNumber(Number, ClassfiyName, ClassfiyRemark);
-			if (i == 1) {
-				msg.setCode(0);
-				msg.setMsg("修改成功");
-			}else {
-				msg.setCode(1);
-				msg.setMsg("修改失败，请联系管理员");
+			if (i == 1) 
+			{
+				msgs = 1;
 			}
-			return msg;
+			else 
+			{
+				msgs = 0;
+			}
+			return msgs;
 		}
 	}
 	
-	/*  后台管理-->文章 管理-->操作        删除分类    */
-	public MessageInfo DeleteArticleClassfiyService(Integer Number) {
+	/**  
+	  * @user: Nikey 
+	  * @MethodName:DeleteArticleClassfiyService
+	  * @Description:删除分类（支持批量）   
+	  * @return return_type     
+	  * @date: 2018年11月29日 下午9:20:39  
+	  * @todo: TODO
+	  */
+	public MessageInfo DeleteArticleClassfiyService(ArrayList<Integer> classfiyList) {
+		int success = 0, error = 0;
 		MessageInfo msg = new MessageInfo();
-		
-		ArticleClassfiy articleClassfiy = usersMapperExt.SelectArtcleClassfiyByNumber(Number);
-		
-		if (articleClassfiy != null) {
-			int i = usersMapperExt.DeleteArtcleClassfiyByNumber(Number);
-			if (i == 1) {
-				msg.setCode(0);
-				msg.setMsg("删除成功");
-			}else {
-				msg.setCode(1);
-				msg.setMsg("删除失败，请联系管理员");
-			}
-			return msg;
-		}else {
-			msg.setCode(2);
-			msg.setMsg("拒接访问，删除的分类不存在");
-			return msg;
+		for (Integer number : classfiyList) {
+			System.out.println(number);
+			int i = usersMapperExt.DeleteArtcleClassfiyByNumber(number);
+			if (i == 1)
+				success++;
+			else 
+				error++;
 		}
+		msg.setCode(0);
+		msg.setMsg("总删除任务:"+classfiyList.size()+"个，成功："+success+"，失败："+error);
+		return msg;
 	}
 	
-	/*  后台管理-->文章 管理-->操作     查询所有文章    */
-	public ArticleExt QueryAllArticleService() {
-		ArticleExt articleExt = usersMapperExt.QueryAllArticle();
-		articleExt.setCode(0);
-		articleExt.setMsg("");
-		articleExt.setCount(articleExt.getData().size());
-		return articleExt;
+	/**  
+	  * @user: Nikey 
+	  * @MethodName: QueryAllArticleService
+	  * @Description: 查询文章信息   （分页）
+	  * @return Article     
+	  * @date: 2018年12月3日 下午9:42:01  
+	  * @todo: TODO
+	  */
+	public List<Article> QueryAllArticleService(Integer now, Integer max) {
+		List<Article> article = usersMapperExt.QueryAllArticle(now,max);
+		return article;
 	}
 	
-	/*  后台管理-->文章 管理-->操作     查询单篇文章  */
+	/**  
+	  * @user: Nikey 
+	  * @MethodName: QueryAllArticleService
+	  * @Description: 查询文章所有记录数，用于提供给页面分页  
+	  * @return Integer     
+	  * @date: 2018年12月3日 下午9:53:24  
+	  * @todo: TODO
+	  */
+	public Integer QueryAllCountArticleService() {
+		return usersMapperExt.QueryCountArticle();
+	}
+	
+	/**  
+	  * @user: Nikey 
+	  * @MethodName: QueryArticleByNumberService
+	  * @Description: 查询单篇文章  
+	  * @return Article     
+	  * @date: 2018年12月4日 上午11:50:17  
+	  * @todo: TODO
+	  */
 	public Article QueryArticleByNumberService(Integer Number) {
 		Article article = usersMapperExt.QueryArticleByNumber(Number);
 		return article;
 	}
 	
-	
-	/*  后台管理-->文章 管理-->操作     删除单篇文章    */
-	public MessageInfo DeleteArticleByNumberService(Integer Number) {
-		MessageInfo msg = new MessageInfo();
-		
+	/**  
+	  * @user: Nikey 
+	  * @MethodName: DeleteArticleByNumberService
+	  * @Description: 删除单篇文章  
+	  * @return return_type     
+	  * @date: 2018年12月4日 上午11:50:17  
+	  * @todo: TODO
+	  */
+	public String DeleteArticleByNumberService(Integer Number) {
+		String msgs = null;
 		Article article = usersMapperExt.QueryArticleByNumber(Number);
-		
 		if (article != null) {
 			int i = usersMapperExt.DeleteArticleByNumber(Number);
 			if (i == 1) {
-				msg.setCode(0);
-				msg.setMsg("删除成功");
+				msgs = "删除成功";
 			}else {
-				msg.setCode(1);
-				msg.setMsg("删除失败");
+				msgs = "删除失败";
 			}
-			return msg;
 		}else {
-			msg.setCode(2);
-			msg.setMsg("拒接访问， 删除的文章不存在");
-			return msg;
+			msgs = "文章不存在";
 		}
+		return msgs;
+	}
+	
+	/**  
+	  * @user: Nikey 
+	  * @MethodName:
+	  * @Description: 查询文章所有的评论记录数  
+	  * @return int     
+	  * @date: 2018年12月4日 下午2:56:55  
+	  * @todo: TODO
+	  */
+	public Integer QueryAllArticleCommentsService(Integer Number) {
+		return usersMapperExt.QueryArticleAllComment(Number);
+	}
+	
+	/**  
+	  * @user: Nikey 
+	  * @MethodName: QueryNotPublisArticleServices
+	  * @Description: 查询所有未发布的文章  
+	  * @return List<Article>     
+	  * @date: 2018年12月6日 上午9:45:26  
+	  * @todo: TODO
+	  */
+	public List<Article> QueryNotPublisArticleServices(Integer now, Integer max) {
+		return usersMapperExt.QueryAllDraft(now, max);
+	}
+	
+	/**  
+	  * @user: Nikey 
+	  * @MethodName: QueryNotPublisArticleCountServices
+	  * @Description: 查询未阅读文章的总记录数  
+	  * @return Integer     
+	  * @date: 2018年12月6日 上午9:55:16  
+	  * @todo: TODO
+	  */
+	public Integer QueryNotPublisArticleCountServices() {
+		return usersMapperExt.QueryAllDraftCount();
 	}
 	
 	/*  后台管理-->文章 管理-->操作     修改单篇文章    */
@@ -236,127 +301,74 @@ public class AdminBackstageServiceImpi implements AdminBackstageService{
 	}
 	
 	/*  后台管理-->博客管理 -->友情操作    添加   */
-	public MessageInfo AddLinkService(Link link) {
-		MessageInfo messageInfo = new MessageInfo();
+	public Integer addLinkService(Link link) {
 		MyDateUtils myDateUtils = new MyDateUtils();
+		List<Link> linkList = usersMapperExt.queryLinks(0,5,link.getlName(),null,null);
+		if (linkList.size() != 0) {
+			return 0;
+		}//有重复的友链
 		String time = myDateUtils.getSystemNowTime("yyyy年MM月dd日 HH时mm分ss秒");//获取时间
 		link.setlAddtime(time);
 		link.setlClickcount(0);
-		int i = usersMapperExt.AddLink(link);
-		if (i == 1) {
-			messageInfo.setCode(0);
-			messageInfo.setMsg("添加成功");
-			return messageInfo;
-		}else {
-			messageInfo.setCode(0);
-			messageInfo.setMsg("添加失败");
-			return messageInfo;
-		}
+		link.setlShow(link.getlShow());
+		return usersMapperExt.addLink(link);
 	}
 	
-	/*  后台管理-->博客管理 -->友情操作    查询所有的链接或者多条   */
-	public LinkExt QueryLinkService(Link link) {
-		
-		if (link.getlNumber() != null) {
-			LinkExt linkExt = new LinkExt();
-			List<Link> datalist = new ArrayList<Link>();
-			Link data = usersMapperExt.QueryLinkOne(link.getlNumber());
-			datalist.add(data);
-			linkExt.setData(datalist);
-			linkExt.setCode(0);
-			linkExt.setMsg("");
-			linkExt.setCount(datalist.size());
-			return linkExt;//返回单条链接信息
-		}else {
-			LinkExt linkExt = new LinkExt();
-			List<Link> data= usersMapperExt.QueryLinks();
-			linkExt.setData(data);
-			linkExt.setCode(0);
-			linkExt.setCount(data.size());
-			linkExt.setMsg("");
-			return linkExt;//返回所有多条信息
-		}
+	/*  后台管理-->博客管理 -->友情操作    分页查询单条链接或者多条   */
+	public List<Link> queryLinkService(Integer pager,Integer max) {
+		return usersMapperExt.queryLinks(pager,max,null,null,null);
+	}
+	
+	/*  后台管理-->博客管理 -->友情操作    分页查询所有的链接   */
+	public Integer queryAllLinkService() {
+		List<Link> list = usersMapperExt.queryAllLinks();
+		return list.size();
+	}
+	
+	/*  后台管理-->博客管理 -->友情操作    分页查询指定的链接或者多条   */
+	public List<Link> queryOneLinkService(Integer Number) {
+		return usersMapperExt.queryLinks(0,5,null,null,Number);
 	}
 	
 	/* 后台管理-->博客管理 -->友情操作    删除友链  */
-	public MessageInfo DeleteLinkService(Link link) {
-		MessageInfo messageInfo = new MessageInfo(); 
-		Link data = usersMapperExt.QueryLinkOne(link.getlNumber());
-		
-		if (data != null) {
-			int i = usersMapperExt.DeleteLinkByNumber(link.getlNumber());
-			if (i == 1) {
-				messageInfo.setCode(0);
-				messageInfo.setMsg("删除成功");
-				messageInfo.setStatus("");
-			}else {
-				messageInfo.setCode(1);
-				messageInfo.setMsg("删除失败");
-				messageInfo.setStatus("");
-			}
-			return messageInfo;
+	public Integer deleteLinkService(Link link) {
+		List<Link> listLink = usersMapperExt.queryLinks(0,5,link.getlName(),null,null);
+		if (listLink.size() != 0) {
+			return usersMapperExt.deleteLinkByNumber(link.getlNumber());
 		}else {
-			messageInfo.setCode(2);
-			messageInfo.setMsg("拒绝访问，删除的友链不存在");
-			messageInfo.setStatus("");
-			return messageInfo;
+			return 0;
 		}
 	}
 	
 	/* 后台管理-->博客管理 -->友情操作    修改友链  */
-	public MessageInfo AlterLinkService(Link link) {
-		MessageInfo messageInfo = new MessageInfo(); 
-		Link data = usersMapperExt.QueryLinkOne(link.getlNumber());//查询是否存在Link
-		
-		if (data != null) {
-			if (link.getlName().equals(data.getlName()) && link.getlLink().equals(data.getlLink())) {
-				messageInfo.setCode(3);
-				messageInfo.setMsg("系统检测到并没有修改内容，无法更新操作");
-			}else {
-				int i = usersMapperExt.AlterLinkByNumber(link);
-				if (i == 1) {
-					messageInfo.setCode(0);
-					messageInfo.setMsg("修改成功");
-				}else {
-					messageInfo.setCode(1);
-					messageInfo.setMsg("修改成功");
-				}
-			}
-			return messageInfo;
-		}else {
-			messageInfo.setCode(2);
-			messageInfo.setMsg("拒绝访问，修改的链接不存在");
-			return messageInfo;
-		}
-	}
 	
-	/* 后台管理-->博客管理 -->友情操作    修改博客信息 */
-	public Bloginfo AlterBlogInfoByNumber(Bloginfo bloginfo, MessageInfo messageInfo) {
-		if (bloginfo.getBiNumber() == 1) {
-			
-			return null;
+	public Integer alterLinkService(Link link) {
+		int i;
+		List<Link> listLink = usersMapperExt.queryLinks(0,5,null,null,link.getlNumber());
+		if (listLink.size() != 0) {
+			i = usersMapperExt.alterLinkByNumber(link);
 		}else {
-			Bloginfo data = usersMapperExt.QueryBlogInfoByNumber();
-			return data;
+			i = 0;
 		}
+		return i;
 	}
 	
 	/* 后台管理-->用户管理 -->操作   查询用户*/
-	public UsersExt QueryUsersInfoByAllDataService(Users users) {
-		UsersExt usersExt = new UsersExt(); 
-		List<Users> data = usersMapperExt.QueryUsersInfoByAllData(users);
-		usersExt.setData(data);
-		usersExt.setCode(0);
-		usersExt.setCount(data.size());
-		usersExt.setMsg("");
-		return usersExt;
+	public List<Users> queryUsersInfoByAllDataService(Users users) {
+		return usersMapperExt.queryUsersInfoByAllData(users);
 	}
+	
+	/* 后台管理-->用户管理 -->操作   分页查询用户 */
+	public List<Users> queryUsersInfoByAllService(Integer now, Integer max) {
+		return usersMapperExt.queryAllUser(now, max);
+	}
+	
 	
 	/* 后台管理-->用户管理 -->操作   删除用户*/
 	public MessageInfo DeleteUserByIDService(Users users) {
 		MessageInfo messageInfo = new MessageInfo();
 		
-		List<Users> data = usersMapperExt.QueryUsersInfoByAllData(users);
+		List<Users> data = usersMapperExt.queryUsersInfoByAllData(users);
 		
 		if (data.size() != 0) {
 			int i = usersMapperExt.DeleteUserByUID(users.getuId());
@@ -398,24 +410,15 @@ public class AdminBackstageServiceImpi implements AdminBackstageService{
 		}
 	}
 	
-	
 	/* 后台管理-->博客管理  查询信息*/
-	public Bloginfo QueryBlogInfoService() {
-		Bloginfo bloginfo = usersMapperExt.QueryBlogInfoByNumber();
-		return bloginfo;
+	public BlogInfoJoinTheme queryBlogInfoService() {
+		return usersMapperExt.queryBlogInfoByNumber();
 	}
 	
 	/* 后台管理-->博客管理 修改信息*/
-	public MessageInfo AlterBlogInfoService(Bloginfo bloginfo) {
-		MessageInfo messageInfo = new MessageInfo();
-		int i = usersMapperExt.AlterBlogInfoByNumber(bloginfo);
-		if (i == 1) {
-			messageInfo.setCode(0);
-			messageInfo.setMsg("修改成功");
-		}else {
-			messageInfo.setCode(0);
-			messageInfo.setMsg("修改失败，系统执行异常");
-		}
-		return messageInfo;
+	public Integer alterBlogInfoService(Bloginfo bloginfo) {
+		return usersMapperExt.alterBlogInfoByNumber(bloginfo);
 	}
+
+	
 }

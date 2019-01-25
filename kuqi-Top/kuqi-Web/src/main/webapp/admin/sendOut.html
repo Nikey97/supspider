@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>库奇博客后台-发博客</title>
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="vendor/fontawesome-free/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="vendor/fontawesome-free/css/v4-shims.min.css" />
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="css/sb-admin.css" rel="stylesheet">
+  </head>
+
+  <body id="page-top">
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+      <a class="navbar-brand mr-1" href="index">库奇博客后台系统</a>
+
+      <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Navbar Search -->
+      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Navbar -->
+      <ul class="navbar-nav ml-auto ml-md-0">
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-bell fa-fw"></i>
+            <span class="badge badge-danger">0</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+            <a class="dropdown-item" href="#">系统消息</a>
+            <!--<a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>-->
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-envelope fa-fw"></i>
+            <span class="badge badge-danger">0</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
+            <a class="dropdown-item" href="#">用户反馈</a>
+            <!--<a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>-->
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user-circle fa-fw"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="updataBlog">设置</a>
+            <a class="dropdown-item" href="#">活动日志</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="logout" data-toggle="modal" data-target="#logoutModal">注销</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <ul class="sidebar navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="sendOut.html">
+          	<!--fas fa-fw fa-tachometer-alt-->
+            <i class="fa fa-pencil-square-o"></i>
+            <span>发博客</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-book"></i>
+            <span>文章管理</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">Article Screens:</h6>
+            <a class="dropdown-item" href="classfiy">分类</a>
+            <a class="dropdown-item" href="article">操作</a>
+            <a class="dropdown-item" href="draft">草稿箱</a>
+            <!--<div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">Other Pages:</h6>
+            <a class="dropdown-item" href="404.html">404 Page</a>
+            <a class="dropdown-item" href="blank.html">Blank Page</a>-->
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+        	<a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-rss-square"></i>
+            <span>博客管理</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">Blog Screens:</h6>
+            <a class="dropdown-item" href="updataBlog">信息操作</a>
+            <a class="dropdown-item" href="register.html">友链操作</a>
+            <a class="dropdown-item" href="register.html">主题操作</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+        	<a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-user"></i>
+            <span>用户管理</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">User Screens:</h6>
+            <a class="dropdown-item" href="login.html">操作</a>
+          </div>
+        </li>
+      </ul>
+
+      <div id="content-wrapper">
+	    	<div class="container-fluid">
+					<span style="display: block; width: inherit; height: 30px; background: #E5EEF7; line-height: 30px; padding-left: 10px; font-size: 13px; border-top: 0.5px solid #757575; border-bottom: 0.5px dashed #757575;">添加文章</span>
+	     		<form class="send-content" method="post" action="textUpload.do">
+	     			<div class="form-group">
+					    <label for="exampleInputEmail1">标题</label>
+					    <input type="text" class="form-control" name="title" id="exampleInputEmail1" placeholder="">
+					  </div>
+					  <div class="form-group">
+					    <label for="exampleInputEmail1">内容(TinyMCE编辑器，支持拖放/粘贴上传图片)</label>
+					   	<!-- 加载编辑器的容器 -->
+					    <script id="container" name="text" type="text/plain">
+					    </script>
+					  </div>
+					  <span style="display: block; width: inherit; height: 30px; background: #E5EEF7; line-height: 30px; padding-left: 10px; font-size: 13px; border-top: 0.5px solid #757575; border-bottom: 0.5px dashed #757575;">常用选项</span>
+				    <div class="Article-Classfiy">
+				    	<span style="display: block; width: inherit; height: 30px; margin: 0 auto; background: #E5EEF7; line-height: 30px; padding-left: 10px; font-size: 13px; border-top: 0.5px solid #757575; border-bottom: 0.5px dashed #757575;"><i class="fa fa-sort"></i>&nbsp;&nbsp;文章分类</span>
+				    	<ul>
+				    		<li>
+				    			<div class="checkbox">
+									  <label>
+									    <input type="checkbox" value="">
+									    Spring
+									  </label>
+									</div>
+				    		</li>
+				    		<li>
+				    			<div class="checkbox">
+									  <label>
+									    <input type="checkbox" value="">
+									    MVC
+									  </label>
+									</div>
+				    		</li>
+				    	</ul>
+				    </div>
+				    <span style="display: block; width: inherit; height: 30px; background: #E5EEF7; line-height: 30px; padding-left: 10px; font-size: 13px; border-top: 0.5px solid #757575; border-bottom: 0.5px dashed #757575;">高级选项</span>
+				   	<div class="form-group super-option">
+				   		<ul>
+				   			<li>
+				   				<div class="checkbox">
+									  <label>
+									    <input type="checkbox" value="">
+									    	发布
+									  </label>
+									</div>
+				   			</li>
+				   			<li>
+				   				<div class="checkbox">
+									  <label>
+									    <input type="checkbox" value="">
+									    	显示在我的博客首页
+									  </label>
+									</div>
+				   			</li>
+				   			<li>
+				   				<div class="checkbox">
+									  <label>
+									    <input type="checkbox" value="">
+									    	允许评论
+									  </label>
+									</div>
+				   			</li>
+				   			<li>
+				   				<div class="checkbox">
+									  <label>
+									    <input type="checkbox" value="">
+									    	只允许注册用户访问
+									  </label>
+									</div>
+				   			</li>
+				   		</ul>
+				   		<label for="exampleInputEmail1">Tag标签</label>
+    					<input type="text" class="form-control" placeholder="">
+				   		<label for="exampleInputEmail1">密码保护</label>
+    					<input type="password" class="form-control" placeholder="">
+				   	</div>
+				   	<div class="button-warp">
+				   		<button type="submit" class="btn btn-default">发布</button>
+				   		<button type="submit" class="btn btn-default">存为草稿</button>
+				   		<button type="submit" class="btn btn-default">取消</button>
+				   	</div>
+	     		</form>
+	    	</div>
+    	</div>
+    </div>
+   </div>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">注销账户</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">您是否注销账户？</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">取消</button>
+            <a class="btn btn-primary" href="logout">注销</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Page level plugin JavaScript-->
+    <script src="vendor/datatables/jquery.dataTables.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin.min.js"></script>
+
+    <!-- Demo scripts for this page-->
+    <script src="js/demo/datatables-demo.js"></script>
+		<script type="text/javascript" src="ueditor/ueditor.config.js"></script>
+		<script type="text/javascript" src="ueditor/ueditor.all.min.js"></script>
+		<!-- 实例化编辑器 -->
+    <script type="text/javascript">
+        var ue = UE.getEditor('container');
+    </script>
+  </body>
+
+</html>

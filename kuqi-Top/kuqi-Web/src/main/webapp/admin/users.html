@@ -116,7 +116,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">User Screens:</h6>
-            <a class="dropdown-item" href="login.html">操作</a>
+            <a class="dropdown-item" href="users">操作</a>
           </div>
         </li>
       </ul>
@@ -138,10 +138,10 @@
 								</div>
 								
 								<div class="classfiy-operty-content">
-								  <input type="text" style="height: 30px;" placeholder="ID/用户名/邮箱" />
-								  <button type="button" class="btn btn-default" data-toggle="modal">查询</button>
-									<button type="button" class="btn btn-default" id="classfiy-updata" data-toggle="modal">修改</button>
-									<button type="button" class="btn btn-default" id="classfiy-del">删除</button>
+								  <input type="text" style="height: 30px;" id="queryStr" placeholder="ID/用户名/邮箱" />
+								  <button type="button" class="btn btn-default" id="queryButton" data-toggle="modal">查询</button>
+									<button type="button" class="btn btn-default" id="user-updata" data-toggle="modal">修改</button>
+									<button type="button" class="btn btn-default" id="user-del">删除</button>
 								</div>
 								
 							</div>
@@ -161,13 +161,14 @@
 									</thead>
 									<tbody>
 										<tr th:each="li : ${dataList}">
-											<td><input type="checkbox" name="classfiy" th:value="${li.acNumber}" value="1002"></td>
-											<td th:text="${li.acNumber}">1000</td>
-											<td th:text="${li.acClassfiyname}">admin</td>
-											<td th:text="${li.acRemark}">Nikey</td>
-											<td th:text="${li.acRemark}">13044926957@163.com</td>
-											<td th:text="${li.acRemark}">2018.12.08 12:09</td>
-											<td th:text="${li.acRemark}">管理员</td>
+											<td><input type="checkbox" name="classfiy" th:value="${li.uId}" value="1002"></td>
+											<td th:text="${li.uId}">1000</td>
+											<td th:text="${li.uName}">admin</td>
+											<td th:text="${li.uNickname}">Nikey</td>
+											<td th:text="${li.uEmail}">13044926957@163.com</td>
+											<td th:text="${li.uRegistertime}">2018.12.08 12:09</td>
+											<td th:if="${li.uPermission == 1}">管理员</td>
+											<td th:if="${li.uPermission == 0}">普通用户</td>
 										</tr>
 									</tbody>
 								</table>
@@ -215,62 +216,51 @@
       </div>
     </div>
 
-		<!-- Classfiy-Add Modal -->
-		<div class="modal fade" id="ClassfiyAddModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-		  <div class="modal-dialog modal-dialog-centered" role="document">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <h5 class="modal-title" id="exampleModalLongTitle">添加分类</h5>
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		          <span aria-hidden="true">&times;</span>
-		        </button>
-		      </div>
-		      <div class="modal-body">
-		        <form id="classfiy-add-form" method="post" action="add_classfiy.do">
-		        	<div class="form-group">
-						    <label for="exampleInputEmail1">名称：</label>
-						    <input type="text" name="classfiyName" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="请输入分类名称...">
-		        	</div>
-						  <div class="form-group">
-		            <label for="message-text" class="col-form-label">描述:</label>
-		            <textarea name="classfiyDescription" class="form-control" id="exampleInputEmail2" placeholder="请输入分类描述..."></textarea>
-		          </div>
-		        </form>
-		      </div>
-		      <div class="modal-footer">
-		        <button type="reset" onclick="ClassfiyAddReset();" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		        <button type="submit" id="classfiy-add-button" class="btn btn-primary">添加</button>
-		      </div>
-		    </div>
-		  </div>
-		</div>
-
 		<!-- Classfiy-Updata Modal -->
-		<div class="modal fade" id="ClassfiyUpdataModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal fade" id="UserUpdataModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 		  <div class="modal-dialog modal-dialog-centered" role="document">
 		    <div class="modal-content">
 		      <div class="modal-header">
-		        <h5 class="modal-title" id="exampleModalLongTitle">修改分类</h5>
+		        <h5 class="modal-title" id="exampleModalLongTitle">修改用户</h5>
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		          <span aria-hidden="true">&times;</span>
 		        </button>
 		      </div>
 		      <div class="modal-body">
-		        <form method="post" id="classfiy-updata-form" action="alter_classfiy.do">
+		        <form method="post" id="user-updata-form" action="alter_classfiy.do">
 		        	<div class="form-group">
-						    <label for="exampleInputEmail1">名称:</label>
-						    <input type="text" name="classfiyNameUpdata" class="form-control" id="classfiy-name-updata" aria-describedby="emailHelp" placeholder="请输入分类名称...">
+						    <label for="exampleInputEmail1">用户ID:</label>
+						    <input type="text" name="userIdUpdata" class="form-control" id="userName" placeholder="请输入用户ID..." readonly>
 						  </div>
 						  <div class="form-group">
-		            <label for="message-text" class="col-form-label">描述:</label>
-		            <textarea name="classfiyDescriptionUpdata" class="form-control" id="classfiy-description-updata" placeholder="请输入分类描述..."></textarea>
+		            <label for="message-text" class="col-form-label">用户名:</label>
+		            <input name="userNameUpdata" class="form-control" id="classfiy-description-updata" placeholder="请输入账户名..." readonly></input>
 		          </div>
-		          <input type="hidden" name="classfiyNumberUpdata" id="classfiy-number-updata"  />
+		          <div class="form-group">
+		            <label for="message-text" class="col-form-label">邮箱:</label>
+		            <input name="userEmailUpdata" class="form-control" id="classfiy-description-updata" placeholder="请输入账户邮箱..." readonly></input>
+		          </div>
+		          <div class="form-group">
+		            <label for="message-text" class="col-form-label">昵称:</label>
+		            <input name="userNicknameUpdata" class="form-control" id="classfiy-description-updata" placeholder="请输入账户昵称..."></input>
+		          </div>
+		          <div class="form-group">
+		            <label for="message-text" class="col-form-label">密码:</label>
+		            <input name="userPasswordUpdata" class="form-control" id="classfiy-description-updata" placeholder="请输入账户密码..."></input>
+		          </div>
+		          <div class="form-group">
+						    <label for="inputlLink">用户类别:</label>
+							  <select class="form-control" name="userPerssionUpdata">
+							  	<option>--请选择--</option>
+								  <option value="1">管理员</option>
+								  <option value="0">普通用户</option>
+								</select>
+							</div>
 		        </form>
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" onclick="ClassfiyAddReset();" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		        <button type="button" id="classfiy-updata-button" class="btn btn-primary">修改</button>
+		        <button type="button" id="user-updata-button" class="btn btn-primary">修改</button>
 		      </div>
 		    </div>
 		  </div>
@@ -278,6 +268,8 @@
 		
 		<!--  msgs隐藏域  -->
 		<input type="hidden" id="msgs" th:value="${msgs}" />
+		<input type="hidden" id="pagerAll" th:value="${pagerAll}" />
+		<input type="hidden" id="pagerNow" th:value="${pagerNow}" />
 		
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -300,8 +292,141 @@
     <script type="application/javascript" src="vendor/jquery-pagination/pagination.js"></script>
     <script>
 		$(function(){
-			var pagins = new pagination("pagination",100,1,5,5);
-			pagins.init();
+			var pagerAll = $("#pagerAll").val();
+			var pagerNow = $("#pagerNow").val();
+			if(pagerNow == 0){
+				pagerNow = 1;
+			}
+			var pagins = new pagination("pagination","users",pagerAll,pagerNow,5,5);
+			pagins.show();
+			
+			//查询用户
+			$('#queryButton').click(function(){
+				var queryStr = $('#queryStr').val();
+				if(queryStr == undefined || queryStr == ''){
+					alert('您要查询谁？请输入');
+				}else{
+					window.location.href='user?user='+queryStr+'';
+				}
+			});
+			
+			//删除用户
+			$("#user-del").click(function(){
+			  var	obj = document.getElementsByName("classfiy");
+				var classfiys = [];
+				for (var i = 0; i < obj.length; i++) {
+					if(obj[i].checked)
+					{
+						classfiys.push(obj[i].value);
+					}
+				}
+				if(classfiys.length === 0) 
+				{
+					alert("请选择最少一个用户...");
+				}
+				else
+				{
+					var confum = confirm("您确定要删除这" + classfiys.length + "个用户？");
+					if(confum === true)
+					{
+						$.ajax({
+							type:"post",
+							url:"delete_user.do",
+							async:true,
+							data: {"usersList" : classfiys},
+							success: function(data){
+								alert(data.msg);
+								window.location.href="users";
+							},
+							error: function(XMLHttpRequest, textStatus, errorThrown){
+								// 状态码
+						    console.log(XMLHttpRequest.status);
+						    // 状态
+						    console.log(XMLHttpRequest.readyState);
+						    // 错误信息   
+						    console.log(textStatus);
+						    
+						    console.log(classfiys);
+							}
+						});
+					}
+				}
+			});
+			
+			//修改用户
+			$('#user-updata').click(function(){
+				var	obj = document.getElementsByName("classfiy");
+				var classfiys = [];
+				for (var i = 0; i < obj.length; i++) {
+					if(obj[i].checked)
+					{
+						classfiys.push(obj[i].value);
+					}
+				}
+				if(classfiys.length === 0) {
+					alert("请选择最少一个用户...");
+				}else{
+					if(classfiys.length > 1){
+						alert("只能选择一个用户...");
+					}
+					$.ajax({
+						type:"post",
+						url:"query_AlterUser.do",
+						async:true,
+						data: {"usersList" : classfiys},
+						success: function(data){
+							$('#user-updata-form input[name="userIdUpdata"]').val(data[0].uId);
+							$('#user-updata-form input[name="userNameUpdata"]').val(data[0].uName);
+							$('#user-updata-form input[name="userNicknameUpdata"]').val(data[0].uNickname);
+							$('#user-updata-form input[name="userEmailUpdata"]').val(data[0].uEmail);
+							$('#user-updata-form select[name="userPerssionUpdata"]').val(data[0].uPermission);
+							$('#user-updata-form input[name="userPasswordUpdata"]').val(data[0].uPsw);
+							$('#UserUpdataModalCenter').modal('toggle');
+						},
+						error: function(XMLHttpRequest, textStatus, errorThrown){
+							// 状态码
+					    console.log(XMLHttpRequest.status);
+					    // 状态
+					    console.log(XMLHttpRequest.readyState);
+					    // 错误信息   
+					    console.log(textStatus);
+					    
+					    console.log(classfiys);
+						}
+					});
+				}
+			});
+			
+			//修改用户
+			$("#user-updata-button").click(function(){
+				var uId = $('#user-updata-form input[name="userIdUpdata"]').val();
+				var uName = $('#user-updata-form input[name="userNameUpdata"]').val();
+				var uEmail = $('#user-updata-form input[name="userEmailUpdata"]').val();
+				var uNickname = $('#user-updata-form input[name="userNicknameUpdata"]').val();
+				var uPermission = $('#user-updata-form select[name="userPerssionUpdata"]').val();
+				var uPsw = $('#user-updata-form input[name="userPasswordUpdata"]').val();
+				
+				var userJson = '{"uId":'+uId+',"uName":"'+uName+'","uEmail":"'+uEmail+'","uNickname":"'+uNickname+'","uPermission":'+uPermission+',"uPsw":"'+uPsw+'"}';
+				$.ajax({
+					type:"post",
+					url:"alter_user.do",
+					async:true,
+					contentType: 'application/json;charset=UTF-8',
+					data: userJson,
+					success: function(data){
+						alert(data.msg);
+						window.location.href="users";
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown){
+						// 状态码
+				    console.log(XMLHttpRequest.status);
+				    // 状态
+				    console.log(XMLHttpRequest.readyState);
+				    // 错误信息   
+				    console.log(textStatus);
+					}
+				});
+			});
 		});
 	</script>
   </body>

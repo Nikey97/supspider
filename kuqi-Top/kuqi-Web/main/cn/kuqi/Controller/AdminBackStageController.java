@@ -354,11 +354,11 @@ public class AdminBackStageController {
 		}else {
 			pagers = pager-1;
 		}
-		List<Link> link = adminBackstageServiceImpi.queryLinkService(pager,5);
+		List<Link> link = adminBackstageServiceImpi.queryLinkService(pagers,5);
 		int all = adminBackstageServiceImpi.queryAllLinkService();
 		model.addAttribute("dataList", link);
 		model.addAttribute("pagerAll", all);
-		model.addAttribute("pagerNow", pagers);
+		model.addAttribute("pagerNow", pager);
 		return "admin/friendLink.html";
 	}
 	
@@ -425,31 +425,91 @@ public class AdminBackStageController {
 	  * @date: 2018年12月8日 下午5:42:34  
 	  * @todo: TODO
 	  */  
-	@CheckUserIdentity
-	@RequestMapping(value= ("/users"),method= {RequestMethod.GET})
-	public String queryUser (Users users, Integer number, Model model) {
-		if (users == null || number == null) {
-			List<Users> list = adminBackstageServiceImpi.queryUsersInfoByAllService(number, 5);
-			
-			model.addAttribute("dataList", list);
-		} 
-		if(users != null || number != null) {
-			List<Users> uList = adminBackstageServiceImpi.queryUsersInfoByAllDataService(users);
+	@RequestMapping(value= ("/users"))
+	public String queryUser (Integer pager, Model model) {
+		int pagers = 0;
+		if (pager == null || pager <= 0) {
+			pager = 0;
+		}else {
+			pagers = pager-1;
 		}
+		List<Users> list = adminBackstageServiceImpi.queryUsersInfoByAllService(pagers, 5);
+		int usersAll = adminBackstageServiceImpi.queryCountUserInfo();
+		model.addAttribute("pagerAll", usersAll);
+		model.addAttribute("pagerNow", pager);
+		model.addAttribute("dataList", list);
 		return "admin/users.html";
 	}
 	
-	@RequestMapping(value= ("/delete_user.do"),method= {RequestMethod.POST})//删除用户
-	public@ResponseBody MessageInfo deleteUserByID(@RequestBody Users users) {
-		MessageInfo messageInfo = adminBackstageServiceImpi.DeleteUserByIDService(users);
-		return messageInfo;
+	/**  
+	  * @user: Nikey 
+	  * @MethodName: queryUsers
+	  * @Description: 用户搜索查询   
+	  * @return String     
+	  * @date: 2019年1月27日 下午3:03:43  
+	  * @todo: TODO
+	  */
+	@RequestMapping(value="/user")
+	public String queryUsers(String user, Integer pager, Model model) {
+		int pagers = 0;
+		int listSize;
+		if (pager == null || pager <= 0) {
+			pager = 0;
+		}else {
+			pagers = pager-1;
+		}
+		List<Users> list = adminBackstageServiceImpi.queryUsersService(pagers, 5, user);
+		if (list == null) {
+			listSize = 0; 
+		}else {
+			listSize = list.size();
+		}
+		model.addAttribute("pagerAll", listSize);
+		model.addAttribute("pagerNow", pager);
+		model.addAttribute("dataList", list);
+		return "admin/users.html";
 	}
 	
-	@RequestMapping(value= ("/alter_user.do"),method= {RequestMethod.POST})//修改用户信息
-	public @ResponseBody MessageInfo alterUsersByID(@RequestBody Users users, HttpServletResponse response) throws IOException {
-		MessageInfo messageInfo = adminBackstageServiceImpi.AlterUserInfoByIdService(users);
-		return messageInfo;
+	/**  
+	  * @user: Nikey 
+	  * @MethodName:deleteUserByID
+	  * @Description: 用户管理 -- 删除用户(支持单个和批量)   
+	  * @return MessageInfo     
+	  * @date: 2019年1月27日 下午3:52:21  
+	  * @todo: TODO
+	  */
+	@RequestMapping(value= ("/delete_user.do"),method= {RequestMethod.POST})
+	public@ResponseBody MessageInfo deleteUserByID(@RequestParam("usersList[]") ArrayList<Integer> users) {
+		return adminBackstageServiceImpi.deleteUserByIDService(users);
 	}
+	
+	/**  
+	  * @user: Nikey 
+	  * @MethodName: queryAlterUsersByID
+	  * @Description: 用户管理--查询修改用户   
+	  * @return List<Users>     
+	  * @date: 2019年1月27日 下午4:59:59  
+	  * @todo: TODO
+	  */
+	@RequestMapping(value= ("/query_AlterUser.do"),method= {RequestMethod.POST})
+	public @ResponseBody List<Users> queryAlterUsersByID(@RequestParam("usersList[]") ArrayList<Integer> id) {
+		return adminBackstageServiceImpi.queryUsersService(0, 5, id.get(0).toString());
+	}
+	
+	/**  
+	  * @user: Nikey 
+	  * @MethodName:alterUsersByID
+	  * @Description: 用户管理--修改用户   
+	  * @return MessageInfo     
+	  * @date: 2019年1月27日 下午4:59:59  
+	  * @todo: TODO
+	  */
+	@RequestMapping(value= ("/alter_user.do"),method= {RequestMethod.POST})
+	public @ResponseBody MessageInfo alterUsersByID(@RequestBody Users users) throws IOException {
+		return adminBackstageServiceImpi.alterUserInfoByIdService(users);
+	}
+	
+	
 	
 	/**
 	 * 博客管理-->信息操作 

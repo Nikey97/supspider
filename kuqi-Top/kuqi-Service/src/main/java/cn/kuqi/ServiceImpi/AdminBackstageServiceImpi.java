@@ -150,7 +150,6 @@ public class AdminBackstageServiceImpi implements AdminBackstageService{
 		int success = 0, error = 0;
 		MessageInfo msg = new MessageInfo();
 		for (Integer number : classfiyList) {
-			System.out.println(number);
 			int i = usersMapperExt.DeleteArtcleClassfiyByNumber(number);
 			if (i == 1)
 				success++;
@@ -316,7 +315,7 @@ public class AdminBackstageServiceImpi implements AdminBackstageService{
 	
 	/*  后台管理-->博客管理 -->友情操作    分页查询单条链接或者多条   */
 	public List<Link> queryLinkService(Integer pager,Integer max) {
-		return usersMapperExt.queryLinks(pager,max,null,null,null);
+		return usersMapperExt.queryLinks(pager*max,max,null,null,null);
 	}
 	
 	/*  后台管理-->博客管理 -->友情操作    分页查询所有的链接   */
@@ -353,6 +352,7 @@ public class AdminBackstageServiceImpi implements AdminBackstageService{
 		return i;
 	}
 	
+	
 	/* 后台管理-->用户管理 -->操作   查询用户*/
 	public List<Users> queryUsersInfoByAllDataService(Users users) {
 		return usersMapperExt.queryUsersInfoByAllData(users);
@@ -360,53 +360,62 @@ public class AdminBackstageServiceImpi implements AdminBackstageService{
 	
 	/* 后台管理-->用户管理 -->操作   分页查询用户 */
 	public List<Users> queryUsersInfoByAllService(Integer now, Integer max) {
-		return usersMapperExt.queryAllUser(now, max);
+		return usersMapperExt.queryAllUser(now*max, max,null,null,null);
 	}
 	
-	
-	/* 后台管理-->用户管理 -->操作   删除用户*/
-	public MessageInfo DeleteUserByIDService(Users users) {
-		MessageInfo messageInfo = new MessageInfo();
-		
-		List<Users> data = usersMapperExt.queryUsersInfoByAllData(users);
-		
-		if (data.size() != 0) {
-			int i = usersMapperExt.DeleteUserByUID(users.getuId());
-			if (i == 1) {
-				messageInfo.setCode(0);
-				messageInfo.setMsg("删除成功");
-			}else {
-				messageInfo.setCode(1);
-				messageInfo.setMsg("删除失败, 系统执行异常");
-			}
-			return messageInfo;
-		}else {
-			messageInfo.setCode(2);
-			messageInfo.setMsg("删除失败, 删除的用户不存在");
-			return messageInfo;
+	/* 后台管理-->用户管理 -->操作  查询单个或多个用户 */
+	public List<Users> queryUsersService(Integer now, Integer max, String queryStr) {
+		List<Users> listID = usersMapperExt.queryAllUser(now*max, max,queryStr,null,null);
+		if (listID.size() != 0) {
+			return listID;
 		}
+		List<Users> listName = usersMapperExt.queryAllUser(now*max, max,null,queryStr,null);
+		if (listName.size() != 0) {
+			return listName;
+		}
+		List<Users> listEmail = usersMapperExt.queryAllUser(now*max, max,null,null,queryStr);
+		if (listEmail.size() != 0) {
+			return listEmail;
+		}
+		System.err.println("null");
+		return null;
+	}
+	
+	/* 后台管理-->用户管理 -->操作   查询所有用户条数 */
+	public Integer queryCountUserInfo() {
+		return usersMapperExt.queryCountUser();
 	}
 	
 	/* 后台管理-->用户管理 -->操作   删除用户*/
-	public MessageInfo AlterUserInfoByIdService(Users users) {
-		MessageInfo messageInfo = new MessageInfo();
+	public MessageInfo deleteUserByIDService(List<Integer> list) {
+		MessageInfo messageInfo = getMessageInfoInstance();
+		int success = 0, error = 0;
+		for (Integer integer : list) {
+			int i = usersMapperExt.deleteUserByUID(integer);
+			if (i == 1) {
+				success++;
+			}else {
+				error++;
+			}
+		}
+		messageInfo = returnJsonMsgs(messageInfo, 0, "总删除任务:"+list.size()+"个，成功："+success+"，失败："+error, "ok", true);
+		return messageInfo;
+	}
+	
+	/* 后台管理-->用户管理 -->操作   删除用户*/
+	public MessageInfo alterUserInfoByIdService(Users users) {
+		MessageInfo messageInfo = getMessageInfoInstance();
 		Users data = usersMapperExt.QueryUserInfoByID(users);
-		
 		if (data != null) {
 			int i = usersMapperExt.AlterUserInfo(users);
-			
 			if (i == 1) {
-				messageInfo.setCode(0);
-				messageInfo.setMsg("修改成功");
+				messageInfo = returnJsonMsgs(messageInfo, 0, "修改成功", null, true);
 			}else {
-				messageInfo.setCode(1);
-				messageInfo.setMsg("修改失败，系统执行异常");
+				messageInfo = returnJsonMsgs(messageInfo, 1, "修改失败，系统执行异常", null, true);
 			}
 			return messageInfo;
 		}else {
-			messageInfo.setCode(2);
-			messageInfo.setMsg("修改失败，修改的用户信息不存在");
-			return messageInfo;
+			return returnJsonMsgs(messageInfo, 2, "修改失败，修改的用户信息不存在", null, false);
 		}
 	}
 	
@@ -420,5 +429,35 @@ public class AdminBackstageServiceImpi implements AdminBackstageService{
 		return usersMapperExt.alterBlogInfoByNumber(bloginfo);
 	}
 
+	/**  
+	  * @user: Nikey 
+	  * @MethodName:getMessageInfoInstance
+	  * @Description: 单例MessageInfo  
+	  * @return MessageInfo     
+	  * @date: 2019年1月16日 下午4:41:03  
+	  * @todo: TODO
+	  */
+	static MessageInfo messageInfo;
+	private synchronized static MessageInfo getMessageInfoInstance() {
+		if (messageInfo == null) {
+			messageInfo = new MessageInfo();
+		}
+		return messageInfo;
+	}
 	
+	/**  
+	  * @user: Nikey 
+	  * @MethodName: returnOk
+	  * @Description: 返回json响应的信息  
+	  * @return MessageInfo     
+	  * @date: 2019年1月21日 下午7:01:57  
+	  * @todo: TODO
+	  */
+	private static MessageInfo returnJsonMsgs(MessageInfo messageInfo, int code, String msg, String status, boolean pass) {
+		messageInfo.setCode(code);
+		messageInfo.setMsg(msg);
+		messageInfo.setStatus(status);
+		messageInfo.setPass(pass);
+		return messageInfo;
+	}
 }

@@ -5,7 +5,7 @@
  * */
 var selects = null; //  选择器
 var pageTotal = 0;  //  所有数据条数
-var pageCurrent = 1;  //  当前所在页
+var pageCurrent;  //  当前所在页
 var pageNumber = 5;   //  一页显示多少条数
 var paginationNumber = 5;  //  默认分页标签数
 var lastPager; // 循环后最后一页的页数
@@ -21,17 +21,45 @@ function pagination(selects,controller,pageTotal,pageCurrent,pageNumber,paginati
 	this.paginationNumber = paginationNumber; 
 	this.controller = controller;
 	
-//	alert(selects+"   "+pageTotal+"   "+pageCurrent+"    "+pageNumber+"   "+paginationNumber);
-	
 	function getTotalPages(){
 		return pageTotal/pageNumber;
 	}//获取总页数
 	
-	this.init = function() {
+	this.show = function(){
 		var a = getTotalPages();
 		totalPages = parseInt(a);
-		$("#"+selects+"").html(function(i){
-			return '<i>i:'+i+'</i>';
+		
+		var html = '';
+		html += '<nav aria-label="Page navigation example">';
+		html += '<ul class="pagination">';
+		
+		var previousCurrent = pageCurrent;
+		previousCurrent--;
+		if(pageCurrent == 1){
+			html += '<li class="page-item disabled"><a class="page-link" href="'+controller+'?pager='+previousCurrent+'">Previous</a></li>';
+		}else{
+			html += '<li class="page-item"><a class="page-link" href="'+controller+'?pager='+previousCurrent+'">Previous</a></li>';
+		}
+		
+		for(var i = 1;i <= totalPages+1;i++){
+			if(pageCurrent == i){
+				html += '<li class="page-item active"><a class="page-link" href="'+controller+'?pager='+i+'">'+i+'</a></li>';
+			}else{
+				html += '<li class="page-item"><a class="page-link" href="'+controller+'?pager='+i+'">'+i+'</a></li>';
+			}
+		}
+		
+		var nextCurrent = pageCurrent;
+		nextCurrent++;
+		if(pageCurrent == totalPages+1){ 
+			html += '<li class="page-item disabled"><a class="page-link" href="'+controller+'?pager='+nextCurrent+'">Next</a></li>';
+		}else{
+			html += '<li class="page-item"><a class="page-link" href="'+controller+'?pager='+nextCurrent+'">Next</a></li>';
+		}
+		html += '</ul>';
+		html += '</nav>';
+		$('#'+selects).html(function(){
+			return html;
 		});
-	}//显示分页
+	}
 }

@@ -258,6 +258,7 @@
   			link 
   </select>
   
+  
   <!-- 删除友链 -->
   <delete id="deleteLinkByNumber">
   		delete 
@@ -362,18 +363,42 @@
   			U_Name,
   			U_Nickname,
   			U_Email,
+  			U_Psw,
   			U_RegisterTime,
   			U_Permission 
   		from 
   			users 
+  		<where>
+  			<if test="uId != null">
+  				U_ID = '${uId}'
+	  		</if>
+	  		<if test="uName != null and uName != ''">
+	  			U_Name = '${uName}'
+	  		</if>
+	  		<if test="uEmail != null and uEmail != ''">
+	  			U_Email = '${uEmail}'
+	  		</if>
+  		</where>
   		limit 
   			${now},
   			${max}
   </select>
   
+  <select id="queryCountUser" resultType="integer">
+  		select 
+  			count(*)
+  		from 
+  			users
+  </select>
+  
+  
   <!-- 删除用户 -->
-  <delete id="DeleteUserByUID">
-  		delete from users where U_ID = #{ID}
+  <delete id="deleteUserByUID">
+  		delete 
+  		from 
+  			users 
+  		where 
+  			U_ID = #{ID}
   </delete>
   
   <!-- 修改用户信息 -->

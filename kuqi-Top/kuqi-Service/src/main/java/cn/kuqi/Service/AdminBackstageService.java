@@ -167,9 +167,9 @@ public interface AdminBackstageService {
 	  * */
 	 List<Users> queryUsersInfoByAllDataService(Users users);//综合条件查询
 	 
-	 MessageInfo DeleteUserByIDService(Users users);//删除用户
+	 MessageInfo deleteUserByIDService(List<Integer> list);//删除用户
 	 
-	 MessageInfo AlterUserInfoByIdService(Users users);//修改用户信息
+	 MessageInfo alterUserInfoByIdService(Users users);//修改用户信息
 	 
 	 List<Users> queryUsersInfoByAllService(Integer now,Integer max); //用户信息分页查询
 	 

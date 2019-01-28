@@ -176,12 +176,15 @@ public interface AdminBackstageMapper {
 	
 	Users QueryUserInfoByID(Users users);//通过ID查单个用户
 	
-	Integer DeleteUserByUID(@Param("ID") Integer UID) ;//删除用户
+	Integer deleteUserByUID(@Param("ID") Integer UID) ;//删除用户
 	
 	Integer AlterUserInfo(Users users);//修改用户
 	
-	List<Users> queryAllUser(@Param("now") Integer now, @Param("max") Integer max);//用户信息分页查询
-		
+	List<Users> queryAllUser(@Param("now") Integer now, @Param("max") Integer max, @Param("uId") String uId, 
+			@Param("uName") String uName, @Param("uEmail") String uEmail);//用户信息分页查询
+	
+	Integer queryCountUser();//查询所有用户条数	
+	
 	
 	/*
 	 * 博客管理-->信息操作 

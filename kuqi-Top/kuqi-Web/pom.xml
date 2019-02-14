@@ -141,7 +141,6 @@
 	    <artifactId>jedis</artifactId>
 	</dependency>
 	
-	
 	<dependency>
 		<groupId>com.Nikey</groupId>
 		<artifactId>kuqi-Service</artifactId>

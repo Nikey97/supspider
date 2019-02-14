@@ -37,30 +37,35 @@
           
         </div>
       </div>
-      <input id="msg-status" type="hidden" value="" th:value="${status}" />
     </div>
     
-    <!-- msg-status -->
-    <div class="modal fade" id="MsgStatus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">系统提示</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body"><span th:text="${status}"></span></div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    
+    <input id="msg" type="hidden" th:value="${status}" />
+    <input id="Account" type="hidden" th:value="${account}" /><!-- 检察是否登录  -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
     <script type="text/javascript" src="js/sb-admin.js" ></script>
+    <script>
+			$(function(){
+				//登录页面用户检测
+				var account = $('#Account').val();
+				if(account != undefined && account != ""){
+					var con = confirm("系统提示：检测到登录用户，注销后才可进入登录页面。是否注销？");
+					if(con == true){
+						window.location.href="logout";//注销
+					}else{
+						window.location.href="index";//返回管理页面
+					}
+				}
+				
+				var msgs = $("#msg").val();
+				if(msgs != "" && msgs != undefined)
+				{
+					alert(msgs);
+					$("#msg").val("");
+					window.location.href="login";
+				}
+			});
+    </script>
   </body>
 </html>

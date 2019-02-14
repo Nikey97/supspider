@@ -2,16 +2,13 @@ package cn.kuqi.Controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,14 +24,12 @@ import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import cn.kuqi.Annotation.CheckUserIdentity;
 import cn.kuqi.DateUtil.ZipUtils;
-import cn.kuqi.JsonUtil.JsonAllUtil;
 import cn.kuqi.Pojo.Article;
 import cn.kuqi.Pojo.ArticleClassfiy;
 import cn.kuqi.Pojo.ArticleExt;
 import cn.kuqi.Pojo.BlogInfoJoinTheme;
 import cn.kuqi.Pojo.Bloginfo;
 import cn.kuqi.Pojo.Link;
-import cn.kuqi.Pojo.LinkExt;
 import cn.kuqi.Pojo.MessageInfo;
 import cn.kuqi.Pojo.Users;
 import cn.kuqi.ServiceImpi.AdminBackstageServiceImpi;
@@ -72,7 +67,6 @@ public class AdminBackStageController {
 	@RequestMapping("/login")
 	public String login(HttpServletRequest request, Model model, 
 			HttpSession session, String account, String psw) {
-		System.out.println("/login：    执行"+account+psw);
 		if (account != null && psw != null) {
 			int code = adminBackstageServiceImpi.QueryUserLoginInfo(account, psw);
 			if (code == 0) {
@@ -88,7 +82,6 @@ public class AdminBackStageController {
 		}else {
 			String acc = (String) session.getAttribute("account");
 			model.addAttribute("account", acc);//在显示用户的时候查询是否有用户登录
-			System.out.println(acc);
 		}
 		return "admin/login.html";
 	}

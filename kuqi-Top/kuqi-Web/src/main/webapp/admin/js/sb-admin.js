@@ -37,15 +37,6 @@
     event.preventDefault();
   });
 
-	// 登录状态的消息反馈
-	var msg = $("#msg-status").val();
-	if(msg !== ""){
-		$('#MsgStatus').modal("show");
-	}
-	
-	//客户端登录账户密码校验
-	
-
 	//文章分类操作点击显示操作框
 	$("#classfiy-dropdown").click(function(){
 			$('.classfiy-operty-content').slideToggle();

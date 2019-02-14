@@ -3,6 +3,9 @@
 	<name>kuqi-Web</name>
 	<comment></comment>
 	<projects>
+		<project>kuqi-Dao</project>
+		<project>kuqi-Service</project>
+		<project>kuqi-Util</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

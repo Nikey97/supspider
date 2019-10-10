@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>{{博客名}}</title>
+		<link type="text/css" rel="stylesheet" href="vendor/bootstrap/css/bootstrap-grid.min.css" />
+		<link type="text/css" rel="stylesheet" href="admin/vendor/bootstrap/css/bootstrap-reboot.min.css" />
+		<link type="text/css" rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css" />
+		<link type="text/css" rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css" />
+		<link type="text/css" rel="stylesheet" href="css/main.css" />
+	</head>
+	<body>
+		<header class="navbar navbar-expand-lg navbar-light">
+		  <a class="navbar-brand" href="#">{{博客名}}</a>
+		  <div id="mx_Nav" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" onclick="openNav()">
+		    <img src="img/headImage.jpeg" style="width: 40px; height: 40px; border-radius: 30px;" /><i id="downIcon" class="fa fa-caret-down" aria-hidden="true" style="font-size: 10px;"></i>
+		  </div>
+		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		    <ul class="navbar-nav mr-auto">
+		      <li class="nav-item active">
+		        <a class="nav-link" href="#">首页 <span class="sr-only">(current)</span></a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href="#">归档</a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href="#">关于我</a>
+		      </li>
+		    </ul>
+		    <form class="form-inline my-2 my-lg-0">
+		      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+		      <button class="btn btn-info"><i style="color: #fff;" class="fa fa-search"></i></button>
+		    </form>
+		  </div>
+		</header>
+		
+		<!-- 响应式MX  显示博主信息AND导航栏  -->
+		<div class="mxAuthorInfoDiv" id="mxAuthorInfoDiv">
+			<i class="fa fa-times-circle-o close" aria-hidden="true" onclick="closes()"></i>
+			<div class="authorImage"><img src="img/headImage.jpeg" style="width: 128px; height: 128px; margin: 0 auto" /></div>
+			<div class="authorInfo">
+				<div class="authorInfo-content">
+					<h5>花裤兜派大星</h5><p>
+					<span lang="motion">I am what I am.</span><br />
+					<span lang="where"><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;浙江杭州</span>
+				</div>
+			</div>
+			<div class="blogInfo">
+				<div lang="article">
+					<span>54</span><br />
+					<span>文章</span>
+				</div>
+				<div lang="label">
+					<span>10</span><br />
+					<span>标签</span>
+				</div>
+			</div>
+			<a href="javasrcpt:;" style="color: #999; text-decoration: none;" onclick="unfoldNav()">
+				<div class="navs">
+					<span>展开导航&nbsp;&nbsp;<i id="downIcons" class="fa fa-caret-down" aria-hidden="true"></i></span>
+					<ul id="navs-content">
+						<li><a href="#">首页</a></li>
+						<li><a href="#">归档</a></li>
+						<li><a href="#">关于我</a></li>
+						<li><a href="#"><i class="fa fa-search"></i></a></li>
+					</ul>
+				</div>
+			</a>
+		</div>
+		
+		<div class="container-fluid">
+			<section class="row">
+				
+				<div class="col-sm-3 col-md-3 col-lg-3">
+					<div class="col-sm-12 author-info">
+						<div class="authorImage"><img src="img/headImage.jpeg" class="img-responsive" style="width: 128px; height: 128px;" /></div>
+						<div class="authorInfo">
+							<div class="authorInfo-content">
+								<h5>花裤兜派大星</h5><p>
+								<span lang="motion">I am what I am.</span><br />
+								<span lang="where"><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;浙江杭州</span>
+							</div>
+						</div>
+						<div class="blogInfo">
+							<div lang="article">
+								<span>54</span><br />
+								<span>文章</span>
+							</div>
+							<div lang="label">
+								<span>10</span><br />
+								<span>标签</span>
+							</div>
+						</div>
+						<div class="shareInfo">
+							<ul>
+								<li><a href="#"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-sm-6 col-md-6 col-lg-6 ">
+					<div class="col-sm-12 articleList">
+						
+					</div>
+				</div>
+				
+				<div class="col-sm-3 col-md-3 col-lg-3 ">
+					<div class="col-sm-12 synthesize">
+							
+					</div>
+				</div>
+				
+			</section>
+			
+			<footer>
+				
+			</footer>
+		</div>
+	</body>
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="js/main.js"></script>
+	<script>
+		var i = 0;
+		var navs = document.getElementById("mxAuthorInfoDiv");
+		var downIcons = document.getElementById("downIcon");
+		var downIcon_Nav = document.getElementById("downIcons");
+		
+		//打开导航栏
+		function openNav(){
+			if(i < 1){
+				navs.style.display = "block";
+				downIcons.className = "fa fa-caret-up";
+				i++;
+			}else{
+				navs.style.display = "none";
+				downIcons.className = "fa fa-caret-down";
+				i=0;
+			}
+		}
+		
+		//关闭弹出框
+		function closes(){
+			navs.style.display = "none";
+			downIcons.className = "fa fa-caret-down";
+		}
+		
+		//展开导航栏
+		function unfoldNav(){
+			var nav = document.getElementById("navs-content");
+			if(i < 1){
+				nav.style.display = "block";
+				downIcon_Nav.className = "fa fa-caret-up";
+				i++;
+			}else{
+				nav.style.display = "none";
+				downIcon_Nav.className = "fa fa-caret-down";
+				i=0;
+			}
+		}
+		
+		//监控媒体查询，当设备是小屏幕时移动版导航栏是开的就关闭
+		var sremm = window.matchMedia("(max-width: 768px)");
+		
+		sremm.addListener(isCloseNav);
+		
+		//检察关闭
+		function isCloseNav(sremm){
+			if(!sremm.matches){
+				//大于
+				if(navs.style.display == "block"){
+					navs.style.display ="none";
+					downIcons.className = "fa fa-caret-down";
+				}
+			}
+		}
+	</script>
+</html>

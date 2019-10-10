@@ -1,0 +1,190 @@
+/*  首页     */
+html,body{
+	width: 100%;
+	height: 100%;
+	background: #F5F8F9;
+}
+header{
+	height: 55px;
+	background: #fff;
+	border-bottom: 0.8px solid #EBEEEF;
+}
+section{
+	margin-top: 20px;
+}
+.author-info{
+	height: auto;
+	background: #fff;
+	border: 0.8px solid #EBEEEF;
+	display: block;
+}
+.articleList{
+	height: 400px;
+	background: #fff;
+	border: 0.8px solid #EBEEEF;
+	display: block;
+}
+.synthesize{
+	height: 400px;
+	background: #fff;
+	border: 0.8px solid #EBEEEF;
+	display: block;
+}
+.AuthorInfoDiv{
+	height: auto;
+	background: #fff;
+	border: 0.8px solid #EBEEEF;
+}
+.mxAuthorInfoDiv{
+	width: 300px;
+	height: auto;
+	background: #fff;
+	border: 0.8px solid #EBEEEF;
+	display: none;
+	position: absolute;
+	z-index: 1000;
+	top: 50%;
+	left: 50%;
+	margin-top: -200px;
+	margin-left: -150px;
+}
+.authorImage{
+	width: 100%;
+	height: auto;
+	text-align: center;
+}
+.authorInfo{
+	width: 100%;
+	height: auto;
+}
+.authorInfo .authorInfo-content{
+	text-align: center;
+}
+.authorInfo .authorInfo-content h5,span{
+	margin: 0;
+	padding: 0;
+}
+.authorInfo .authorInfo-content span[lang="motion"]{
+	font-size: 12px;
+	color: #999999;
+}
+.authorInfo .authorInfo-content span[lang="where"]{
+	font-size: 9px;
+	color: #999999;
+}
+.close{
+	width: auto;
+	height: auto;
+	position: relative;
+	right: 0;
+}
+.blogInfo{
+	width: 100%;
+	height: 90px;
+	border-top: 0.8px solid #EBEEEF;
+	border-bottom: 0.8px solid #EBEEEF;
+}
+div[lang="article"]{
+	width: 49%;
+	height: 100%;
+	border-right: 0.8px solid #EBEEEF;
+	text-align: center;
+	float: left;
+	padding-top: 20px;
+}
+div[lang="label"]{
+	width: 50.6%;
+	height: 100%;
+	text-align: center;
+	float: right;
+	padding-top: 20px;
+}
+div[lang="article"],div[lang="label"] span{
+	color: #999999;
+	font-size: 15px;
+}
+.navs{
+	width: 100%;
+	height: auto;
+	text-align: center;
+	line-height: 50px;
+}
+.navs ul{
+	padding: 0;
+	margin: 0;
+	display: none;
+}
+.navs ul li{
+	list-style: none;
+	border-top: 0.8px solid #EBEEEF;
+	padding-top: 1px;
+	padding-bottom: 1px;
+}
+.navs ul li a{
+	color: #999;
+}
+.shareInfo{
+	width: 100%;
+	height: 60px;
+	margin-top: 20px;
+}
+.shareInfo ul li {
+	list-style: none;
+}
+.shareInfo ul li a{
+ 	color: #999;
+ 	font-size: 25px;
+}
+@media screen and (min-width: 300px) {
+	.author-info{
+		display: none;
+	}
+	#navbarSupportedContent{
+		display: none;
+	}
+	.synthesize{
+		margin-top: 20px;
+	}
+	#mx_Nav{
+		display: block;
+	}
+}
+@media screen and (min-width: 768px) {
+	.author-info{
+		display: block;
+	}
+	.synthesize{
+		margin-top: 0px;
+	}
+	#mx_Nav{
+		display: none;
+	}
+}
+@media screen and (min-width: 992px) {
+	.author-info{
+		display: block;
+	}
+	.synthesize{
+		margin-top: 0px;
+	}
+	#mx_Nav{
+		display: none;
+	}
+}
+@media screen and (min-width: 1200px) {
+	.author-info{
+		display: block;
+	}
+	.synthesize{
+		margin-top: 0px;
+	}
+	#mx_Nav{
+		display: none;
+	}
+}
+
+.test{
+	border:1px solid #000000;
+}
+
+

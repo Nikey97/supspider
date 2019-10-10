@@ -1,6 +1,7 @@
 package cn.kuqi.Controller;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,7 @@ import cn.kuqi.Pojo.Bloginfo;
 import cn.kuqi.Pojo.Link;
 import cn.kuqi.Pojo.MessageInfo;
 import cn.kuqi.Pojo.Users;
+import cn.kuqi.Poptis.PropertiesUtils;
 import cn.kuqi.ServiceImpi.AdminBackstageServiceImpi;
 
 @Controller
@@ -116,7 +118,7 @@ public class AdminBackStageController {
 	  */
 	@Transactional(readOnly = true)
 	@RequestMapping("/classfiy")
-	public String QueryClassfiy(Model model, Integer pager) {
+	public String queryClassfiy(Model model, Integer pager) {
 		int pagers = 0;
 		if (pager == null || pager <= 0) {
 			pager = 0;
@@ -140,7 +142,7 @@ public class AdminBackStageController {
 	  * @todo: TODO
 	  */
 	@RequestMapping("/query_classfiy.do")
-	public @ResponseBody ArticleClassfiy QueryClassfiyUpdata(int number) {
+	public @ResponseBody ArticleClassfiy queryClassfiyUpdata(int number) {
 		return adminBackstageServiceImpi.QueryOneArticleClassfiyService(number);
 	}
 	
@@ -364,7 +366,7 @@ public class AdminBackStageController {
 	  * @todo: TODO
 	  */
 	@RequestMapping(value= ("/delete_link.do"),method= {RequestMethod.POST})//删除友链
-	public@ResponseBody MessageInfo deleteLink(@RequestBody Link link) {
+	public @ResponseBody MessageInfo deleteLink(@RequestBody Link link) {
 		MessageInfo messageInfo = getMessageInfoInstance();
 		int i = adminBackstageServiceImpi.deleteLinkService(link);
 		if (i == 1) {
@@ -603,6 +605,22 @@ public class AdminBackStageController {
 		return "admin/showText.html";
 	}
 	
+	/**  
+	  * @user: Nikey 
+	  * @MethodName: install
+	  * @Description: 博客安装路径  
+	  * @return {@link String}      
+	  * @throws IOException 
+	  * @throws FileNotFoundException 
+	  * @date: 2019年3月26日 下午4:01:51  
+	  * @todo: TODO
+	  */
+	@RequestMapping("/install")
+	public String install() throws FileNotFoundException, IOException {
+		PropertiesUtils propertiesUtils = new PropertiesUtils();
+		propertiesUtils.isFile();
+		return null;
+	}
 	
 	/**
 	 * 单例对象
@@ -651,6 +669,7 @@ public class AdminBackStageController {
 		messageInfo.setPass(pass);
 		return messageInfo;
 	}
+	
 	
 }
 

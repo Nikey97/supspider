@@ -12,6 +12,7 @@ public class PropertyTest {
 	
 		public static void main(String[] args) {
 			URL reUrl = PropertyTest.class.getClassLoader().getResource("db.properties");
+			String reUrls = PropertyTest.class.getClassLoader().getResource("db.properties").getPath();
 			String apth = reUrl.toString().substring(6, reUrl.toString().length());
 			System.out.println(apth);
 			File file = new File(apth);
